@@ -1,0 +1,10 @@
+{
+    "guess_words": [
+        
+    ],
+    "words" : [
+        {"word": "the", "description": "A definite article used to specify a noun."},
+        {"word": "he", "description": "A pronoun used for a male person."},
+        {"word": "have", "description": "To own, hold, or possess."}
+    ]
+}

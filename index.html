@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cription | Word Guess Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="script.js"></script>
+<body>
+    <div id="logo">
+        <h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;">Cription</a>
+        </h1>
+    </div>
+    <div class="container">
+        <div id="settings">
+            <h2>words</h2>
+            <p id="wordCount"></p>
+            <h2>time</h2>
+            <div>
+                <span class="settings-time" onclick="selectTime(this)">30</span>
+                <span class="settings-time" onclick="selectTime(this)">60</span>
+                <span class="settings-time" onclick="selectTime(this)">120</span>
+                <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+            </div>
+            <h2>description</h2>
+            <div>
+                <span class="settings-description" onclick="descriptionView(this)">On</span>
+                <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
+            </div>
+        </div>
+        <div id="guess-area">
+            <h2 id="startText" onclick="startGame()">Press Space to Start</h2>
+        </div>
+        <div id="description-area">
+            <span id="wordDescription" style="display: none;">Word Description</span>
+        </div>
+    </div>
+    <div id="navigation">
+        <span id="nextWord">next</span>
+        <span id="restart">restart</span>
+    </div>
+</body>
+</html>
