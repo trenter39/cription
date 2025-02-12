@@ -27,12 +27,16 @@ document.addEventListener("keydown", function(event){
 
 // start game via space, text click
 function startGame(){
+    let descriptionTitle = document.getElementById('descriptionTitle')
     let descriptionElement = document.getElementById('wordDescription');
+    let descriptionOptions = document.getElementById('description-options');
     let startText = document.getElementById('startText');
     let settings = document.getElementById('settings');
     descriptionElement.classList.remove('hidden');
     startText.style.display = "none";
     settings.classList.add('hidden');
+    descriptionOptions.classList.add('hidden');
+    if(description === false) descriptionTitle.classList.add('hidden');
 
     pickRandomWord();
     descriptionElement.innerHTML = currentDescription;
@@ -42,17 +46,15 @@ function startGame(){
     console.log("Game started!");
 }
 
-// TO SEEEEEEEEEEEEEEEEEE
 function createInputBlocks(length){
-    let guessArea = document.getElementById("guess-area");
-    guessArea.innerHTML = "";
+    let activeArea = document.getElementById("active-area");
     
     for(let i = 0; i < length; i++){
         let input = document.createElement("input");
         input.type = "text";
         input.maxLength = 1;
         input.classList.add("letter-box");
-        guessArea.appendChild(input);
+        activeArea.appendChild(input);
     }
 
     let inputs = document.querySelectorAll(".letter-box");
@@ -72,7 +74,7 @@ function createInputBlocks(length){
 function checkGuess() {
     let inputs = document.querySelectorAll(".letter-box");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-    let resultArea = document.getElementById("guess-area");
+    let resultArea = document.getElementById("active-area");
     if(userGuess.toLowerCase() === currentWord){
         resultArea.innerHTML = `
             <div id="resultContainer">

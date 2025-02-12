@@ -4,49 +4,24 @@ body {
     font-family: "Liter";
 }
 
-#logo{
+#logo {
     padding-top: 20px;
-    padding-left: 7vw;
+    padding-left: 14vw;
 }
 
-#settings{
+#settings {
+    float: left;
     width: 150px;
     line-height: 0.8;
-    padding-left: 10vw;
+    padding-left: 20vw;
+    padding-bottom: 4vw;
     flex-shrink: 0;
     transition: opacity 0.5s ease-in-out;
 }
 
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.settings-time, .settings-description{
-    margin-right: 0.4vw;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.settings-time.selected, .settings-description.selected{
-    font-weight: bold;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.container {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-#guess-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+#active-area {
+    text-align: center;
+    float: left;
     border: 2px solid black;
     width: 600px;
     height: 600px;
@@ -55,26 +30,12 @@ body {
 
 #description-area {
     flex-grow: 1;
-    width: 300px;
-    padding-right: 10vw;
+    width: 100%;
     transition: opacity 0.5s ease-in-out;
-}
-
-.description-area.hidden{
-    visibility: hidden;
 }
 
 #startText {
     cursor: pointer;
-}
-
-.letter-box {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    text-align: center;
-    margin: 5px;
-    text-transform: uppercase;
 }
 
 #resultContainer {
@@ -90,10 +51,50 @@ body {
 }
 
 #wordDescription {
-    font-style: italic;
-    color: #555;
+    font-size: larger;
 }
 
 #navigation {
     font-size: larger;
+}
+
+.description-area.hidden{
+    visibility: hidden;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.settings-time, .settings-description {
+    margin-right: 0.4vw;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.settings-time.selected, .settings-description.selected {
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.letter-box {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 800px){
+    #guess-area {
+        width: 100%;
+    }
+    #settings{
+        width: 100%;
+    }
 }
