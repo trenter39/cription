@@ -2,6 +2,7 @@
 let gameStarted = false;
 let currentTime = "Any";
 let description = false;
+let guess = false;
 
 // data variables
 let wordsData = [];
@@ -10,10 +11,9 @@ let currentDescription = "";
 
 // shortcuts for space - start, tab - restart
 document.addEventListener("keydown", function(event){
-    if(event.code === "Space"){
+    if(event.code === "Space" && gameStarted === false){
         startGame();
-        gameStarted = true;
-    }
+    } 
     if (event.key === "Tab") {
         event.preventDefault();
         endGame();
@@ -27,7 +27,7 @@ document.addEventListener("keydown", function(event){
 
 // start game via space, text click
 function startGame(){
-    let descriptionTitle = document.getElementById('descriptionTitle')
+    let descriptionTitle = document.getElementById('descriptionTitle');
     let descriptionElement = document.getElementById('wordDescription');
     let descriptionOptions = document.getElementById('description-options');
     let startText = document.getElementById('startText');
@@ -37,6 +37,7 @@ function startGame(){
     settings.classList.add('hidden');
     descriptionOptions.classList.add('hidden');
     if(description === false) descriptionTitle.classList.add('hidden');
+    gameStarted = true;
 
     pickRandomWord();
     descriptionElement.innerHTML = currentDescription;
@@ -46,6 +47,7 @@ function startGame(){
     console.log("Game started!");
 }
 
+// input area
 function createInputBlocks(length){
     let activeArea = document.getElementById("active-area");
     
@@ -71,28 +73,50 @@ function createInputBlocks(length){
     })
 }
 
+// user's guess check
 function checkGuess() {
     let inputs = document.querySelectorAll(".letter-box");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-    let resultArea = document.getElementById("active-area");
     if(userGuess.toLowerCase() === currentWord){
-        resultArea.innerHTML = `
+        guess = true;
+    } else {
+        guess = false;
+    }
+    changeArea();
+}
+
+// output result
+function changeArea() {
+    let activeArea = document.getElementById("active-area");
+    if(guess === true){
+        activeArea.innerHTML += `
             <div id="resultContainer">
                 <h1 id="resultHeading">Correct!</h1>
                 <p>The word was <strong>${currentWord}</strong></p>
                 <p id="wordDescription">${currentDescription}</p>
-            </div>`
+            </div>`;
     } else {
-        resultArea.innerHTML = `<p>Incorrect! The correct word was <strong>${currentWord}</strong></p>
-                                <p id="wordDescription">${currentDescription}</p>`;
+        activeArea.innerHTML += `<p>Incorrect! The correct word was <strong>${currentWord}</strong></p>
+        <p id="wordDescription">${currentDescription}</p>`;
     }
 }
 
+// back to main state
 function endGame() {
+    let activeArea = document.getElementById("active-area");
+    let descriptionTitle = document.getElementById('descriptionTitle');
     let descriptionElement = document.getElementById('wordDescription');
+    let descriptionOptions = document.getElementById('description-options');
     let settings = document.getElementById('settings');
     descriptionElement.classList.add('hidden');
+    descriptionOptions.classList.remove('hidden');
+    descriptionTitle.classList.remove('hidden');
     settings.classList.remove('hidden');
+    let inputs = activeArea.querySelectorAll(".letter-box");
+    inputs.forEach(input => {
+        activeArea.removeChild(input);
+    });
+    gameStarted = false;
     console.log("Game ended! Options are back.");
 }
 
@@ -140,8 +164,8 @@ async function loadWords(){
         const data = await response.json();
         wordsData = data.words;
         const wordCount = data.words.length;
-        document.getElementById("wordCount").textContent = `Total English: 0/${wordCount}`;
-        // pickRandomWord();
+        let guessWords = data.guess_words.length;
+        document.getElementById("wordCount").textContent = `Total English: ${guessWords}/${wordCount}`;
     } catch (error) {
         console.error("Error loading words:", error);
     }
