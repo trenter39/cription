@@ -56,14 +56,25 @@ function createInputBlocks(length){
         input.type = "text";
         input.maxLength = 1;
         input.classList.add("letter-box");
+        if (i === 0) {
+            input.classList.add("first-box");
+        } else if (i === length - 1) {
+            input.classList.add("last-box");
+        } else {
+            input.classList.add("middle-box");
+        }
         activeArea.appendChild(input);
     }
-
     let inputs = document.querySelectorAll(".letter-box");
     inputs.forEach((input, index) => {
         input.addEventListener("input", () => {
             if (input.value && index < length - 1){
                 inputs[index + 1].focus();
+            }
+        });
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Backspace" && !input.value && index > 0){
+                inputs[index - 1].focus();
             }
         });
     });
@@ -88,16 +99,21 @@ function checkGuess() {
 // output result
 function changeArea() {
     let activeArea = document.getElementById("active-area");
+    let resultArea = document.getElementById("result-area");
+    activeArea.style.display = "none";
+    resultArea.style.display = "block";
     if(guess === true){
-        activeArea.innerHTML += `
-            <div id="resultContainer">
-                <h1 id="resultHeading">Correct!</h1>
-                <p>The word was <strong>${currentWord}</strong></p>
-                <p id="wordDescription">${currentDescription}</p>
-            </div>`;
+        resultArea.innerHTML = 
+            `<h2>Word is guessed!</h2>
+            <h2>${currentWord}</h2>
+            <p id="wordDescription">${currentDescription}</p>`;
+            console.log("Word is guessed!");
     } else {
-        activeArea.innerHTML += `<p>Incorrect! The correct word was <strong>${currentWord}</strong></p>
-        <p id="wordDescription">${currentDescription}</p>`;
+        resultArea.innerHTML = 
+            `<h2>Word is not guessed!</h2>
+            <h2>${currentWord}</h2>
+            <p id="wordDescription">${currentDescription}</p>`;
+            console.log("Word is NOT guessed!");
     }
 }
 
@@ -116,6 +132,8 @@ function endGame() {
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
+    document.getElementById("active-area").style.display = "block";
+    document.getElementById("result-area").style.display = "none";
     gameStarted = false;
     console.log("Game ended! Options are back.");
 }
@@ -126,7 +144,7 @@ function pickRandomWord(){
         const randomWordObj = wordsData[Math.floor(Math.random() * wordsData.length)];
         currentWord = randomWordObj.word;
         currentDescription = randomWordObj.description;
-        // console.log("Selected word:", currentWord); // functionality debug
+        console.log("Selected word:", currentWord); // functionality debug
     }
 }
 

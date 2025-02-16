@@ -1,10 +1,373 @@
 {
-    "guess_words": [
-        
-    ],
-    "words" : [
-        {"word": "the", "description": "A definite article used to specify a noun."},
-        {"word": "he", "description": "A pronoun used for a male person."},
-        {"word": "have", "description": "To own, hold, or possess."}
+    "guess_words": [],
+    "words": [
+        {
+            "word": "above",
+            "description": "At a higher level or position than something else."
+        },
+        {
+            "word": "again",
+            "description": "Once more  or another time."
+        },
+        {
+            "word": "ahead",
+            "description": "In front or towards the future."
+        },
+        {
+            "word": "almost",
+            "description": "Nearly but not quite."
+        },
+        {
+            "word": "already",
+            "description": "Before the present time."
+        },
+        {
+            "word": "also",
+            "description": "In addition; synonym too."
+        },
+        {
+            "word": "always",
+            "description": "At all times; on every occasion."
+        },
+        {
+            "word": "and",
+            "description": "A conjunction used to connect words phrases or clauses."
+        },
+        {
+            "word": "below",
+            "description": "At a lower level or position than something else."
+        },
+        {
+            "word": "besides",
+            "description": "In addition to; apart from."
+        },
+        {
+            "word": "carefully",
+            "description": "With great attention or caution."
+        },
+        {
+            "word": "certainly",
+            "description": "Without a doubt; definitely."
+        },
+        {
+            "word": "clearly",
+            "description": "In a way that is easy to understand or see."
+        },
+        {
+            "word": "early",
+            "description": "Before the usual or expected time."
+        },
+        {
+            "word": "else",
+            "description": "In addition to what has been mentioned; other."
+        },
+        {
+            "word": "enough",
+            "description": "Adequate in quantity or degree."
+        },
+        {
+            "word": "ever",
+            "description": "At any time; always."
+        },
+        {
+            "word": "extremely",
+            "description": "To a very great degree."
+        },
+        {
+            "word": "forward",
+            "description": "In the direction that one is facing; ahead."
+        },
+        {
+            "word": "frequently",
+            "description": "Occurring often or regularly."
+        },
+        {
+            "word": "go",
+            "description": "To move from one place to another."
+        },
+        {
+            "word": "goodbye",
+            "description": "A parting expression used when leaving."
+        },
+        {
+            "word": "hard",
+            "description": "Solid firm or tough; difficult to do or understand."
+        },
+        {
+            "word": "hardly",
+            "description": "Barely; only just; almost not."
+        },
+        {
+            "word": "have",
+            "description": "To own, hold, or possess."
+        },
+        {
+            "word": "he",
+            "description": "A pronoun used for a male person."
+        },
+        {
+            "word": "hello",
+            "description": "A greeting or expression of acknowledgment."
+        },
+        {
+            "word": "here",
+            "description": "In or at this place."
+        },
+        {
+            "word": "how",
+            "description": "In what way or manner; by what means."
+        },
+        {
+            "word": "however",
+            "description": "In spite of that; nevertheless."
+        },
+        {
+            "word": "inside",
+            "description": "Within something; the inner part of something."
+        },
+        {
+            "word": "it",
+            "description": "A pronoun used to refer to a thing previously mentioned or easily identified."
+        },
+        {
+            "word": "just",
+            "description": "Exactly; only; merely."
+        },
+        {
+            "word": "lately",
+            "description": "In the recent past; not long ago."
+        },
+        {
+            "word": "likewise",
+            "description": "In the same way; similarly."
+        },
+        {
+            "word": "maybe",
+            "description": "Possibly but not certainly."
+        },
+        {
+            "word": "middle",
+            "description": "The central point, position, or part of something."
+        },
+        {
+            "word": "midway",
+            "description": "At or near the middle point."
+        },
+        {
+            "word": "much",
+            "description": "A large amount or extent of something."
+        },
+        {
+            "word": "near",
+            "description": "Close to; at a short distance from."
+        },
+        {
+            "word": "nearly",
+            "description": "Almost; not quite."
+        },
+        {
+            "word": "never",
+            "description": "At no time; not ever."
+        },
+        {
+            "word": "nevertheless",
+            "description": "In spite of that; nonetheless."
+        },
+        {
+            "word": "no",
+            "description": "A negative response or denial."
+        },
+        {
+            "word": "now",
+            "description": "At the present moment; immediately."
+        },
+        {
+            "word": "nowhere",
+            "description": "Not in or at any place; not anywhere."
+        },
+        {
+            "word": "obviously",
+            "description": "In a way that is easily understood or seen; clearly."
+        },
+        {
+            "word": "often",
+            "description": "Frequently; many times."
+        },
+        {
+            "word": "only",
+            "description": "No more than; solely; just."
+        },
+        {
+            "word": "or",
+            "description": "A conjunction used to link alternatives or choices."
+        },
+        {
+            "word": "outside",
+            "description": "The external side or surface of something."
+        },
+        {
+            "word": "perhaps",
+            "description": "Possibly; it could be that."
+        },
+        {
+            "word": "probably",
+            "description": "Likely to happen or be true."
+        },
+        {
+            "word": "quick",
+            "description": "Moving or occurring with speed; fast."
+        },
+        {
+            "word": "quickly",
+            "description": "In a fast or rapid manner."
+        },
+        {
+            "word": "quite",
+            "description": "To a considerable extent; fairly."
+        },
+        {
+            "word": "recently",
+            "description": "In the near past; not long ago."
+        },
+        {
+            "word": "scarcely",
+            "description": "Barely; only just; hardly."
+        },
+        {
+            "word": "seldom",
+            "description": "Rarely; not often."
+        },
+        {
+            "word": "she",
+            "description": "A pronoun used to refer to a female person or animal."
+        },
+        {
+            "word": "slowly",
+            "description": "In a slow manner; at a low speed."
+        },
+        {
+            "word": "so",
+            "description": "To such a degree; therefore; for that reason."
+        },
+        {
+            "word": "some",
+            "description": "An unspecified amount or number of something."
+        },
+        {
+            "word": "sometimes",
+            "description": "Occasionally; at times."
+        },
+        {
+            "word": "somewhere",
+            "description": "At an unspecified or unknown location."
+        },
+        {
+            "word": "soon",
+            "description": "In the near future; shortly."
+        },
+        {
+            "word": "surely",
+            "description": "Without a doubt; certainly."
+        },
+        {
+            "word": "the",
+            "description": "A definite article used to specify a noun."
+        },
+        {
+            "word": "there",
+            "description": "In or at that place; at a particular location."
+        },
+        {
+            "word": "they",
+            "description": "A pronoun used to refer to a group of people or things."
+        },
+        {
+            "word": "time",
+            "description": "The continuous progress of existence, measured in hours, minutes, and seconds."
+        },
+        {
+            "word": "today",
+            "description": "The current day, the day that is happening now."
+        },
+        {
+            "word": "tomorrow",
+            "description": "The day after today; the next day."
+        },
+        {
+            "word": "too",
+            "description": "In addition; also; excessively."
+        },
+        {
+            "word": "under",
+            "description": "In a lower position or beneath something."
+        },
+        {
+            "word": "very",
+            "description": "To a high degree or extent; extremely."
+        },
+        {
+            "word": "way",
+            "description": "A method, style, or manner of doing something."
+        },
+        {
+            "word": "well",
+            "description": "In a good or satisfactory manner; in good health."
+        },
+        {
+            "word": "what",
+            "description": "Used to ask for information about something."
+        },
+        {
+            "word": "when",
+            "description": "At what time; used to ask about time."
+        },
+        {
+            "word": "whenever",
+            "description": "At any time or every time that something happens."
+        },
+        {
+            "word": "where",
+            "description": "In or at what place; used to ask about location."
+        },
+        {
+            "word": "whether",
+            "description": "A word used to introduce a question or alternative."
+        },
+        {
+            "word": "which",
+            "description": "Used to specify one or more items from a defined set."
+        },
+        {
+            "word": "who",
+            "description": "A pronoun used to ask about a person or people."
+        },
+        {
+            "word": "whom",
+            "description": "A formal pronoun used to refer to the object of a verb or preposition."
+        },
+        {
+            "word": "whose",
+            "description": "A possessive form used to ask about ownership or association."
+        },
+        {
+            "word": "why",
+            "description": "The reason or cause for something; used to ask about a reason."
+        },
+        {
+            "word": "yes",
+            "description": "An affirmative response or agreement."
+        },
+        {
+            "word": "yesterday",
+            "description": "The day before today."
+        },
+        {
+            "word": "yet",
+            "description": "Up until now; still; used in negative or interrogative contexts."
+        },
+        {
+            "word": "you",
+            "description": "A pronoun used to refer to the person or people being addressed."
+        }
     ]
 }
