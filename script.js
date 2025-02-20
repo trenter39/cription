@@ -17,11 +17,6 @@ document.addEventListener("keydown", function(event){
     if (event.key === "Tab") {
         event.preventDefault();
         endGame();
-        let startText = document.getElementById('startText');
-        startText.style.display = "block";
-        gameStarted = false;
-        let descriptionElement = document.getElementById('wordDescription');
-        descriptionElement.style.display = "none";
     }
 });
 
@@ -100,18 +95,20 @@ function checkGuess() {
 function changeArea() {
     let activeArea = document.getElementById("active-area");
     let resultArea = document.getElementById("result-area");
+    let nextWord = document.getElementById("nextWord");
+    nextWord.style.display = "inline";
     activeArea.style.display = "none";
     resultArea.style.display = "block";
     if(guess === true){
         resultArea.innerHTML = 
             `<h2>Word is guessed!</h2>
-            <h2>${currentWord}</h2>
+            <h1>${currentWord}</h1>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is guessed!");
     } else {
         resultArea.innerHTML = 
             `<h2>Word is not guessed!</h2>
-            <h2>${currentWord}</h2>
+            <h1>${currentWord}</h1>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is NOT guessed!");
     }
@@ -123,11 +120,16 @@ function endGame() {
     let descriptionTitle = document.getElementById('descriptionTitle');
     let descriptionElement = document.getElementById('wordDescription');
     let descriptionOptions = document.getElementById('description-options');
+    let startText = document.getElementById('startText');
     let settings = document.getElementById('settings');
+    let nextWord = document.getElementById("nextWord");
+    descriptionElement.style.display = "none";
     descriptionElement.classList.add('hidden');
     descriptionOptions.classList.remove('hidden');
     descriptionTitle.classList.remove('hidden');
     settings.classList.remove('hidden');
+    startText.style.display = "block";
+    nextWord.style.display = "none";
     let inputs = activeArea.querySelectorAll(".letter-box");
     inputs.forEach(input => {
         activeArea.removeChild(input);
@@ -135,7 +137,7 @@ function endGame() {
     document.getElementById("active-area").style.display = "block";
     document.getElementById("result-area").style.display = "none";
     gameStarted = false;
-    console.log("Game ended! Options are back.");
+    console.log("Initial layout is back.");
 }
 
 // random word picker from words.json

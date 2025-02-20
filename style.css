@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Liter&display=swap');
 
+:root {
+    --settings-margin-left: 20vw;
+    --settings-area-width: 150px;
+    --active-area-width: 600px;
+}
+
 body {
     font-family: "Liter";
 }
@@ -11,9 +17,9 @@ body {
 
 #settings {
     float: left;
-    width: 150px;
+    width: var(--settings-area-width);
     line-height: 0.8;
-    padding-left: 20vw;
+    margin-left: var(--settings-margin-left);
     padding-bottom: 4vw;
     flex-shrink: 0;
     transition: opacity 0.5s ease-in-out;
@@ -23,7 +29,7 @@ body {
     text-align: center;
     float: left;
     border: 2px solid black;
-    width: 600px;
+    width: var(--active-area-width);
     height: 600px;
     padding: 10px;
 }
@@ -31,10 +37,9 @@ body {
 #description-area {
     flex-grow: 1;
     width: 100%;
-    transition: opacity 0.5s ease-in-out;
 }
 
-#startText {
+#startText,  #nextWord, #restart{
     cursor: pointer;
 }
 
@@ -43,11 +48,11 @@ body {
 }
 
 #navigation {
+    text-align: right;
+    width: calc(var(--active-area-width) +
+    var(--settings-area-width) + 
+    var(--settings-margin-left) + 1vw);
     font-size: larger;
-}
-
-.description-area.hidden{
-    visibility: hidden;
 }
 
 .hidden {
@@ -65,10 +70,6 @@ body {
     font-weight: bold;
 }
 
-.bold {
-    font-weight: bold;
-}
-
 .letter-box {
     border: 2px solid;
     width: 50px;
@@ -79,18 +80,15 @@ body {
 }
 
 .letter-box.first-box {
-    border: 2px solid;
     border-right-style: dashed;
 }
 
 .letter-box.middle-box {
-    border: 2px solid;
     border-left-style: none;
     border-right-style: dashed;
 }
 
 .letter-box.last-box {
-    border: 2px solid;
     border-left-style: none;
 }
 
