@@ -27,7 +27,11 @@ function startGame(){
     let descriptionOptions = document.getElementById('description-options');
     let startText = document.getElementById('startText');
     let settings = document.getElementById('settings');
+    let restart = document.getElementById('restart');
+
     descriptionElement.classList.remove('hidden');
+    restart.style.display = "inline";
+    restart.innerHTML = "restart";
     startText.style.display = "none";
     settings.classList.add('hidden');
     descriptionOptions.classList.add('hidden');
@@ -60,29 +64,32 @@ function createInputBlocks(length){
         }
         activeArea.appendChild(input);
     }
+
     let inputs = document.querySelectorAll(".letter-box");
     inputs.forEach((input, index) => {
+
         input.addEventListener("input", () => {
             if (input.value && index < length - 1){
                 inputs[index + 1].focus();
             }
         });
+
         input.addEventListener("keydown", (event) => {
             if (event.key === "Backspace" && !input.value && index > 0){
                 inputs[index - 1].focus();
             }
         });
     });
-
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") checkGuess();
-    })
+        if (event.key === "Enter" && gameStarted === true) checkGuess();
+    });
 }
 
 // user's guess check
 function checkGuess() {
     let inputs = document.querySelectorAll(".letter-box");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
+
     if(userGuess.toLowerCase() === currentWord){
         guess = true;
     } else {
@@ -95,10 +102,12 @@ function checkGuess() {
 function changeArea() {
     let activeArea = document.getElementById("active-area");
     let resultArea = document.getElementById("result-area");
-    let nextWord = document.getElementById("nextWord");
-    nextWord.style.display = "inline";
+    let restart = document.getElementById('restart');
+
+    restart.innerHTML = "next word";
     activeArea.style.display = "none";
     resultArea.style.display = "block";
+
     if(guess === true){
         resultArea.innerHTML = 
             `<h2>Word is guessed!</h2>
@@ -117,27 +126,30 @@ function changeArea() {
 // back to main state
 function endGame() {
     let activeArea = document.getElementById("active-area");
+    let resultArea = document.getElementById("result-area");
     let descriptionTitle = document.getElementById('descriptionTitle');
     let descriptionElement = document.getElementById('wordDescription');
     let descriptionOptions = document.getElementById('description-options');
     let startText = document.getElementById('startText');
     let settings = document.getElementById('settings');
-    let nextWord = document.getElementById("nextWord");
+    let restart = document.getElementById('restart');
+    let inputs = activeArea.querySelectorAll(".letter-box");
+
     descriptionElement.style.display = "none";
     descriptionElement.classList.add('hidden');
     descriptionOptions.classList.remove('hidden');
     descriptionTitle.classList.remove('hidden');
     settings.classList.remove('hidden');
     startText.style.display = "block";
-    nextWord.style.display = "none";
-    let inputs = activeArea.querySelectorAll(".letter-box");
+    restart.style.display = "none";
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
-    document.getElementById("active-area").style.display = "block";
-    document.getElementById("result-area").style.display = "none";
+    activeArea.style.display = "block";
+    resultArea.style.display = "none";
     gameStarted = false;
-    console.log("Initial layout is back.");
+
+    console.log("Initial layout is back."); // functionality debug
 }
 
 // random word picker from words.json
@@ -147,6 +159,8 @@ function pickRandomWord(){
         currentWord = randomWordObj.word;
         currentDescription = randomWordObj.description;
         console.log("Selected word:", currentWord); // functionality debug
+    } else {
+        console.log("Data isn't fetched!"); // functionality debug
     }
 }
 

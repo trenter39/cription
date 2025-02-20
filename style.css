@@ -3,7 +3,7 @@
 :root {
     --settings-margin-left: 20vw;
     --settings-area-width: 150px;
-    --active-area-width: 600px;
+    --active-area-width: 800px;
 }
 
 body {
@@ -11,15 +11,14 @@ body {
 }
 
 #logo {
-    padding-top: 20px;
-    padding-left: 14vw;
+    text-align: center;
 }
 
 #settings {
     float: left;
     width: var(--settings-area-width);
     line-height: 0.8;
-    margin-left: var(--settings-margin-left);
+    margin-left: 15px;
     padding-bottom: 4vw;
     flex-shrink: 0;
     transition: opacity 0.5s ease-in-out;
@@ -30,7 +29,7 @@ body {
     float: left;
     border: 2px solid black;
     width: var(--active-area-width);
-    height: 600px;
+    height: 400px;
     padding: 10px;
 }
 
@@ -48,16 +47,19 @@ body {
 }
 
 #navigation {
-    text-align: right;
-    width: calc(var(--active-area-width) +
-    var(--settings-area-width) + 
-    var(--settings-margin-left) + 1vw);
+    text-align: center;
     font-size: larger;
 }
 
 .hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+.upper-active-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .settings-time, .settings-description {

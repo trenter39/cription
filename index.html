@@ -13,6 +13,20 @@
             <a href="index.html" style="text-decoration: none; color: inherit;">Cription</a>
         </h1>
     </div>
+    <div class="upper-active-area">
+        <div id="active-area">
+            <div id="description-area">
+                <h2 id="descriptionTitle">description</h2>
+                <span id="wordDescription" style="display: none;">Word Description</span>
+                <div id="description-options">
+                    <span class="settings-description" onclick="descriptionView(this)">On</span>
+                    <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
+                </div>
+            </div>
+            <h2 id="startText" onclick="startGame()">Press Space to Start</h2>
+        </div>
+        <div id="result-area" style="display: none;"></div>
+    </div>
     <div id="settings">
         <h2>words</h2>
         <p id="wordCount"></p>
@@ -24,24 +38,11 @@
             <span class="settings-time selected" onclick="selectTime(this)">Any</span>
         </div>
     </div>
-    <div id="active-area">
-        <div id="description-area">
-            <h2 id="descriptionTitle">description</h2>
-            <span id="wordDescription" style="display: none;">Word Description</span>
-            <div id="description-options">
-                <span class="settings-description" onclick="descriptionView(this)">On</span>
-                <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
-            </div>
-        </div>
-        <h2 id="startText" onclick="startGame()">Press Space to Start</h2>
-    </div>
-    <div id="result-area" style="display: none;"></div>
     <!-- <div id="time-area">
         <span id="timeCounter">Time</span>
     </div> -->
     <div id="navigation">
-        <span id="nextWord" style="display: none;">next</span>
-        <span id="restart" onclick="endGame()">restart</span>
+        <p id="restart" onclick="endGame()" style="display: none;">restart</p>
     </div>
 </body>
 </html>
