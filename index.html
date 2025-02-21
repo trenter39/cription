@@ -14,6 +14,9 @@
         </h1>
     </div>
     <div class="upper-active-area">
+        <div id="time-area">
+            <h1 id="timeCounter" class="hidden">Time</h1>
+        </div>
         <div id="active-area">
             <div id="description-area">
                 <h2 id="descriptionTitle">description</h2>
@@ -26,21 +29,18 @@
             <h2 id="startText" onclick="startGame()">Press Space to Start</h2>
         </div>
         <div id="result-area" style="display: none;"></div>
-    </div>
-    <div id="settings">
-        <h2>words</h2>
-        <p id="wordCount"></p>
-        <h2>time</h2>
-        <div>
-            <span class="settings-time" onclick="selectTime(this)">30</span>
-            <span class="settings-time" onclick="selectTime(this)">60</span>
-            <span class="settings-time" onclick="selectTime(this)">120</span>
-            <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+        <div id="settings">
+            <h2>words</h2>
+            <p id="wordCount"></p>
+            <h2>time</h2>
+            <div>
+                <span class="settings-time" onclick="selectTime(this)">30</span>
+                <span class="settings-time" onclick="selectTime(this)">60</span>
+                <span class="settings-time" onclick="selectTime(this)">120</span>
+                <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+            </div>
         </div>
     </div>
-    <!-- <div id="time-area">
-        <span id="timeCounter">Time</span>
-    </div> -->
     <div id="navigation">
         <p id="restart" onclick="endGame()" style="display: none;">restart</p>
     </div>

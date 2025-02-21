@@ -14,7 +14,7 @@ body {
     text-align: center;
 }
 
-#settings {
+#settings, #time-area {
     float: left;
     width: var(--settings-area-width);
     line-height: 0.8;

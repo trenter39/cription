@@ -8,6 +8,7 @@ let guess = false;
 let wordsData = [];
 let currentWord = "";
 let currentDescription = "";
+let timerInterval;
 
 // shortcuts for space - start, tab - restart
 document.addEventListener("keydown", function(event){
@@ -37,6 +38,10 @@ function startGame(){
     descriptionOptions.classList.add('hidden');
     if(description === false) descriptionTitle.classList.add('hidden');
     gameStarted = true;
+    
+    let value = document.querySelector('.settings-time.selected').textContent.trim();
+    currentTime = (value === "Any") ? "Any" : parseInt(value, 10);
+    if(currentTime !== "Any") setTimer();
 
     pickRandomWord();
     descriptionElement.innerHTML = currentDescription;
@@ -44,6 +49,27 @@ function startGame(){
 
     createInputBlocks(currentWord.length);
     console.log("Game started!");
+}
+
+// set timer and interval
+function setTimer(){
+    let time = document.getElementById('timeCounter');
+    time.innerHTML = currentTime;
+    time.classList.remove('hidden');
+    changeTime();
+    timerInterval = setInterval(changeTime, 1000);
+}
+
+// change timer text, time out - end game
+function changeTime(){
+    let time = document.getElementById('timeCounter');
+    time.innerHTML = currentTime;
+    if(currentTime > 0){
+        currentTime--;
+    } else {
+        clearInterval(timerInterval);
+        endGame();
+    }
 }
 
 // input area
@@ -103,7 +129,9 @@ function changeArea() {
     let activeArea = document.getElementById("active-area");
     let resultArea = document.getElementById("result-area");
     let restart = document.getElementById('restart');
+    let time = document.getElementById('timeCounter');
 
+    time.classList.add('hidden');
     restart.innerHTML = "next word";
     activeArea.style.display = "none";
     resultArea.style.display = "block";
@@ -123,7 +151,7 @@ function changeArea() {
     }
 }
 
-// back to main state
+// back to main state via end game, tab
 function endGame() {
     let activeArea = document.getElementById("active-area");
     let resultArea = document.getElementById("result-area");
@@ -133,8 +161,10 @@ function endGame() {
     let startText = document.getElementById('startText');
     let settings = document.getElementById('settings');
     let restart = document.getElementById('restart');
+    let time = document.getElementById('timeCounter');
     let inputs = activeArea.querySelectorAll(".letter-box");
 
+    time.classList.add('hidden');
     descriptionElement.style.display = "none";
     descriptionElement.classList.add('hidden');
     descriptionOptions.classList.remove('hidden');
@@ -148,6 +178,7 @@ function endGame() {
     activeArea.style.display = "block";
     resultArea.style.display = "none";
     gameStarted = false;
+    clearInterval(timerInterval);
 
     console.log("Initial layout is back."); // functionality debug
 }
@@ -166,13 +197,12 @@ function pickRandomWord(){
 
 // time option
 function selectTime(selectedOption){
+    let time = document.getElementById('timeCounter');
     document.querySelectorAll('.settings-time').forEach(option => {
         option.classList.remove('selected');
     });
     selectedOption.classList.add('selected');
-    let value = selectedOption.textContent.trim();
-    currentTime = (value === "Any") ? "Any" : String(parseInt(value, 10));
-    // console.log(currentTime); // functionality debug
+    time.innerHTML = selectedOption.textContent.trim();
 }
 
 // description option
