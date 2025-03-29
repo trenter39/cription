@@ -10,6 +10,19 @@ let currentWord = "";
 let currentDescription = "";
 let timerInterval;
 
+// document elements
+let activeArea = document.getElementById("active-area");
+let descriptionTitle = document.getElementById('descriptionTitle');
+let descriptionElement = document.getElementById('wordDescription');
+let descriptionOptions = document.getElementById('description-options');
+let resultArea = document.getElementById("result-area");
+let startText = document.getElementById('startText');
+let settings = document.getElementById('settings');
+let restart = document.getElementById('restart');
+let userMenu = document.getElementById('user-menu');
+let time = document.getElementById('time-area');
+let loginWord = document.getElementById('login');
+
 // shortcuts for space - start, tab - restart
 document.addEventListener("keydown", function(event){
     if(event.code === "Space" && gameStarted === false){
@@ -23,17 +36,11 @@ document.addEventListener("keydown", function(event){
 
 // start game via space, text click
 function startGame(){
-    let descriptionTitle = document.getElementById('descriptionTitle');
-    let descriptionElement = document.getElementById('wordDescription');
-    let descriptionOptions = document.getElementById('description-options');
-    let startText = document.getElementById('startText');
-    let settings = document.getElementById('settings');
-    let restart = document.getElementById('restart');
-
     descriptionElement.classList.remove('hidden');
     restart.style.display = "inline";
     restart.innerHTML = "restart";
     startText.style.display = "none";
+    userMenu.classList.add('hidden');
     settings.classList.add('hidden');
     descriptionOptions.classList.add('hidden');
     if(description === false) descriptionTitle.classList.add('hidden');
@@ -41,7 +48,10 @@ function startGame(){
     
     let value = document.querySelector('.settings-time.selected').textContent.trim();
     currentTime = (value === "Any") ? "Any" : parseInt(value, 10);
-    if(currentTime !== "Any") setTimer();
+    if(currentTime !== "Any"){
+        userMenu.style.display = "none";
+        setTimer();
+    }
 
     pickRandomWord();
     descriptionElement.innerHTML = currentDescription;
@@ -53,17 +63,15 @@ function startGame(){
 
 // set timer and interval
 function setTimer(){
-    let time = document.getElementById('timeCounter');
     time.innerHTML = currentTime;
-    time.classList.remove('hidden');
+    time.style.display = "block";
     changeTime();
     timerInterval = setInterval(changeTime, 1000);
 }
 
 // change timer text, time out - end game
 function changeTime(){
-    let time = document.getElementById('timeCounter');
-    time.innerHTML = currentTime;
+    time.innerHTML = `<h1>${currentTime}</h1>`;
     if(currentTime > 0){
         currentTime--;
     } else {
@@ -74,8 +82,7 @@ function changeTime(){
 
 // input area
 function createInputBlocks(length){
-    let activeArea = document.getElementById("active-area");
-    
+
     for(let i = 0; i < length; i++){
         let input = document.createElement("input");
         input.type = "text";
@@ -126,16 +133,12 @@ function checkGuess() {
 
 // output result
 function changeArea() {
-    let activeArea = document.getElementById("active-area");
-    let resultArea = document.getElementById("result-area");
-    let restart = document.getElementById('restart');
-    let time = document.getElementById('timeCounter');
-
-    time.classList.add('hidden');
+    time.style.display = "none";
+    userMenu.style.display = "block";
     restart.innerHTML = "next word";
     activeArea.style.display = "none";
     resultArea.style.display = "block";
-
+    clearInterval(timerInterval);
     if(guess === true){
         resultArea.innerHTML = 
             `<h2>Word is guessed!</h2>
@@ -153,18 +156,8 @@ function changeArea() {
 
 // back to main state via end game, tab
 function endGame() {
-    let activeArea = document.getElementById("active-area");
-    let resultArea = document.getElementById("result-area");
-    let descriptionTitle = document.getElementById('descriptionTitle');
-    let descriptionElement = document.getElementById('wordDescription');
-    let descriptionOptions = document.getElementById('description-options');
-    let startText = document.getElementById('startText');
-    let settings = document.getElementById('settings');
-    let restart = document.getElementById('restart');
-    let time = document.getElementById('timeCounter');
     let inputs = activeArea.querySelectorAll(".letter-box");
-
-    time.classList.add('hidden');
+    time.style.display = "none";
     descriptionElement.style.display = "none";
     descriptionElement.classList.add('hidden');
     descriptionOptions.classList.remove('hidden');
@@ -175,6 +168,8 @@ function endGame() {
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
+    userMenu.style.display = "block";
+    userMenu.classList.remove('hidden');
     activeArea.style.display = "block";
     resultArea.style.display = "none";
     gameStarted = false;
@@ -197,7 +192,6 @@ function pickRandomWord(){
 
 // time option
 function selectTime(selectedOption){
-    let time = document.getElementById('timeCounter');
     document.querySelectorAll('.settings-time').forEach(option => {
         option.classList.remove('selected');
     });
@@ -218,13 +212,36 @@ function descriptionView(selectedOption){
 
 // setup function
 function pageSetup(){
-    window.onload = loadWords;
+    window.onload = () => {
+        loadWords();
+        checkLogin();
+    };
+}
+
+function checkLogin(){
+    const username = sessionStorage.getItem("username");
+    console.log(username);
+    if(username){
+        loginWord.textContent = "";
+        const usernameText = document.createTextNode(`${username}`);
+        const signOutElement = document.createElement("p");
+        signOutElement.textContent = "sign out";
+        signOutElement.addEventListener("click", signOut);
+        loginWord.appendChild(usernameText);
+        loginWord.appendChild(signOutElement);
+    }
+}
+
+function signOut(){
+    sessionStorage.removeItem("username");
+    location.reload();
+    // console.log("signed out"); // functionality debug
 }
 
 // words load function
 async function loadWords(){
     try {
-        const response = await fetch("words.json");
+        const response = await fetch("../data/words.json");
         const data = await response.json();
         wordsData = data.words;
         const wordCount = data.words.length;

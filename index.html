@@ -6,7 +6,6 @@
     <title>Cription | Word Guess Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
 <body>
     <div id="logo">
         <h1>
@@ -14,8 +13,16 @@
         </h1>
     </div>
     <div class="upper-active-area">
-        <div id="time-area">
-            <h1 id="timeCounter" class="hidden">Time</h1>
+        <div id="user-menu">
+            <h2 id="login">
+                <a href="login.html" style="text-decoration: none; color: inherit;">login</a>
+            </h2>
+            <h2>
+                <a href="#" style="text-decoration: none; color: inherit;">more settings</a>
+            </h2>
+        </div>
+        <div id="time-area" style="display: none;">
+            <h1 id="timeCounter">Time</h1>
         </div>
         <div id="active-area">
             <div id="description-area">
@@ -26,7 +33,7 @@
                     <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
                 </div>
             </div>
-            <h2 id="startText" onclick="startGame()">Press Space to Start</h2>
+            <h2 id="startText" onclick="startGame()">start</h2>
         </div>
         <div id="result-area" style="display: none;"></div>
         <div id="settings">
@@ -44,5 +51,6 @@
     <div id="navigation">
         <p id="restart" onclick="endGame()" style="display: none;">restart</p>
     </div>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

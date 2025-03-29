@@ -14,7 +14,7 @@ body {
     text-align: center;
 }
 
-#settings, #time-area {
+#settings, #time-area, #user-menu {
     float: left;
     width: var(--settings-area-width);
     line-height: 0.8;
@@ -26,16 +26,15 @@ body {
 
 #active-area, #result-area {
     text-align: center;
-    float: left;
     border: 2px solid black;
     width: var(--active-area-width);
     height: 400px;
     padding: 10px;
 }
 
-#description-area {
-    flex-grow: 1;
-    width: 100%;
+#register-login-area {
+    margin: auto;
+    width: var(--active-area-width);
 }
 
 #startText,  #nextWord, #restart{
@@ -49,6 +48,19 @@ body {
 #navigation {
     text-align: center;
     font-size: larger;
+}
+
+.register {
+    float: left;
+}
+
+.login {
+    float: right;
+}
+
+.valueInput {
+    width: 100px;
+    margin-bottom: 10px;
 }
 
 .hidden {
@@ -93,12 +105,3 @@ body {
 .letter-box.last-box {
     border-left-style: none;
 }
-
-/* @media screen and (max-width: 800px){
-    #guess-area {
-        width: 100%;
-    }
-    #settings{
-        width: 100%;
-    }
-} */

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Cription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="logo">
+        <h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;">Cription</a>
+        </h1>
+    </div>
+    <div id="register-login-area">
+        <div class="register">
+            <h2>register</h2>
+            <form action autocomplete="nope">
+                <div class="valueInput">
+                    <input type="text" class="usernameInput" placeholder="username">
+                </div>
+                <div class="valueInput">
+                    <input type="email" class="emailInput" placeholder="email">
+                </div>
+                <div class="valueInput">
+                    <input type="email" class="verifyEmailInput" placeholder="verify email">
+                </div>
+                <div class="valueInput">
+                    <input type="password" class="passwordInput" placeholder="password">
+                </div>
+                <div class="valueInput">
+                    <input type="password" class="verifyPasswordInput" placeholder="verify password">
+                </div>
+                <button type="submit" disabled>sign up</button>
+                <h3 class="outputRegisterMessage hidden"></h3>
+            </form>
+        </div>
+        <div class="login">
+            <h2>login</h2>
+            <form action>
+                <div class="valueInput">
+                    <input type="email" placeholder="email">
+                </div>
+                <div class="valueInput">
+                    <input type="password" placeholder="password">
+                </div>
+                <button type="submit" disabled>sign in</button>
+                <h3 class="outputLoginMessage hidden"></h3>
+            </form>
+        </div>
+    </div>
+    <!-- <script src="scripts/login.js"></script> -->
+</body>
+</html>
