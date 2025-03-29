@@ -2,16 +2,148 @@
     "guess_words": [],
     "words": [
         {
+            "word": "abandon",
+            "description": "To leave something or someone behind, often without intending to return or with a sense of finality."
+        },
+        {
+            "word": "ability",
+            "description": "The skill or power to do something, often through talent, experience, or training."
+        },
+        {
             "word": "above",
             "description": "At a higher level or position than something else."
+        },
+        {
+            "word": "absolute",
+            "description": "Something that is complete, total, and not subject to any conditions or limitations."
+        },
+        {
+            "word": "absorb",
+            "description": "To take in or soak up a substance, knowledge, or information."
+        },
+        {
+            "word": "abstract",
+            "description": "A concept or idea that is not grounded in physical reality, often theoretical or intellectual."
+        },
+        {
+            "word": "accelerate",
+            "description": "To increase the speed or rate of something, such as a process or movement."
+        },
+        {
+            "word": "access",
+            "description": "The means or opportunity to approach, enter, or use something."
+        },
+        {
+            "word": "accidental",
+            "description": "Happening by chance, often unexpectedly or unintentionally."
+        },
+        {
+            "word": "accommodation",
+            "description": "A space or provision made for someone’s needs, such as lodging or adjustments in the environment."
+        },
+        {
+            "word": "accompany",
+            "description": "To go or be with someone as a companion or escort."
+        },
+        {
+            "word": "accomplish",
+            "description": "To successfully complete a task or goal."
+        },
+        {
+            "word": "according",
+            "description": "In agreement with or in relation to something, often used to reference sources or principles."
+        },
+        {
+            "word": "accurate",
+            "description": "Correct or precise, with no errors or mistakes."
+        },
+        {
+            "word": "achieve",
+            "description": "To successfully reach a desired result or goal."
+        },
+        {
+            "word": "acquire",
+            "description": "To gain possession of something, either by effort or purchase."
+        },
+        {
+            "word": "activate",
+            "description": "To make something active or start a process, system, or device."
+        },
+        {
+            "word": "active",
+            "description": "Engaged in action, movement, or activity, often characterized by energy, participation, or involvement."
+        },
+        {
+            "word": "adapt",
+            "description": "To modify something to fit new conditions or uses, often involving flexibility or adjustment."
+        },
+        {
+            "word": "addition",
+            "description": "The process of combining numbers or elements to form a sum, or something added to a whole."
+        },
+        {
+            "word": "adjust",
+            "description": "To change or modify something slightly in order to achieve a desired result or fit a particular condition."
+        },
+        {
+            "word": "adopt",
+            "description": "To take on or accept something, or to legally take a child as one's own."
+        },
+        {
+            "word": "advance",
+            "description": "To move forward or make progress in a particular area."
+        },
+        {
+            "word": "advise",
+            "description": "To offer guidance or recommendations based on knowledge or experience."
+        },
+        {
+            "word": "affect",
+            "description": "To influence something or someone in a noticeable way, often causing change or reaction."
+        },
+        {
+            "word": "affection",
+            "description": "A feeling of fondness, love, or warmth towards someone or something."
+        },
+        {
+            "word": "affiliate",
+            "description": "An individual or organization that is officially connected or associated with a larger entity."
+        },
+        {
+            "word": "affirm",
+            "description": "To confirm or state something as true or valid, often in a positive or supportive manner."
+        },
+        {
+            "word": "afford",
+            "description": "To have enough resources, particularly money, to be able to purchase or experience something."
         },
         {
             "word": "again",
             "description": "Once more  or another time."
         },
         {
+            "word": "against",
+            "description": "In opposition to something or someone, often suggesting resistance or contrast."
+        },
+        {
+            "word": "agency",
+            "description": "An organization or business that provides a specific service."
+        },
+        {
+            "word": "agree",
+            "description": "To have the same opinion or to consent to something, often in a cooperative or harmonious manner."
+        },
+        {
             "word": "ahead",
             "description": "In front or towards the future."
+        },
+        {
+            "word": "alert",
+            "description": "Aware and attentive to potential danger or important information, or a warning signal indicating urgency."
+        },
+        {
+            "word": "allocate",
+            "description": "To distribute or assign resources, tasks, or responsibilities for a specific purpose."
         },
         {
             "word": "almost",
@@ -26,60 +158,992 @@
             "description": "In addition; synonym too."
         },
         {
+            "word": "alter",
+            "description": "To change or modify something, often in a small but significant way."
+        },
+        {
             "word": "always",
             "description": "At all times; on every occasion."
+        },
+        {
+            "word": "ambition",
+            "description": "A strong desire to achieve success, power, or a specific goal through determination and effort."
+        },
+        {
+            "word": "amend",
+            "description": "To make minor changes or improvements to something, often to correct or update it."
+        },
+        {
+            "word": "analysis",
+            "description": "A detailed examination of something to understand its nature, structure, or meaning."
+        },
+        {
+            "word": "analyze",
+            "description": "To study or examine something carefully in order to understand it or draw conclusions."
+        },
+        {
+            "word": "ancient",
+            "description": "Very old or from a long time ago, often referring to historical periods or civilizations."
         },
         {
             "word": "and",
             "description": "A conjunction used to connect words phrases or clauses."
         },
         {
+            "word": "announce",
+            "description": "To make information publicly known, often in a formal or official manner."
+        },
+        {
+            "word": "annual",
+            "description": "Occurring once a year or covering a period of one year."
+        },
+        {
+            "word": "anticipate",
+            "description": "To expect or predict something in advance and prepare for it."
+        },
+        {
+            "word": "appear",
+            "description": "To become visible or noticeable, or to seem to be a certain way."
+        },
+        {
+            "word": "apply",
+            "description": "To put something into use, request something formally, or be relevant to a situation."
+        },
+        {
+            "word": "appoint",
+            "description": "To officially assign someone to a role or position."
+        },
+        {
+            "word": "appreciate",
+            "description": "To recognize the value or importance of something, or to be thankful for it."
+        },
+        {
+            "word": "approach",
+            "description": "To move closer to something or someone, or a way of dealing with a situation."
+        },
+        {
+            "word": "approve",
+            "description": "To officially accept or agree to something."
+        },
+        {
+            "word": "argue",
+            "description": "To express opposing views in a discussion, often in a heated or passionate way."
+        },
+        {
+            "word": "arrange",
+            "description": "To organize or plan things in a specific order or structure."
+        },
+        {
+            "word": "arrival",
+            "description": "The act of reaching a destination."
+        },
+        {
+            "word": "artist",
+            "description": "A person who creates art, such as paintings, music, or performances."
+        },
+        {
+            "word": "assemble",
+            "description": "To bring together parts or people into a whole."
+        },
+        {
+            "word": "assist",
+            "description": "To help or support someone in completing a task."
+        },
+        {
+            "word": "assume",
+            "description": "To accept something as true without proof, or to take on a role or responsibility."
+        },
+        {
+            "word": "assure",
+            "description": "To guarantee or make someone feel confident about something."
+        },
+        {
+            "word": "atmosphere",
+            "description": "The air or mood surrounding a place or situation."
+        },
+        {
+            "word": "attach",
+            "description": "To fasten, join, or connect something to another."
+        },
+        {
+            "word": "attempt",
+            "description": "To make an effort to achieve or do something."
+        },
+        {
+            "word": "attend",
+            "description": "To be present at an event or take care of something."
+        },
+        {
+            "word": "attitude",
+            "description": "A way of thinking or feeling about something, often reflected in behavior."
+        },
+        {
+            "word": "avoid",
+            "description": "To keep away from something or prevent it from happening."
+        },
+        {
+            "word": "back",
+            "description": "The rear part of something, or to support a person, idea, or action."
+        },
+        {
+            "word": "balance",
+            "description": "A state of stability between opposing forces, or to keep something steady."
+        },
+        {
+            "word": "become",
+            "description": "To change or develop into something different."
+        },
+        {
+            "word": "begin",
+            "description": "To start something."
+        },
+        {
+            "word": "behave",
+            "description": "To act in a certain way, especially in a socially acceptable manner."
+        },
+        {
+            "word": "behavior",
+            "description": "The way a person or animal acts in different situations."
+        },
+        {
+            "word": "believe",
+            "description": "To accept something as true or have faith in it."
+        },
+        {
+            "word": "belong",
+            "description": "To be a part of or connected to something."
+        },
+        {
             "word": "below",
             "description": "At a lower level or position than something else."
+        },
+        {
+            "word": "benefit",
+            "description": "An advantage or positive effect gained from something."
         },
         {
             "word": "besides",
             "description": "In addition to; apart from."
         },
         {
+            "word": "besides",
+            "description": "In addition to or apart from something."
+        },
+        {
+            "word": "betray",
+            "description": "To be disloyal to someone by revealing secrets or acting against them."
+        },
+        {
+            "word": "blend",
+            "description": "To mix things together to create a unified whole."
+        },
+        {
+            "word": "boost",
+            "description": "To increase, improve, or encourage something."
+        },
+        {
+            "word": "borrow",
+            "description": "To take something temporarily with the intention of returning it."
+        },
+        {
+            "word": "bound",
+            "description": "Tied or restricted, or moving in a specific direction with force."
+        },
+        {
+            "word": "brave",
+            "description": "Showing courage and facing fear or danger without hesitation."
+        },
+        {
+            "word": "break",
+            "description": "To separate into pieces or stop working, or a short pause in an activity."
+        },
+        {
+            "word": "breathe",
+            "description": "To inhale and exhale air, essential for life."
+        },
+        {
+            "word": "brief",
+            "description": "Short in duration or giving only essential information."
+        },
+        {
+            "word": "brilliant",
+            "description": "Exceptionally bright, intelligent, or impressive."
+        },
+        {
+            "word": "bring",
+            "description": "To carry or move something or someone to a place."
+        },
+        {
+            "word": "build",
+            "description": "To construct or create something, either physically or metaphorically."
+        },
+        {
+            "word": "calculate",
+            "description": "To determine something mathematically or carefully estimate an outcome."
+        },
+        {
+            "word": "camera",
+            "description": "A device used to take photographs or record videos."
+        },
+        {
+            "word": "campus",
+            "description": "The grounds and buildings of a school, university, or institution."
+        },
+        {
+            "word": "cancel",
+            "description": "To stop or call off an event, plan, or arrangement."
+        },
+        {
+            "word": "capable",
+            "description": "Having the ability or skill to do something successfully."
+        },
+        {
+            "word": "capture",
+            "description": "To catch or take control of something, often by force or effort."
+        },
+        {
+            "word": "care",
+            "description": "Concern for someone’s well-being, or to take responsibility for something."
+        },
+        {
             "word": "carefully",
             "description": "With great attention or caution."
+        },
+        {
+            "word": "catch",
+            "description": "To grab or intercept something that is moving."
+        },
+        {
+            "word": "celebrate",
+            "description": "To mark a special occasion with festivities or recognition."
+        },
+        {
+            "word": "central",
+            "description": "Located at or forming the main part of something."
+        },
+        {
+            "word": "century",
+            "description": "A period of 100 years."
         },
         {
             "word": "certainly",
             "description": "Without a doubt; definitely."
         },
         {
+            "word": "challenge",
+            "description": "A difficult task or situation requiring effort to overcome."
+        },
+        {
+            "word": "change",
+            "description": "To make or become different."
+        },
+        {
+            "word": "character",
+            "description": "A person’s traits or qualities, or a figure in a story."
+        },
+        {
+            "word": "charm",
+            "description": "A quality that makes someone or something attractive or appealing."
+        },
+        {
+            "word": "check",
+            "description": "To examine something for accuracy or correctness."
+        },
+        {
+            "word": "cheerful",
+            "description": "Full of happiness and positivity."
+        },
+        {
+            "word": "choice",
+            "description": "The act of selecting between two or more options."
+        },
+        {
+            "word": "choose",
+            "description": "To decide on an option from a selection."
+        },
+        {
+            "word": "circle",
+            "description": "A round shape where all points are equally distant from the center."
+        },
+        {
+            "word": "claim",
+            "description": "To assert ownership or declare something as true."
+        },
+        {
+            "word": "clarify",
+            "description": "To make something clearer or easier to understand."
+        },
+        {
+            "word": "classic",
+            "description": "Timeless and high-quality, often representing the best of its kind."
+        },
+        {
+            "word": "clear",
+            "description": "Easy to understand, free of obstacles, or transparent."
+        },
+        {
             "word": "clearly",
             "description": "In a way that is easy to understand or see."
+        },
+        {
+            "word": "client",
+            "description": "A person or business that receives professional services."
+        },
+        {
+            "word": "close",
+            "description": "Near in space or relationship, or to shut something."
+        },
+        {
+            "word": "collaborate",
+            "description": "To work together with others towards a common goal."
+        },
+        {
+            "word": "collapse",
+            "description": "To fall apart, break down, or fail suddenly."
+        },
+        {
+            "word": "collect",
+            "description": "To gather things together, usually in an organized way."
+        },
+        {
+            "word": "college",
+            "description": "An educational institution for higher learning."
+        },
+        {
+            "word": "collide",
+            "description": "To crash into something forcefully."
+        },
+        {
+            "word": "combine",
+            "description": "To mix or unite different elements into one."
+        },
+        {
+            "word": "comment",
+            "description": "A spoken or written statement expressing an opinion or reaction."
+        },
+        {
+            "word": "commit",
+            "description": "To dedicate oneself to a task, cause, or responsibility."
+        },
+        {
+            "word": "communicate",
+            "description": "To share information, ideas, or feelings with others."
+        },
+        {
+            "word": "community",
+            "description": "A group of people living in the same area or having common interests."
+        },
+        {
+            "word": "compare",
+            "description": "To examine similarities and differences between two or more things."
+        },
+        {
+            "word": "compete",
+            "description": "To strive against others to win or achieve something."
+        },
+        {
+            "word": "complete",
+            "description": "To finish something fully and successfully."
+        },
+        {
+            "word": "compose",
+            "description": "To create or arrange something, such as music, writing, or ideas."
+        },
+        {
+            "word": "concentrate",
+            "description": "To focus attention or effort on a task."
+        },
+        {
+            "word": "concept",
+            "description": "An abstract idea or general understanding of something."
+        },
+        {
+            "word": "concern",
+            "description": "A feeling of worry or interest about something important."
+        },
+        {
+            "word": "conclude",
+            "description": "To bring something to an end or reach a decision based on reasoning."
+        },
+        {
+            "word": "condition",
+            "description": "The state or circumstances of something, or a requirement for something to happen."
+        },
+        {
+            "word": "confirm",
+            "description": "To verify or prove that something is true or accurate."
+        },
+        {
+            "word": "confuse",
+            "description": "To make someone uncertain or unable to understand something clearly."
+        },
+        {
+            "word": "connect",
+            "description": "To join or link things together physically or conceptually."
+        },
+        {
+            "word": "conquer",
+            "description": "To overcome or take control of something, often by force."
+        },
+        {
+            "word": "consider",
+            "description": "To think carefully about something before making a decision."
+        },
+        {
+            "word": "constant",
+            "description": "Something that does not change or happens repeatedly."
+        },
+        {
+            "word": "construct",
+            "description": "To build or assemble something from different parts."
+        },
+        {
+            "word": "consult",
+            "description": "To seek advice or guidance from someone knowledgeable."
+        },
+        {
+            "word": "consume",
+            "description": "To use up or eat something, often in large amounts."
+        },
+        {
+            "word": "continuous",
+            "description": "Happening without interruption or stopping."
+        },
+        {
+            "word": "contrast",
+            "description": "The difference between two or more things when compared."
+        },
+        {
+            "word": "contribute",
+            "description": "To give or add something, such as effort, ideas, or resources."
+        },
+        {
+            "word": "control",
+            "description": "To have power over something or regulate its function."
+        },
+        {
+            "word": "convert",
+            "description": "To change something into a different form or purpose."
+        },
+        {
+            "word": "cooperate",
+            "description": "To work together with others to achieve a goal."
+        },
+        {
+            "word": "copy",
+            "description": "To duplicate or imitate something exactly."
+        },
+        {
+            "word": "corporate",
+            "description": "Related to businesses or large organizations."
+        },
+        {
+            "word": "correct",
+            "description": "Free from errors or mistakes, or to fix something that is wrong."
+        },
+        {
+            "word": "create",
+            "description": "To bring something into existence or invent something new."
+        },
+        {
+            "word": "creative",
+            "description": "Having the ability to produce original and imaginative ideas."
+        },
+        {
+            "word": "currency",
+            "description": "A system of money used in a particular country."
+        },
+        {
+            "word": "current",
+            "description": "Happening in the present time or a flow of water, air, or electricity."
+        },
+        {
+            "word": "damage",
+            "description": "Physical or emotional harm or destruction."
+        },
+        {
+            "word": "dangerous",
+            "description": "Involving risk, harm, or the potential for injury."
+        },
+        {
+            "word": "decide",
+            "description": "To make a choice after considering options."
+        },
+        {
+            "word": "decision",
+            "description": "A conclusion or resolution reached after thought."
+        },
+        {
+            "word": "declare",
+            "description": "To announce something formally or publicly."
+        },
+        {
+            "word": "decline",
+            "description": "To decrease in quality or quantity, or to refuse an offer."
+        },
+        {
+            "word": "decorate",
+            "description": "To make something more attractive by adding designs or embellishments."
+        },
+        {
+            "word": "defend",
+            "description": "To protect something or someone from harm or attack."
+        },
+        {
+            "word": "define",
+            "description": "To explain the meaning of a word, concept, or idea clearly."
+        },
+        {
+            "word": "delight",
+            "description": "A feeling of great pleasure or happiness."
+        },
+        {
+            "word": "deliver",
+            "description": "To bring or hand over something to its intended recipient."
+        },
+        {
+            "word": "demand",
+            "description": "A strong request or need for something."
+        },
+        {
+            "word": "demonstrate",
+            "description": "To show how something works or to prove something by example."
+        },
+        {
+            "word": "deny",
+            "description": "To refuse to accept or admit something as true."
+        },
+        {
+            "word": "department",
+            "description": "A division within an organization that specializes in a specific function."
+        },
+        {
+            "word": "describe",
+            "description": "To explain the characteristics or details of something."
+        },
+        {
+            "word": "deserve",
+            "description": "To be worthy of something due to actions or qualities."
+        },
+        {
+            "word": "design",
+            "description": "A plan or blueprint for creating something, or the process of making it."
+        },
+        {
+            "word": "destroy",
+            "description": "To damage something so badly that it no longer exists or functions."
+        },
+        {
+            "word": "detail",
+            "description": "A specific piece of information or a small part of something larger."
+        },
+        {
+            "word": "determine",
+            "description": "To decide or establish something based on facts or reasoning."
+        },
+        {
+            "word": "develop",
+            "description": "To grow, improve, or create something over time."
+        },
+        {
+            "word": "diet",
+            "description": "The types of food a person regularly eats or a planned eating regimen."
+        },
+        {
+            "word": "differ",
+            "description": "To be unlike or distinct from something else."
+        },
+        {
+            "word": "diminish",
+            "description": "To make something smaller, weaker, or less important."
+        },
+        {
+            "word": "discard",
+            "description": "To get rid of something that is no longer needed."
+        },
+        {
+            "word": "discover",
+            "description": "To find something new or learn something previously unknown."
+        },
+        {
+            "word": "discuss",
+            "description": "To talk about a topic in detail with others."
+        },
+        {
+            "word": "disorder",
+            "description": "A lack of order, organization, or a medical condition."
+        },
+        {
+            "word": "distant",
+            "description": "Far away in space or time."
+        },
+        {
+            "word": "distract",
+            "description": "To take someone’s attention away from something important."
+        },
+        {
+            "word": "disturb",
+            "description": "To interrupt, bother, or upset someone or something."
+        },
+        {
+            "word": "divide",
+            "description": "To separate something into parts or groups."
+        },
+        {
+            "word": "doctor",
+            "description": "A medical professional who diagnoses and treats illnesses."
+        },
+        {
+            "word": "document",
+            "description": "A written or digital record containing important information."
+        },
+        {
+            "word": "domain",
+            "description": "An area of knowledge, activity, or control, or a website address."
+        },
+        {
+            "word": "domestic",
+            "description": "Related to home, family, or one’s own country."
+        },
+        {
+            "word": "dominate",
+            "description": "To have control or power over something or someone."
+        },
+        {
+            "word": "donate",
+            "description": "To give something, especially money or goods, to help others."
+        },
+        {
+            "word": "doubt",
+            "description": "A feeling of uncertainty or lack of belief in something."
+        },
+        {
+            "word": "dramatic",
+            "description": "Intense, emotional, or exaggerated in nature."
+        },
+        {
+            "word": "drop",
+            "description": "To let something fall or decrease suddenly."
+        },
+        {
+            "word": "dynamic",
+            "description": "Full of energy, constantly changing, or having strong movement."
         },
         {
             "word": "early",
             "description": "Before the usual or expected time."
         },
         {
+            "word": "educate",
+            "description": "To teach or provide knowledge to someone."
+        },
+        {
+            "word": "eliminate",
+            "description": "To remove or get rid of something completely."
+        },
+        {
             "word": "else",
             "description": "In addition to what has been mentioned; other."
+        },
+        {
+            "word": "emerge",
+            "description": "To come into view or become known."
+        },
+        {
+            "word": "employer",
+            "description": "A person or company that hires workers."
+        },
+        {
+            "word": "enable",
+            "description": "To make something possible or give someone the ability to do something."
+        },
+        {
+            "word": "encourage",
+            "description": "To give support, confidence, or motivation to someone."
+        },
+        {
+            "word": "enforce",
+            "description": "To make sure laws or rules are followed."
+        },
+        {
+            "word": "engage",
+            "description": "To take part in or become involved in something."
+        },
+        {
+            "word": "enhance",
+            "description": "To improve or make something better."
         },
         {
             "word": "enough",
             "description": "Adequate in quantity or degree."
         },
         {
+            "word": "enroll",
+            "description": "To officially register or sign up for something."
+        },
+        {
+            "word": "ensure",
+            "description": "To make certain that something happens."
+        },
+        {
+            "word": "enter",
+            "description": "To go into a place or join an activity."
+        },
+        {
+            "word": "entertain",
+            "description": "To amuse or provide enjoyment for others."
+        },
+        {
+            "word": "essential",
+            "description": "Absolutely necessary or extremely important."
+        },
+        {
+            "word": "establish",
+            "description": "To set up or create something, such as a company or system."
+        },
+        {
+            "word": "estimate",
+            "description": "To make an approximate calculation or judgment about something."
+        },
+        {
+            "word": "evaluate",
+            "description": "To assess or judge the value, quality, or effectiveness of something."
+        },
+        {
             "word": "ever",
             "description": "At any time; always."
+        },
+        {
+            "word": "evolve",
+            "description": "To gradually change or develop over time."
+        },
+        {
+            "word": "exact",
+            "description": "Completely correct, precise, or accurate."
+        },
+        {
+            "word": "examine",
+            "description": "To inspect or analyze something carefully."
+        },
+        {
+            "word": "example",
+            "description": "A specific case or instance that illustrates a concept."
+        },
+        {
+            "word": "exceed",
+            "description": "To go beyond a certain limit or expectation."
+        },
+        {
+            "word": "excite",
+            "description": "To cause strong emotions of enthusiasm or happiness."
+        },
+        {
+            "word": "exclude",
+            "description": "To leave out or prevent someone or something from being included."
+        },
+        {
+            "word": "execute",
+            "description": "To carry out a task or plan effectively."
+        },
+        {
+            "word": "exercise",
+            "description": "Physical activity to improve fitness or a task to practice skills."
+        },
+        {
+            "word": "expand",
+            "description": "To grow, increase in size, or spread out."
+        },
+        {
+            "word": "expect",
+            "description": "To believe something will happen or anticipate an outcome."
+        },
+        {
+            "word": "explain",
+            "description": "To make something clear by describing it in detail."
+        },
+        {
+            "word": "explore",
+            "description": "To investigate, travel through, or learn more about something."
+        },
+        {
+            "word": "expose",
+            "description": "To reveal or uncover something that was hidden."
+        },
+        {
+            "word": "express",
+            "description": "To communicate thoughts, emotions, or ideas clearly."
+        },
+        {
+            "word": "extreme",
+            "description": "Very intense, beyond normal limits, or highly unusual."
         },
         {
             "word": "extremely",
             "description": "To a very great degree."
         },
         {
+            "word": "facility",
+            "description": "A building or place designed for a specific purpose."
+        },
+        {
+            "word": "factor",
+            "description": "An element that influences or contributes to an outcome."
+        },
+        {
+            "word": "fashion",
+            "description": "A popular style or trend in clothing, behavior, or culture."
+        },
+        {
+            "word": "favorite",
+            "description": "A person, place, or thing preferred over others."
+        },
+        {
+            "word": "feature",
+            "description": "A distinctive characteristic or aspect of something."
+        },
+        {
+            "word": "federal",
+            "description": "Relating to a central government."
+        },
+        {
+            "word": "finalize",
+            "description": "To complete or make something final and official."
+        },
+        {
+            "word": "finance",
+            "description": "The management of money and financial resources."
+        },
+        {
+            "word": "find",
+            "description": "To discover or locate something."
+        },
+        {
+            "word": "finish",
+            "description": "To complete a task or bring something to an end."
+        },
+        {
+            "word": "flexible",
+            "description": "Able to bend easily or adapt to change."
+        },
+        {
+            "word": "focus",
+            "description": "To concentrate attention on something specific."
+        },
+        {
+            "word": "follow",
+            "description": "To move behind or obey instructions."
+        },
+        {
+            "word": "force",
+            "description": "Physical power or pressure used to make something happen."
+        },
+        {
+            "word": "foreign",
+            "description": "Related to another country or unfamiliar place."
+        },
+        {
+            "word": "forget",
+            "description": "To lose memory of something."
+        },
+        {
+            "word": "forgive",
+            "description": "To stop feeling anger towards someone for a mistake."
+        },
+        {
+            "word": "form",
+            "description": "A particular shape, structure, or document."
+        },
+        {
+            "word": "formal",
+            "description": "Following official or traditional rules and customs."
+        },
+        {
+            "word": "format",
+            "description": "The arrangement or structure of something, especially documents or media."
+        },
+        {
+            "word": "fortune",
+            "description": "A large amount of wealth or a stroke of luck."
+        },
+        {
             "word": "forward",
             "description": "In the direction that one is facing; ahead."
         },
         {
+            "word": "forward",
+            "description": "In the direction of progress or ahead."
+        },
+        {
+            "word": "freedom",
+            "description": "The ability to act or think without restrictions."
+        },
+        {
+            "word": "freeze",
+            "description": "To turn into ice or become very cold."
+        },
+        {
+            "word": "frequent",
+            "description": "Happening often or at regular intervals."
+        },
+        {
             "word": "frequently",
             "description": "Occurring often or regularly."
+        },
+        {
+            "word": "friend",
+            "description": "A person with whom one has a close and positive relationship."
+        },
+        {
+            "word": "fulfill",
+            "description": "To satisfy a requirement, goal, or expectation."
+        },
+        {
+            "word": "function",
+            "description": "The purpose or role something serves."
+        },
+        {
+            "word": "fundamental",
+            "description": "Basic or essential to the core of something."
+        },
+        {
+            "word": "further",
+            "description": "To a greater extent or distance."
+        },
+        {
+            "word": "future",
+            "description": "The time that has yet to come."
+        },
+        {
+            "word": "gather",
+            "description": "To collect or bring things or people together."
+        },
+        {
+            "word": "general",
+            "description": "Broad, not specific, or applying to most cases."
+        },
+        {
+            "word": "generate",
+            "description": "To produce or create something."
+        },
+        {
+            "word": "generous",
+            "description": "Willing to give more than is expected or necessary."
+        },
+        {
+            "word": "gentle",
+            "description": "Kind, soft, and mild in nature or behavior."
+        },
+        {
+            "word": "genuine",
+            "description": "Authentic, sincere, or real, not fake or artificial."
+        },
+        {
+            "word": "give",
+            "description": "To provide or offer something to someone."
+        },
+        {
+            "word": "glance",
+            "description": "A brief or quick look at something."
         },
         {
             "word": "go",
@@ -88,6 +1152,30 @@
         {
             "word": "goodbye",
             "description": "A parting expression used when leaving."
+        },
+        {
+            "word": "graduate",
+            "description": "To complete a course of study and receive a degree or diploma."
+        },
+        {
+            "word": "grow",
+            "description": "To increase in size, number, or importance, or to develop over time."
+        },
+        {
+            "word": "guarantee",
+            "description": "A promise or assurance, often in writing, that something will happen or be of good quality."
+        },
+        {
+            "word": "guard",
+            "description": "To protect or watch over something or someone."
+        },
+        {
+            "word": "handle",
+            "description": "To manage, control, or deal with something or a situation."
+        },
+        {
+            "word": "happen",
+            "description": "To occur or take place, usually by chance or unpredictably."
         },
         {
             "word": "hard",
@@ -102,8 +1190,16 @@
             "description": "To own, hold, or possess."
         },
         {
+            "word": "hazard",
+            "description": "A potential danger or risk."
+        },
+        {
             "word": "he",
             "description": "A pronoun used for a male person."
+        },
+        {
+            "word": "healthy",
+            "description": "In good physical or mental condition; free from illness."
         },
         {
             "word": "hello",
@@ -114,6 +1210,38 @@
             "description": "In or at this place."
         },
         {
+            "word": "hesitate",
+            "description": "To pause or be uncertain before taking action."
+        },
+        {
+            "word": "hinder",
+            "description": "To slow down, delay, or prevent progress or action."
+        },
+        {
+            "word": "historic",
+            "description": "Important or significant in history."
+        },
+        {
+            "word": "hold",
+            "description": "To grip, carry, or keep something in your hand or possession."
+        },
+        {
+            "word": "holiday",
+            "description": "A day of celebration or rest, often for a special occasion."
+        },
+        {
+            "word": "honest",
+            "description": "Truthful, straightforward, and free from deceit."
+        },
+        {
+            "word": "hope",
+            "description": "A feeling of expectation and desire for something to happen."
+        },
+        {
+            "word": "hospital",
+            "description": "A healthcare institution where patients receive medical treatment."
+        },
+        {
             "word": "how",
             "description": "In what way or manner; by what means."
         },
@@ -122,28 +1250,256 @@
             "description": "In spite of that; nevertheless."
         },
         {
+            "word": "identify",
+            "description": "To recognize or determine the identity of something or someone."
+        },
+        {
+            "word": "ignore",
+            "description": "To deliberately pay no attention to something or someone."
+        },
+        {
+            "word": "imagine",
+            "description": "To form a mental picture or concept of something that isn't present."
+        },
+        {
+            "word": "impact",
+            "description": "The effect or influence that something has on something else."
+        },
+        {
+            "word": "important",
+            "description": "Of great significance or value."
+        },
+        {
+            "word": "improve",
+            "description": "To make something better or enhance its quality."
+        },
+        {
+            "word": "include",
+            "description": "To make something a part of a whole or group."
+        },
+        {
+            "word": "income",
+            "description": "Money received for work, investments, or other sources."
+        },
+        {
+            "word": "increase",
+            "description": "To make something become greater in size, amount, or number."
+        },
+        {
+            "word": "industry",
+            "description": "The production of goods or services within an economy or sector."
+        },
+        {
+            "word": "influence",
+            "description": "The power to affect or shape outcomes or behavior."
+        },
+        {
+            "word": "inform",
+            "description": "To provide knowledge or information to someone."
+        },
+        {
+            "word": "inherit",
+            "description": "To receive something, usually money or property, from someone after their death."
+        },
+        {
+            "word": "initial",
+            "description": "Referring to the beginning or first part of something."
+        },
+        {
+            "word": "initiate",
+            "description": "To start or begin something."
+        },
+        {
+            "word": "inject",
+            "description": "To introduce a substance into the body, often with a needle, or to introduce something into a situation."
+        },
+        {
+            "word": "inquire",
+            "description": "To ask or seek information about something."
+        },
+        {
+            "word": "inquiry",
+            "description": "The act of asking for information or investigation into a matter."
+        },
+        {
+            "word": "insert",
+            "description": "To place something into a space or position."
+        },
+        {
             "word": "inside",
             "description": "Within something; the inner part of something."
+        },
+        {
+            "word": "insight",
+            "description": "A deep understanding or clear perception of something."
+        },
+        {
+            "word": "inspect",
+            "description": "To look at something carefully to examine its condition or quality."
+        },
+        {
+            "word": "inspire",
+            "description": "To motivate or encourage someone to take action or feel creative."
+        },
+        {
+            "word": "install",
+            "description": "To set up or put something in place for use or operation."
+        },
+        {
+            "word": "intend",
+            "description": "To have a purpose or plan for something."
+        },
+        {
+            "word": "interact",
+            "description": "To engage or communicate with others in a meaningful way."
+        },
+        {
+            "word": "interpret",
+            "description": "To explain or understand the meaning of something, often a message or text."
+        },
+        {
+            "word": "introduce",
+            "description": "To present or make something known for the first time."
+        },
+        {
+            "word": "invent",
+            "description": "To create something new that has never existed before."
+        },
+        {
+            "word": "invest",
+            "description": "To put money, time, or effort into something with the expectation of gaining a return."
+        },
+        {
+            "word": "investigate",
+            "description": "To examine something carefully in order to uncover facts or understand it better."
+        },
+        {
+            "word": "involve",
+            "description": "To include or make someone or something part of an activity or situation."
+        },
+        {
+            "word": "isolate",
+            "description": "To separate something or someone from others."
         },
         {
             "word": "it",
             "description": "A pronoun used to refer to a thing previously mentioned or easily identified."
         },
         {
+            "word": "join",
+            "description": "To become a part of something by connecting or participating."
+        },
+        {
+            "word": "journey",
+            "description": "A long trip or process of traveling from one place to another."
+        },
+        {
+            "word": "judge",
+            "description": "To form an opinion about something or someone based on evidence or criteria."
+        },
+        {
             "word": "just",
             "description": "Exactly; only; merely."
+        },
+        {
+            "word": "justice",
+            "description": "The concept of fairness and the application of laws to ensure equality."
+        },
+        {
+            "word": "justify",
+            "description": "To give reasons or explanations that make something seem right or reasonable."
+        },
+        {
+            "word": "know",
+            "description": "To be aware of or have information about something."
+        },
+        {
+            "word": "label",
+            "description": "A tag or name given to something to describe or categorize it."
         },
         {
             "word": "lately",
             "description": "In the recent past; not long ago."
         },
         {
+            "word": "launch",
+            "description": "To start or initiate something, like a product or a project."
+        },
+        {
+            "word": "lead",
+            "description": "To guide or direct a group, or to be at the front of something."
+        },
+        {
+            "word": "learn",
+            "description": "To acquire knowledge or skills through study or experience."
+        },
+        {
+            "word": "liberal",
+            "description": "Open-minded, progressive, or favoring change and reform."
+        },
+        {
             "word": "likewise",
             "description": "In the same way; similarly."
         },
         {
+            "word": "limit",
+            "description": "To restrict or set boundaries on something."
+        },
+        {
+            "word": "local",
+            "description": "Related to a specific area or community, often near where one lives."
+        },
+        {
+            "word": "locate",
+            "description": "To find or determine the position of something."
+        },
+        {
+            "word": "look",
+            "description": "To direct your gaze toward something in order to see it."
+        },
+        {
+            "word": "lose",
+            "description": "To no longer have something or fail to keep or maintain it."
+        },
+        {
+            "word": "maintain",
+            "description": "To keep something in good condition or continue something over time."
+        },
+        {
+            "word": "manage",
+            "description": "To handle, supervise, or control something or a situation."
+        },
+        {
+            "word": "manner",
+            "description": "A way of doing something or behaving, often in a specific style or method."
+        },
+        {
+            "word": "market",
+            "description": "The economic system where goods and services are bought and sold."
+        },
+        {
+            "word": "master",
+            "description": "To become highly skilled or knowledgeable in a particular area."
+        },
+        {
             "word": "maybe",
             "description": "Possibly but not certainly."
+        },
+        {
+            "word": "measure",
+            "description": "To determine the size, amount, or degree of something using a standard."
+        },
+        {
+            "word": "member",
+            "description": "A person who belongs to a group or organization."
+        },
+        {
+            "word": "mental",
+            "description": "Relating to the mind or thinking processes."
+        },
+        {
+            "word": "method",
+            "description": "A particular procedure or approach used to accomplish something."
         },
         {
             "word": "middle",
@@ -154,8 +1510,44 @@
             "description": "At or near the middle point."
         },
         {
+            "word": "minimum",
+            "description": "The smallest or least amount needed or allowed."
+        },
+        {
+            "word": "modern",
+            "description": "Relating to the present time or the latest trends, ideas, or technology."
+        },
+        {
+            "word": "modify",
+            "description": "To change or alter something, usually to improve it or make it more suitable."
+        },
+        {
+            "word": "moment",
+            "description": "A brief period of time or a particular point in time."
+        },
+        {
+            "word": "monitor",
+            "description": "To observe or check something regularly in order to track its progress or condition."
+        },
+        {
+            "word": "motivate",
+            "description": "To encourage or inspire someone to take action or achieve something."
+        },
+        {
+            "word": "move",
+            "description": "To change position, location, or state."
+        },
+        {
             "word": "much",
             "description": "A large amount or extent of something."
+        },
+        {
+            "word": "natural",
+            "description": "Existing in nature or following natural processes, not artificial."
+        },
+        {
+            "word": "navigate",
+            "description": "To find one's way or direct a course through something."
         },
         {
             "word": "near",
@@ -164,6 +1556,14 @@
         {
             "word": "nearly",
             "description": "Almost; not quite."
+        },
+        {
+            "word": "negotiate",
+            "description": "To discuss and reach an agreement on terms or conditions."
+        },
+        {
+            "word": "network",
+            "description": "A system of connections or relationships, often for sharing information or resources."
         },
         {
             "word": "never",
@@ -178,6 +1578,14 @@
             "description": "A negative response or denial."
         },
         {
+            "word": "notice",
+            "description": "To become aware of or observe something."
+        },
+        {
+            "word": "notify",
+            "description": "To inform or give notice about something to someone."
+        },
+        {
             "word": "now",
             "description": "At the present moment; immediately."
         },
@@ -186,8 +1594,32 @@
             "description": "Not in or at any place; not anywhere."
         },
         {
+            "word": "objective",
+            "description": "A goal or purpose that is intended to be achieved."
+        },
+        {
+            "word": "observe",
+            "description": "To watch carefully or notice details."
+        },
+        {
+            "word": "obtain",
+            "description": "To get or acquire something, often by effort or request."
+        },
+        {
             "word": "obviously",
             "description": "In a way that is easily understood or seen; clearly."
+        },
+        {
+            "word": "occupy",
+            "description": "To take up space or be in a particular place."
+        },
+        {
+            "word": "offer",
+            "description": "To present or propose something for someone to accept or refuse."
+        },
+        {
+            "word": "official",
+            "description": "Authorized by a recognized authority or related to formal procedures."
         },
         {
             "word": "often",
@@ -198,20 +1630,168 @@
             "description": "No more than; solely; just."
         },
         {
+            "word": "operate",
+            "description": "To function or perform actions, especially in the context of machinery or business."
+        },
+        {
+            "word": "oppose",
+            "description": "To be against something or act in a way that challenges it."
+        },
+        {
             "word": "or",
             "description": "A conjunction used to link alternatives or choices."
+        },
+        {
+            "word": "order",
+            "description": "A request for something to be done or delivered, or the arrangement of things in a specific sequence."
+        },
+        {
+            "word": "organize",
+            "description": "To arrange or put things in a structured, systematic order."
+        },
+        {
+            "word": "original",
+            "description": "Something that is unique or the first of its kind, not a copy."
+        },
+        {
+            "word": "outcome",
+            "description": "The result or consequence of an action or event."
         },
         {
             "word": "outside",
             "description": "The external side or surface of something."
         },
         {
+            "word": "overlook",
+            "description": "To fail to notice or consider something, or to look over something from a higher position."
+        },
+        {
+            "word": "participate",
+            "description": "To take part or be involved in an activity or event."
+        },
+        {
+            "word": "passion",
+            "description": "A strong, intense feeling of enthusiasm or love for something."
+        },
+        {
+            "word": "perceive",
+            "description": "To become aware of or understand something through the senses or the mind."
+        },
+        {
+            "word": "perfect",
+            "description": "To make something free from errors or flaws, or having no shortcomings."
+        },
+        {
+            "word": "perform",
+            "description": "To carry out a task, action, or role, especially in front of an audience."
+        },
+        {
             "word": "perhaps",
             "description": "Possibly; it could be that."
         },
         {
+            "word": "permit",
+            "description": "To allow or give permission for something to happen."
+        },
+        {
+            "word": "personal",
+            "description": "Relating to an individual’s private life or personal feelings."
+        },
+        {
+            "word": "picture",
+            "description": "A visual representation of something, such as a drawing or photograph."
+        },
+        {
+            "word": "plan",
+            "description": "A detailed proposal or scheme for achieving a goal or completing a task."
+        },
+        {
+            "word": "positive",
+            "description": "Favorable, optimistic, or confident; characterized by good qualities."
+        },
+        {
+            "word": "potential",
+            "description": "The possibility or capacity for future development or success."
+        },
+        {
+            "word": "predict",
+            "description": "To say or estimate that something will happen in the future based on evidence or intuition."
+        },
+        {
+            "word": "prepare",
+            "description": "To make something ready for use or a future event."
+        },
+        {
+            "word": "preserve",
+            "description": "To maintain something in its original state or protect it from harm or decay."
+        },
+        {
+            "word": "prevent",
+            "description": "To stop something from happening or to avoid a situation."
+        },
+        {
             "word": "probably",
             "description": "Likely to happen or be true."
+        },
+        {
+            "word": "proceed",
+            "description": "To continue with an action or process after a pause or delay."
+        },
+        {
+            "word": "process",
+            "description": "A series of actions or steps taken to achieve a particular end."
+        },
+        {
+            "word": "produce",
+            "description": "To create or make something, often as a result of work or effort."
+        },
+        {
+            "word": "project",
+            "description": "A planned activity or task that requires resources and effort to achieve a goal."
+        },
+        {
+            "word": "promote",
+            "description": "To support, encourage, or advocate for something, or to advance someone’s position or career."
+        },
+        {
+            "word": "proper",
+            "description": "Correct, appropriate, or suitable according to the rules or standards."
+        },
+        {
+            "word": "protect",
+            "description": "To keep something or someone safe from harm, damage, or danger."
+        },
+        {
+            "word": "prove",
+            "description": "To demonstrate the truth or validity of something through evidence or argument."
+        },
+        {
+            "word": "provide",
+            "description": "To supply or make something available for use or need."
+        },
+        {
+            "word": "public",
+            "description": "Relating to the community, government, or society at large, or something that is open to all."
+        },
+        {
+            "word": "publish",
+            "description": "To prepare and release content, such as books, articles, or websites, to the public."
+        },
+        {
+            "word": "pursue",
+            "description": "To actively seek or follow a goal, interest, or objective."
+        },
+        {
+            "word": "puzzle",
+            "description": "A problem or game that requires thought and creativity to solve."
+        },
+        {
+            "word": "quality",
+            "description": "The standard or level of excellence, or the characteristic of something."
+        },
+        {
+            "word": "question",
+            "description": "A sentence or expression used to inquire or seek information."
         },
         {
             "word": "quick",
@@ -222,24 +1802,204 @@
             "description": "In a fast or rapid manner."
         },
         {
+            "word": "quiet",
+            "description": "A lack of noise or calmness, or a peaceful environment."
+        },
+        {
             "word": "quite",
             "description": "To a considerable extent; fairly."
+        },
+        {
+            "word": "raise",
+            "description": "To lift or move something to a higher position, or to increase an amount or level."
+        },
+        {
+            "word": "rapid",
+            "description": "Occurring quickly or at a high speed."
+        },
+        {
+            "word": "react",
+            "description": "To respond or act in reaction to something, often in an emotional or practical way."
+        },
+        {
+            "word": "realize",
+            "description": "To become fully aware or understand something clearly."
+        },
+        {
+            "word": "recent",
+            "description": "Happening or occurring not long ago; fresh in time."
         },
         {
             "word": "recently",
             "description": "In the near past; not long ago."
         },
         {
+            "word": "record",
+            "description": "To capture or document something for preservation or later reference."
+        },
+        {
+            "word": "recover",
+            "description": "To return to a normal state after a loss, illness, or setback."
+        },
+        {
+            "word": "reduce",
+            "description": "To make something smaller or less in amount, size, or degree."
+        },
+        {
+            "word": "reflect",
+            "description": "To think deeply about something, or to throw back light, heat, or sound."
+        },
+        {
+            "word": "relate",
+            "description": "To show or establish a connection between things or people."
+        },
+        {
+            "word": "relax",
+            "description": "To become less tense or anxious, or to unwind and take a break."
+        },
+        {
+            "word": "release",
+            "description": "To set free, make something available, or allow it to be distributed."
+        },
+        {
+            "word": "remain",
+            "description": "To stay in the same place, state, or condition without changing."
+        },
+        {
+            "word": "remove",
+            "description": "To take something away or eliminate it from a place or position."
+        },
+        {
+            "word": "reply",
+            "description": "To respond or give an answer to a question or statement."
+        },
+        {
+            "word": "report",
+            "description": "To give an account or description of an event, or to provide information formally."
+        },
+        {
+            "word": "request",
+            "description": "To ask for something politely or formally."
+        },
+        {
+            "word": "research",
+            "description": "To conduct a detailed study or investigation to discover facts or gather information."
+        },
+        {
+            "word": "resist",
+            "description": "To withstand or oppose something, especially force or temptation."
+        },
+        {
+            "word": "resolve",
+            "description": "To find a solution to a problem or make a firm decision."
+        },
+        {
+            "word": "resource",
+            "description": "A supply of materials, assets, or support that can be used to achieve goals."
+        },
+        {
+            "word": "respect",
+            "description": "To regard something or someone with consideration and high regard."
+        },
+        {
+            "word": "respond",
+            "description": "To reply or react to something or someone."
+        },
+        {
+            "word": "restore",
+            "description": "To bring something back to its original state or condition."
+        },
+        {
+            "word": "result",
+            "description": "The outcome or consequence of an action or event."
+        },
+        {
+            "word": "retain",
+            "description": "To keep or continue to have something."
+        },
+        {
+            "word": "return",
+            "description": "To go back to a previous place or position, or to give back something."
+        },
+        {
+            "word": "review",
+            "description": "To look over or examine something again, often for improvement or correction."
+        },
+        {
+            "word": "revise",
+            "description": "To change or edit something to improve or update it."
+        },
+        {
+            "word": "rotate",
+            "description": "To turn something around a central point or axis."
+        },
+        {
+            "word": "sample",
+            "description": "A small portion or example that represents a whole."
+        },
+        {
+            "word": "satisfy",
+            "description": "To meet the needs, desires, or expectations of someone."
+        },
+        {
+            "word": "save",
+            "description": "To keep something from being lost or destroyed, or to store something for future use."
+        },
+        {
             "word": "scarcely",
             "description": "Barely; only just; hardly."
+        },
+        {
+            "word": "search",
+            "description": "To look carefully for something or to examine something thoroughly."
+        },
+        {
+            "word": "secure",
+            "description": "To make something safe from danger, risk, or harm."
         },
         {
             "word": "seldom",
             "description": "Rarely; not often."
         },
         {
+            "word": "select",
+            "description": "To choose or pick something from a group of options."
+        },
+        {
+            "word": "separate",
+            "description": "To divide or set things apart from each other."
+        },
+        {
+            "word": "sequence",
+            "description": "A specific order in which things happen or are arranged."
+        },
+        {
+            "word": "serious",
+            "description": "Requiring careful thought or attention; not playful or trivial."
+        },
+        {
+            "word": "session",
+            "description": "A period of time dedicated to a particular activity or event."
+        },
+        {
+            "word": "share",
+            "description": "To give a portion of something to others, or to use something together."
+        },
+        {
             "word": "she",
             "description": "A pronoun used to refer to a female person or animal."
+        },
+        {
+            "word": "show",
+            "description": "To display or present something for others to see or understand."
+        },
+        {
+            "word": "simplify",
+            "description": "To make something easier to understand or less complex."
+        },
+        {
+            "word": "sleep",
+            "description": "A natural state of rest where the body and mind rejuvenate."
         },
         {
             "word": "slowly",
@@ -248,6 +2008,14 @@
         {
             "word": "so",
             "description": "To such a degree; therefore; for that reason."
+        },
+        {
+            "word": "social",
+            "description": "Relating to society, groups, or interacting with others."
+        },
+        {
+            "word": "solve",
+            "description": "To find the answer to a problem or resolve a difficulty."
         },
         {
             "word": "some",
@@ -266,8 +2034,108 @@
             "description": "In the near future; shortly."
         },
         {
+            "word": "speak",
+            "description": "To use words to communicate with others."
+        },
+        {
+            "word": "special",
+            "description": "Unique, distinctive, or different from the ordinary."
+        },
+        {
+            "word": "species",
+            "description": "A group of organisms that share common characteristics and can reproduce with each other."
+        },
+        {
+            "word": "specific",
+            "description": "Clearly defined or identified, distinct from general or vague."
+        },
+        {
+            "word": "sponsor",
+            "description": "To support, fund, or promote something or someone, usually in a business or event context."
+        },
+        {
+            "word": "stable",
+            "description": "Steady, secure, or unlikely to change in an unpredictable way."
+        },
+        {
+            "word": "standard",
+            "description": "A level of quality or expectation that is considered normal or acceptable."
+        },
+        {
+            "word": "start",
+            "description": "To begin an activity or process."
+        },
+        {
+            "word": "stop",
+            "description": "To bring an action or movement to an end."
+        },
+        {
+            "word": "strategy",
+            "description": "A planned approach or method for achieving a specific goal."
+        },
+        {
+            "word": "structure",
+            "description": "The arrangement or organization of parts that form a whole."
+        },
+        {
+            "word": "success",
+            "description": "The achievement of a goal or favorable outcome."
+        },
+        {
+            "word": "suffer",
+            "description": "To endure pain, hardship, or difficulty."
+        },
+        {
+            "word": "suggest",
+            "description": "To propose or recommend an idea or action."
+        },
+        {
+            "word": "support",
+            "description": "To provide assistance, encouragement, or help to someone or something."
+        },
+        {
             "word": "surely",
             "description": "Without a doubt; certainly."
+        },
+        {
+            "word": "surprise",
+            "description": "An unexpected event or outcome that causes astonishment."
+        },
+        {
+            "word": "sustain",
+            "description": "To maintain or continue something over time, especially support or resources."
+        },
+        {
+            "word": "symbol",
+            "description": "An object, image, or sign that represents something else, often abstract."
+        },
+        {
+            "word": "system",
+            "description": "A set of connected parts or elements that work together as a whole."
+        },
+        {
+            "word": "take",
+            "description": "To acquire possession or control over something."
+        },
+        {
+            "word": "talk",
+            "description": "To communicate or converse using words."
+        },
+        {
+            "word": "target",
+            "description": "A specific goal, objective, or aim to reach."
+        },
+        {
+            "word": "teach",
+            "description": "To impart knowledge or skills to others."
+        },
+        {
+            "word": "tell",
+            "description": "To communicate information or a story to someone through speaking or writing."
+        },
+        {
+            "word": "tension",
+            "description": "A state of mental or emotional strain, or the physical stress on a material."
         },
         {
             "word": "the",
@@ -280,6 +2148,18 @@
         {
             "word": "they",
             "description": "A pronoun used to refer to a group of people or things."
+        },
+        {
+            "word": "think",
+            "description": "To use one's mind to form thoughts, ideas, or judgments."
+        },
+        {
+            "word": "thought",
+            "description": "An idea or concept that has been considered or mentally processed."
+        },
+        {
+            "word": "thrive",
+            "description": "To grow or develop vigorously, often in favorable conditions."
         },
         {
             "word": "time",
@@ -298,16 +2178,168 @@
             "description": "In addition; also; excessively."
         },
         {
+            "word": "topic",
+            "description": "The subject or focus of a discussion, conversation, or piece of writing."
+        },
+        {
+            "word": "total",
+            "description": "The complete amount or sum of something."
+        },
+        {
+            "word": "track",
+            "description": "To follow or monitor the progress or location of something or someone."
+        },
+        {
+            "word": "tradition",
+            "description": "A custom or practice that is passed down through generations."
+        },
+        {
+            "word": "traffic",
+            "description": "The movement of vehicles or people along roads or through a system."
+        },
+        {
+            "word": "transfer",
+            "description": "To move something from one place or person to another."
+        },
+        {
+            "word": "treat",
+            "description": "To provide someone with something enjoyable or beneficial, or to deal with an issue in a particular way."
+        },
+        {
+            "word": "trigger",
+            "description": "An event or action that causes a specific response or reaction."
+        },
+        {
+            "word": "try",
+            "description": "To attempt or make an effort to do something."
+        },
+        {
+            "word": "turn",
+            "description": "To rotate or change direction, or to change a condition or state."
+        },
+        {
+            "word": "typical",
+            "description": "Characteristic of a particular person, group, or thing; standard or expected."
+        },
+        {
             "word": "under",
             "description": "In a lower position or beneath something."
+        },
+        {
+            "word": "understand",
+            "description": "To grasp the meaning or concept of something."
+        },
+        {
+            "word": "unique",
+            "description": "Being the only one of its kind; distinct or special."
+        },
+        {
+            "word": "unite",
+            "description": "To bring things or people together to form a single entity."
+        },
+        {
+            "word": "universe",
+            "description": "All of space and everything in it, including stars, planets, and galaxies."
+        },
+        {
+            "word": "update",
+            "description": "To make something more current or to provide new information."
+        },
+        {
+            "word": "upgrade",
+            "description": "To improve or raise the quality or performance of something."
+        },
+        {
+            "word": "upset",
+            "description": "To disturb or cause emotional distress; to overturn or disrupt something."
+        },
+        {
+            "word": "use",
+            "description": "To employ something for a purpose or function."
+        },
+        {
+            "word": "useful",
+            "description": "Providing a benefit or serving a practical purpose."
+        },
+        {
+            "word": "utilize",
+            "description": "To make practical or effective use of something."
+        },
+        {
+            "word": "vacation",
+            "description": "A period of time spent away from work or regular activities for rest or travel."
+        },
+        {
+            "word": "value",
+            "description": "The worth, importance, or benefit of something."
+        },
+        {
+            "word": "vehicle",
+            "description": "A means of transportation, such as a car, bus, or bicycle."
+        },
+        {
+            "word": "verify",
+            "description": "To confirm the accuracy or truth of something."
+        },
+        {
+            "word": "version",
+            "description": "A specific edition or form of something, often different from others."
         },
         {
             "word": "very",
             "description": "To a high degree or extent; extremely."
         },
         {
+            "word": "virtual",
+            "description": "Existing in essence or effect, but not in physical form; simulated by a computer."
+        },
+        {
+            "word": "visible",
+            "description": "Able to be seen or observed."
+        },
+        {
+            "word": "visit",
+            "description": "To go to a place or see someone for a purpose or social interaction."
+        },
+        {
+            "word": "volume",
+            "description": "The amount of space that something occupies, or the level of sound."
+        },
+        {
+            "word": "volunteer",
+            "description": "A person who offers their services or time without being paid."
+        },
+        {
+            "word": "vote",
+            "description": "To express a choice or opinion in an election or decision-making process."
+        },
+        {
+            "word": "wait",
+            "description": "To remain in a state of expectation or delay before an event or action occurs."
+        },
+        {
+            "word": "walk",
+            "description": "To move at a regular pace on foot."
+        },
+        {
+            "word": "wander",
+            "description": "To move without a fixed destination or purpose."
+        },
+        {
+            "word": "want",
+            "description": "To desire or wish for something."
+        },
+        {
             "word": "way",
             "description": "A method, style, or manner of doing something."
+        },
+        {
+            "word": "weight",
+            "description": "The measure of how heavy something is."
+        },
+        {
+            "word": "welcome",
+            "description": "To greet someone with kindness and hospitality."
         },
         {
             "word": "well",
@@ -354,6 +2386,42 @@
             "description": "The reason or cause for something; used to ask about a reason."
         },
         {
+            "word": "win",
+            "description": "To achieve victory or success in a competition or challenge."
+        },
+        {
+            "word": "wish",
+            "description": "To hope for something or express a desire for it."
+        },
+        {
+            "word": "witness",
+            "description": "A person who sees an event or action happen and can testify about it."
+        },
+        {
+            "word": "wonder",
+            "description": "A feeling of amazement or curiosity about something."
+        },
+        {
+            "word": "wonderful",
+            "description": "Extremely good, impressive, or inspiring wonder."
+        },
+        {
+            "word": "work",
+            "description": "To engage in an activity or job that requires effort, often for pay."
+        },
+        {
+            "word": "workout",
+            "description": "A session of physical exercise intended to improve health or fitness."
+        },
+        {
+            "word": "write",
+            "description": "To compose words or symbols in a structured form using a tool or device."
+        },
+        {
+            "word": "year",
+            "description": "A period of twelve months or 365 (or 366) days."
+        },
+        {
             "word": "yes",
             "description": "An affirmative response or agreement."
         },
@@ -366,8 +2434,24 @@
             "description": "Up until now; still; used in negative or interrogative contexts."
         },
         {
+            "word": "yield",
+            "description": "To produce or give in return, or to surrender or give way to something."
+        },
+        {
             "word": "you",
             "description": "A pronoun used to refer to the person or people being addressed."
+        },
+        {
+            "word": "youth",
+            "description": "The period of life between childhood and adulthood, or young people in general."
+        },
+        {
+            "word": "zebra",
+            "description": "A black-and-white striped herbivorous animal found in Africa, related to horses."
+        },
+        {
+            "word": "zone",
+            "description": "An area or region designated for a particular purpose or characterized by certain features."
         }
     ]
 }

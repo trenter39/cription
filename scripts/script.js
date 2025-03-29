@@ -3,6 +3,7 @@ let gameStarted = false;
 let currentTime = "Any";
 let description = false;
 let guess = false;
+let addAttempts = 0;
 
 // data variables
 let wordsData = [];
@@ -43,7 +44,12 @@ function startGame(){
     userMenu.classList.add('hidden');
     settings.classList.add('hidden');
     descriptionOptions.classList.add('hidden');
-    if(description === false) descriptionTitle.classList.add('hidden');
+    if(description === false){
+        descriptionTitle.classList.add('hidden');
+        addAttempts = 2;
+    } else{
+        addAttempts = 0;
+    }
     gameStarted = true;
     
     let value = document.querySelector('.settings-time.selected').textContent.trim();
@@ -98,7 +104,7 @@ function createInputBlocks(length){
         activeArea.appendChild(input);
     }
 
-    let inputs = document.querySelectorAll(".letter-box");
+    let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     inputs.forEach((input, index) => {
 
         input.addEventListener("input", () => {
@@ -114,13 +120,21 @@ function createInputBlocks(length){
         });
     });
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" && gameStarted === true) checkGuess();
+        if (event.key === "Enter" && gameStarted === true && checkWordLength()) checkGuess();
     });
+}
+
+// avoid incomplete words
+function checkWordLength(){
+    let inputs = document.querySelectorAll(".letter-box:not([disabled])");
+    let userGuess = Array.from(inputs).map(input => input.value).join("");
+    if(userGuess.length === currentWord.length) return true;
+    return false;
 }
 
 // user's guess check
 function checkGuess() {
-    let inputs = document.querySelectorAll(".letter-box");
+    let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
 
     if(userGuess.toLowerCase() === currentWord){
@@ -128,7 +142,22 @@ function checkGuess() {
     } else {
         guess = false;
     }
-    changeArea();
+    if(addAttempts < 1 || guess === true){
+        changeArea();
+        return;
+    }
+    addAttempts--;
+    inputs.forEach((input, index) => {
+        inputs[index].disabled = true;
+        if(userGuess[index] === currentWord[index]){
+            input.classList.add("guessed");
+        }
+    });
+    let space = document.createElement("div");
+    space.classList.add("margin-div");
+    activeArea.appendChild(space);
+
+    createInputBlocks(currentWord.length);
 }
 
 // output result
@@ -141,14 +170,14 @@ function changeArea() {
     clearInterval(timerInterval);
     if(guess === true){
         resultArea.innerHTML = 
-            `<h2>Word is guessed!</h2>
-            <h1>${currentWord}</h1>
+            `<h2>word is guessed!</h2>
+            <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is guessed!");
     } else {
         resultArea.innerHTML = 
-            `<h2>Word is not guessed!</h2>
-            <h1>${currentWord}</h1>
+            `<h2>word is not guessed!</h2>
+            <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is NOT guessed!");
     }
@@ -157,6 +186,7 @@ function changeArea() {
 // back to main state via end game, tab
 function endGame() {
     let inputs = activeArea.querySelectorAll(".letter-box");
+    let spaces = activeArea.querySelectorAll(".margin-div");
     time.style.display = "none";
     descriptionElement.style.display = "none";
     descriptionElement.classList.add('hidden');
@@ -165,6 +195,9 @@ function endGame() {
     settings.classList.remove('hidden');
     startText.style.display = "block";
     restart.style.display = "none";
+    spaces.forEach(space => {
+        activeArea.removeChild(space);
+    })
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
@@ -218,6 +251,7 @@ function pageSetup(){
     };
 }
 
+// check whether user signed in
 function checkLogin(){
     const username = sessionStorage.getItem("username");
     console.log(username);
@@ -232,6 +266,7 @@ function checkLogin(){
     }
 }
 
+// user sign out
 function signOut(){
     sessionStorage.removeItem("username");
     location.reload();
