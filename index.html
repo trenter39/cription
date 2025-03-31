@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cription | Word Guess Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0c81ebd625.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
     <div id="logo">
@@ -12,39 +14,41 @@
             <a href="index.html" class="link">Cription</a>
         </h1>
     </div>
-    <div class="upper-active-area">
-        <div id="user-menu">
-            <h2 id="login">
-                <a href="login.html" class="link">login</a>
-            </h2>
-            <h2>
-                <a href="#" class="link">more settings</a>
-            </h2>
-        </div>
-        <div id="time-area" style="display: none;">
-            <h1 id="timeCounter">Time</h1>
-        </div>
-        <div id="active-area">
-            <div id="description-area">
-                <h2 id="descriptionTitle">description</h2>
-                <span id="wordDescription" style="display: none;">Word Description</span>
-                <div id="description-options">
-                    <span class="settings-description" onclick="descriptionView(this)">On</span>
-                    <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
-                </div>
+    <div class="center-content">
+        <div class="upper-active-area">
+            <div id="user-menu">
+                <h2 id="login">
+                    <a href="login.html" class="link"><i class="fa-solid fa-user"></i></i> login</a>
+                </h2>
+                <h2>
+                    <a href="#" class="link"><i class="fa-solid fa-gear" style="font-size: 20px;"></i> settings</a>
+                </h2>
             </div>
-            <h2 id="startText" onclick="startGame()">start</h2>
-        </div>
-        <div id="result-area" style="display: none;"></div>
-        <div id="settings">
-            <h2>words</h2>
-            <p id="wordCount"></p>
-            <h2>time</h2>
-            <div>
-                <span class="settings-time" onclick="selectTime(this)">30</span>
-                <span class="settings-time" onclick="selectTime(this)">60</span>
-                <span class="settings-time" onclick="selectTime(this)">120</span>
-                <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+            <div id="time-area" style="display: none;">
+                <h1 id="timeCounter">Time</h1>
+            </div>
+            <div id="active-area">
+                <div id="description-area">
+                    <h2 id="descriptionTitle">description</h2>
+                    <span id="wordDescription" style="display: none;">Word Description</span>
+                    <div id="description-options">
+                        <span class="settings-description" onclick="descriptionView(this)">On</span>
+                        <span class="settings-description selected" onclick="descriptionView(this)">Off</span>
+                    </div>
+                </div>
+                <h2 id="startText" onclick="startGame()">start</h2>
+            </div>
+            <div id="result-area" style="display: none;"></div>
+            <div id="settings">
+                <h2>words</h2>
+                <p id="wordCount"></p>
+                <h2>time</h2>
+                <div>
+                    <span class="settings-time" onclick="selectTime(this)">30</span>
+                    <span class="settings-time" onclick="selectTime(this)">60</span>
+                    <span class="settings-time" onclick="selectTime(this)">120</span>
+                    <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+                </div>
             </div>
         </div>
     </div>

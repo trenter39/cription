@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Liter&display=swap');
 
 :root {
-    --settings-margin-left: 20vw;
-    --settings-area-width: 150px;
+    --settings-area-width: 200px;
     --active-area-width: 800px;
+    --active-area-height: 400px;
 }
 
 body {
@@ -14,22 +14,39 @@ body {
     text-align: center;
 }
 
+.center-content{
+    display: block;
+    width: calc(var(--settings-area-width)
+    + var(--active-area-width)
+    + var(--settings-area-width));
+    margin: auto;
+}
+
+.upper-active-area {
+    display: grid;
+    grid-template-columns:
+    var(--settings-area-width)
+    var(--active-area-width)
+    var(--settings-area-width);
+}
+
 #settings, #time-area, #user-menu {
-    float: left;
-    width: var(--settings-area-width);
+    margin: auto;
     line-height: 0.8;
     margin-left: 15px;
-    padding-bottom: 4vw;
-    flex-shrink: 0;
+    margin-right: 15px;
     transition: opacity 0.5s ease-in-out;
 }
 
+#description-area{
+    line-height: 1;
+}
+
 #active-area, #result-area {
+    height: var(--active-area-height);
     text-align: center;
     border: 2px solid black;
-    width: var(--active-area-width);
-    height: 400px;
-    padding: 10px;
+    padding: 15px;
 }
 
 #register-login-area {
@@ -50,28 +67,9 @@ body {
     font-size: larger;
 }
 
-.register {
-    float: left;
-}
-
-.login {
-    float: right;
-}
-
-.valueInput {
-    width: 100px;
-    margin-bottom: 10px;
-}
-
 .hidden {
     opacity: 0;
     pointer-events: none;
-}
-
-.upper-active-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .settings-time, .settings-description {
@@ -118,4 +116,17 @@ body {
 .link {
     text-decoration: none;
     color: inherit;
+}
+
+.register {
+    float: left;
+}
+
+.login {
+    float: right;
+}
+
+.valueInput {
+    width: 100px;
+    margin-bottom: 10px;
 }
