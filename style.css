@@ -39,14 +39,24 @@ body {
 }
 
 #description-area{
+    top: 0;
+    padding: 10px;
+    position: sticky;
     line-height: 1;
+    background-color: white;
 }
 
 #active-area, #result-area {
     height: var(--active-area-height);
     text-align: center;
     border: 2px solid black;
-    padding: 15px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+#settingsPage-container {
+    width: 50%;
+    margin: auto;
 }
 
 #register-login-area {
@@ -58,8 +68,15 @@ body {
     cursor: pointer;
 }
 
+#startText{
+    position: relative;
+    margin-top: 0px;
+    top: 0%;
+}
+
 #wordDescription {
     font-size: larger;
+    margin-bottom: 10px;
 }
 
 #navigation {
@@ -105,6 +122,19 @@ body {
 }
 
 .guessed {
+    color: darkgreen;
+    border-color: black;
+    font-weight: bold;
+}
+
+.contains {
+    color: darkorange;
+    border-color: black;
+    font-weight: bold;
+}
+
+.notGuessed {
+    color: darkred;
     font-weight: bold;
 }
 
@@ -129,4 +159,19 @@ body {
 .valueInput {
     width: 100px;
     margin-bottom: 10px;
+}
+
+.setting-name {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1220px) {
+    :root {
+        --active-area-width: 700px;
+    }
+
+    .letter-box {
+        width: 45px;
+        height: 45px;
+    }
 }

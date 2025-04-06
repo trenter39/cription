@@ -1,9 +1,10 @@
 // option variables
 let gameStarted = false;
 let currentTime = "Any";
-let description = false;
+let description = true;
 let guess = false;
-let addAttempts = 0;
+let addAttempts = 3;
+const constAttempts = 3;
 
 // data variables
 let wordsData = [];
@@ -15,7 +16,6 @@ let timerInterval;
 let activeArea = document.getElementById("active-area");
 let descriptionTitle = document.getElementById('descriptionTitle');
 let descriptionElement = document.getElementById('wordDescription');
-let descriptionOptions = document.getElementById('description-options');
 let resultArea = document.getElementById("result-area");
 let startText = document.getElementById('startText');
 let settings = document.getElementById('settings');
@@ -43,13 +43,7 @@ function startGame(){
     startText.style.display = "none";
     userMenu.classList.add('hidden');
     settings.classList.add('hidden');
-    descriptionOptions.classList.add('hidden');
-    if(description === false){
-        descriptionTitle.classList.add('hidden');
-        addAttempts = 2;
-    } else{
-        addAttempts = 0;
-    }
+    addAttempts = constAttempts;
     gameStarted = true;
     
     let value = document.querySelector('.settings-time.selected').textContent.trim();
@@ -149,7 +143,11 @@ function checkGuess() {
     addAttempts--;
     inputs.forEach((input, index) => {
         inputs[index].disabled = true;
+        if(currentWord.includes(userGuess[index])){
+            input.classList.add("contains");
+        }
         if(userGuess[index] === currentWord[index]){
+            input.classList.remove("contains");
             input.classList.add("guessed");
         }
     });
@@ -170,16 +168,16 @@ function changeArea() {
     clearInterval(timerInterval);
     if(guess === true){
         resultArea.innerHTML = 
-            `<h2>word is guessed!</h2>
+            `<h2 class="guessed">Word is guessed!</h2>
             <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
-            console.log("Word is guessed!");
+            console.log("Word is guessed!"); // functionality debug
     } else {
         resultArea.innerHTML = 
-            `<h2>word is not guessed!</h2>
+            `<h2 class="notGuessed">Word is not guessed!</h2>
             <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
-            console.log("Word is NOT guessed!");
+            console.log("Word is NOT guessed!"); // functionality debug
     }
 }
 
@@ -188,10 +186,11 @@ function endGame() {
     let inputs = activeArea.querySelectorAll(".letter-box");
     let spaces = activeArea.querySelectorAll(".margin-div");
     time.style.display = "none";
-    descriptionElement.style.display = "none";
-    descriptionElement.classList.add('hidden');
-    descriptionOptions.classList.remove('hidden');
-    descriptionTitle.classList.remove('hidden');
+    descriptionElement.innerHTML = "the description of word will be displayed here";
+    if(description === false){
+        descriptionElement.style.display = "none";
+        descriptionElement.classList.add('hidden');
+    }
     settings.classList.remove('hidden');
     startText.style.display = "block";
     restart.style.display = "none";
@@ -232,29 +231,25 @@ function selectTime(selectedOption){
     time.innerHTML = selectedOption.textContent.trim();
 }
 
-// description option
-function descriptionView(selectedOption){
-    document.querySelectorAll('.settings-description').forEach(option => {
-        option.classList.remove('selected');
-    });
-    selectedOption.classList.add('selected');
-    let value = selectedOption.textContent.trim();
-    description = (value === "On") ? true : false;
-    // console.log(description); // functionality debug
-}
 
 // setup function
 function pageSetup(){
     window.onload = () => {
         loadWords();
         checkLogin();
+        description = localStorage.getItem('description') === "true";
+        if(description === false){
+            descriptionTitle.innerHTML = "blind mode";
+            descriptionElement.style.display = "none";
+        }
+        console.log(description);
     };
 }
 
 // check whether user signed in
 function checkLogin(){
     const username = sessionStorage.getItem("username");
-    console.log(username);
+    // console.log(username); functionality debug
     if(username){
         loginWord.textContent = "";
         const usernameText = document.createTextNode(`${username}`);

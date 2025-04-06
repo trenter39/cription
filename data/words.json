@@ -38,10 +38,6 @@
             "description": "Happening by chance, often unexpectedly or unintentionally."
         },
         {
-            "word": "accommodation",
-            "description": "A space or provision made for someone’s needs, such as lodging or adjustments in the environment."
-        },
-        {
             "word": "accompany",
             "description": "To go or be with someone as a companion or escort."
         },
@@ -1568,10 +1564,6 @@
         {
             "word": "never",
             "description": "At no time; not ever."
-        },
-        {
-            "word": "nevertheless",
-            "description": "In spite of that; nonetheless."
         },
         {
             "word": "no",
