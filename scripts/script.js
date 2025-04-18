@@ -24,6 +24,30 @@ let userMenu = document.getElementById('user-menu');
 let time = document.getElementById('time-area');
 let loginWord = document.getElementById('login');
 
+// changeable result output
+let outputTitle = "";
+const wordGuessedOutput = [
+    "Correct! You're on fire!",
+    "Word mastered! Keep it up!",
+    "Nailed it! Impressive!",
+    "Spot on! Genius vibes!",
+    "Bravo! You cracked it!"
+];
+const wordNotGuessedOutput = [
+    "Oops! That wasn't it.",
+    "Not quite, try again next time!",
+    "Close, but not the word we needed.",
+    "Wrong guess. You'll get it next time!",
+    "Incorrect! Don't give up!"
+];
+const timeIsOutOutput = [
+    "Time's up! The word slipped away!",
+    "You ran out of time! Better luch next round!",
+    "The clock won this time!",
+    "Too slow! The word vanished.",
+    "Time flew by! Maybe next time you'll catch it."
+];
+
 // shortcuts for space - start, tab - restart
 document.addEventListener("keydown", function(event){
     if(event.code === "Space" && gameStarted === false){
@@ -76,7 +100,8 @@ function changeTime(){
         currentTime--;
     } else {
         clearInterval(timerInterval);
-        endGame();
+        guess = false;
+        changeArea();
     }
 }
 
@@ -167,14 +192,20 @@ function changeArea() {
     resultArea.style.display = "block";
     clearInterval(timerInterval);
     if(guess === true){
+        outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         resultArea.innerHTML = 
-            `<h2 class="guessed">Word is guessed!</h2>
+            `<h2 class="guessed">${outputTitle}</h2>
             <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is guessed!"); // functionality debug
     } else {
+        if(currentTime !== "Any"){
+            outputTitle = timeIsOutOutput[Math.floor(Math.random() * timeIsOutOutput.length)];
+        } else{
+            outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
+        }
         resultArea.innerHTML = 
-            `<h2 class="notGuessed">Word is not guessed!</h2>
+            `<h2 class="notGuessed">${outputTitle}</h2>
             <h2>${currentWord}</h2>
             <p id="wordDescription">${currentDescription}</p>`;
             console.log("Word is NOT guessed!"); // functionality debug
