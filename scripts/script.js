@@ -5,11 +5,14 @@ let description = true;
 let guess = false;
 let addAttempts = 3;
 const constAttempts = 3;
+let outOfTime;
 
 // data variables
 let wordsData = [];
 let currentWord = "";
 let currentDescription = "";
+let currentFirstExample = "";
+let currentSecondExample = "";
 let timerInterval;
 
 // document elements
@@ -22,6 +25,7 @@ let settings = document.getElementById('settings');
 let restart = document.getElementById('restart');
 let userMenu = document.getElementById('user-menu');
 let time = document.getElementById('time-area');
+let timeCounter = document.getElementById('timeCounter');
 let loginWord = document.getElementById('login');
 
 // changeable result output
@@ -69,6 +73,7 @@ function startGame(){
     settings.classList.add('hidden');
     addAttempts = constAttempts;
     gameStarted = true;
+    outOfTime = false;
     
     let value = document.querySelector('.settings-time.selected').textContent.trim();
     currentTime = (value === "Any") ? "Any" : parseInt(value, 10);
@@ -87,7 +92,7 @@ function startGame(){
 
 // set timer and interval
 function setTimer(){
-    time.innerHTML = currentTime;
+    timeCounter.textContent = currentTime;
     time.classList.remove("hidden");
     changeTime();
     timerInterval = setInterval(changeTime, 1000);
@@ -95,12 +100,13 @@ function setTimer(){
 
 // change timer text, time out - end game
 function changeTime(){
-    time.innerHTML = `<h2>${currentTime}</h2>`;
+    timeCounter.textContent = currentTime;
     if(currentTime > 0){
         currentTime--;
     } else {
         clearInterval(timerInterval);
         guess = false;
+        outOfTime = true;
         changeArea();
     }
 }
@@ -141,6 +147,14 @@ function createInputBlocks(length){
         input.addEventListener("keydown", (event) => {
             if (event.key === "Backspace" && !input.value && index > 0){
                 inputs[index - 1].focus();
+            }
+            if(event.key === "ArrowRight" && index < inputs.length - 1){
+                inputs[index + 1].focus();
+                event.preventDefault();
+            }
+            if(event.key === "ArrowLeft" && index > 0){
+                inputs[index - 1].focus();
+                event.preventDefault();
             }
         });
 
@@ -202,19 +216,29 @@ function changeArea() {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         resultArea.innerHTML = 
             `<h2 class="guessed">${outputTitle}</h2>
-            <h2>${currentWord}</h2>
-            <p id="wordDescription">${currentDescription}</p>`;
+            <div id="outputSection">
+                <h2>🔍 Your word: ${currentWord}</h2>
+                <p id="wordDescription">🧠 Definition: ${currentDescription}</p>
+                <h2>💡 Examples:</h2>
+                <p style="font-size: larger;">${currentFirstExample}</p>
+                <p style="font-size: larger;">${currentSecondExample}</p>
+            </div>`;
             console.log("Word is guessed!"); // functionality debug
     } else {
-        if(currentTime !== "Any"){
+        if(currentTime !== "Any" && outOfTime === true){
             outputTitle = timeIsOutOutput[Math.floor(Math.random() * timeIsOutOutput.length)];
         } else{
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
         resultArea.innerHTML = 
             `<h2 class="notGuessed">${outputTitle}</h2>
-            <h2>${currentWord}</h2>
-            <p id="wordDescription">${currentDescription}</p>`;
+            <div id="outputSection">
+                <h2>🔍 Your word: ${currentWord}</h2>
+                <p id="wordDescription">🧠 Definition: ${currentDescription}</p>
+                <h2>💡 Examples:</h2>
+                <p style="font-size: larger;">${currentFirstExample}</p>
+                <p style="font-size: larger;">${currentSecondExample}</p>
+            </div>`;
             console.log("Word is NOT guessed!"); // functionality debug
     }
 }
@@ -254,6 +278,8 @@ function pickRandomWord(){
         const randomWordObj = wordsData[Math.floor(Math.random() * wordsData.length)];
         currentWord = randomWordObj.word;
         currentDescription = randomWordObj.description;
+        currentFirstExample = randomWordObj.firstExample;
+        currentSecondExample = randomWordObj.secondExample;
         console.log("Selected word:", currentWord); // functionality debug
     } else {
         console.log("Data isn't fetched!"); // functionality debug
@@ -266,7 +292,7 @@ function selectTime(selectedOption){
         option.classList.remove('selected');
     });
     selectedOption.classList.add('selected');
-    time.innerHTML = selectedOption.textContent.trim();
+    timeCounter.textContent = selectedOption.textContent.trim();
 }
 
 

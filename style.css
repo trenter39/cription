@@ -59,10 +59,11 @@ body {
 }
 
 #description-area {
+    position: sticky;
     top: 0;
     padding: 10px;
-    position: sticky;
     line-height: 1;
+    margin-bottom: 10px;
     background-color: white;
 }
 
@@ -95,7 +96,15 @@ body {
 
 #wordDescription {
     font-size: larger;
-    margin-bottom: 10px;
+    width: calc(var(--active-area-width) -  var(--settings-area-width));
+    margin: auto;
+}
+
+#outputSection {
+    text-align: left;
+    padding-left: 20px;
+    width: calc(var(--active-area-width) -  var(--settings-area-width));
+    margin: auto;
 }
 
 #navigation {
