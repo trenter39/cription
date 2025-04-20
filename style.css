@@ -10,11 +10,24 @@ body {
     font-family: "Liter";
 }
 
-#logo {
-    text-align: center;
+#navbar {
+    display: flex;
+    width: var(--active-area-width);
+    justify-content: space-between;
+    margin: auto;
 }
 
-.center-content{
+#logo, #settingsLink {
+    float: left;
+}
+
+#user-menu {
+    display: flex;
+    gap: 20px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.center-content {
     display: block;
     width: calc(var(--settings-area-width)
     + var(--active-area-width)
@@ -30,7 +43,7 @@ body {
     var(--settings-area-width);
 }
 
-#settings, #time-area, #user-menu {
+#settings, #time-area{
     margin: auto;
     line-height: 0.8;
     margin-left: 15px;
@@ -38,7 +51,14 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-#description-area{
+#time-area{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+#description-area {
     top: 0;
     padding: 10px;
     position: sticky;
@@ -47,6 +67,7 @@ body {
 }
 
 #active-area, #result-area {
+    position: relative;
     height: var(--active-area-height);
     text-align: center;
     border: 2px solid black;
@@ -55,22 +76,21 @@ body {
 }
 
 #settingsPage-container {
-    width: 50%;
+    width: calc(var(--active-area-width) - 50px);
     margin: auto;
 }
 
 #register-login-area {
     margin: auto;
-    width: var(--active-area-width);
+    width: calc(var(--active-area-width) - 10px);
 }
 
-#startText,  #nextWord, #restart{
+#startText,  #nextWord, #restart {
     cursor: pointer;
 }
 
-#startText{
-    position: relative;
-    margin-top: 10%;
+#startText {
+    top: -10px;
 }
 
 #wordDescription {

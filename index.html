@@ -9,30 +9,32 @@
     <link href="cription.ico" rel="icon">
 </head>
 <body>
-    <div id="logo">
-        <h1>
-            <a href="index.html" class="link">Cription</a>
-        </h1>
+    <div id="navbar">
+        <div id="logo">
+            <h1>
+                <a href="index.html" class="link">Cription</a>
+            </h1>
+        </div>
+        <div id="user-menu">
+            <h2 id="settingsLink">
+                <a href="settings.html" class="link"><i class="fa-solid fa-gear" style="font-size: 20px;"></i></a>
+            </h2>
+            <h2 id="login">
+                <a href="login.html" class="link"><i class="fa-solid fa-user"></i></i></a>
+            </h2>
+        </div>
     </div>
     <div class="center-content">
         <div class="upper-active-area">
-            <div id="user-menu">
-                <h2 id="login">
-                    <a href="login.html" class="link"><i class="fa-solid fa-user"></i></i> login</a>
-                </h2>
-                <h2>
-                    <a href="settings.html" class="link"><i class="fa-solid fa-gear" style="font-size: 20px;"></i> settings</a>
-                </h2>
-            </div>
-            <div id="time-area" style="display: none;">
-                <h1 id="timeCounter">Time</h1>
-            </div>
+            <div id="filler"></div>
             <div id="active-area">
+                <div id="time-area" class="hidden">
+                    <h2 id="timeCounter">Time</h2>
+                </div>
                 <div id="description-area">
                     <h2 id="descriptionTitle">description</h2>
                     <span id="wordDescription">the description of word will be displayed here</span>
                 </div>
-                <h2 id="startText" onclick="startGame()">Click here or press Space to start</h2>
             </div>
             <div id="result-area" style="display: none;"></div>
             <div id="settings">
@@ -49,7 +51,8 @@
         </div>
     </div>
     <div id="navigation">
-        <p id="restart" onclick="endGame()" style="display: none;">restart</p>
+        <p id="startText" onclick="startGame()" style="display: inline;">Click here or press Space to start</p>
+        <p id="restart" onclick="endGame()" style="display: none;">Click here or press Tab to restart</p>
     </div>
     <script src="scripts/script.js"></script>
 </body>

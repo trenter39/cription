@@ -63,7 +63,7 @@ document.addEventListener("keydown", function(event){
 function startGame(){
     descriptionElement.classList.remove('hidden');
     restart.style.display = "inline";
-    restart.innerHTML = "restart";
+    restart.innerHTML = "Click here or press Tab to restart";
     startText.style.display = "none";
     userMenu.classList.add('hidden');
     settings.classList.add('hidden');
@@ -88,14 +88,14 @@ function startGame(){
 // set timer and interval
 function setTimer(){
     time.innerHTML = currentTime;
-    time.style.display = "block";
+    time.classList.remove("hidden");
     changeTime();
     timerInterval = setInterval(changeTime, 1000);
 }
 
 // change timer text, time out - end game
 function changeTime(){
-    time.innerHTML = `<h1>${currentTime}</h1>`;
+    time.innerHTML = `<h2>${currentTime}</h2>`;
     if(currentTime > 0){
         currentTime--;
     } else {
@@ -126,6 +126,12 @@ function createInputBlocks(length){
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     inputs.forEach((input, index) => {
 
+        input.addEventListener('keypress', (event) => {
+            if (!/[a-zA-Z]/.test(event.key)) {
+              event.preventDefault();
+            }
+        });
+
         input.addEventListener("input", () => {
             if (input.value && index < length - 1){
                 inputs[index + 1].focus();
@@ -137,6 +143,7 @@ function createInputBlocks(length){
                 inputs[index - 1].focus();
             }
         });
+
     });
     document.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && gameStarted === true && checkWordLength()) checkGuess();
@@ -185,9 +192,9 @@ function checkGuess() {
 
 // output result
 function changeArea() {
-    time.style.display = "none";
-    userMenu.style.display = "block";
-    restart.innerHTML = "next word";
+    time.classList.add("hidden");
+    userMenu.style.display = "flex";
+    restart.innerHTML = "Click here to guess next word";
     activeArea.style.display = "none";
     resultArea.style.display = "block";
     clearInterval(timerInterval);
@@ -216,14 +223,14 @@ function changeArea() {
 function endGame() {
     let inputs = activeArea.querySelectorAll(".letter-box");
     let spaces = activeArea.querySelectorAll(".margin-div");
-    time.style.display = "none";
+    time.classList.add("hidden");
     descriptionElement.innerHTML = "the description of word will be displayed here";
     if(description === false){
-        descriptionElement.style.display = "none";
-        descriptionElement.classList.add('hidden');
+        descriptionElement.style.display = "block";
+        descriptionElement.innerHTML = "the description will be hidden";
     }
     settings.classList.remove('hidden');
-    startText.style.display = "block";
+    startText.style.display = "inline";
     restart.style.display = "none";
     spaces.forEach(space => {
         activeArea.removeChild(space);
@@ -231,7 +238,7 @@ function endGame() {
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
-    userMenu.style.display = "block";
+    userMenu.style.display = "flex";
     userMenu.classList.remove('hidden');
     activeArea.style.display = "block";
     resultArea.style.display = "none";
@@ -271,9 +278,9 @@ function pageSetup(){
         description = localStorage.getItem('description') === "true";
         if(description === false){
             descriptionTitle.innerHTML = "blind mode";
-            descriptionElement.style.display = "none";
+            descriptionElement.innerHTML = "the description will be hidden"
         }
-        console.log(description);
+        console.log(description); // functionality debug
     };
 }
 
