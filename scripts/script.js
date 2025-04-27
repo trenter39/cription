@@ -71,6 +71,7 @@ function startGame(){
     startText.style.display = "none";
     userMenu.classList.add('hidden');
     settings.classList.add('hidden');
+    settings.style.display = "none";
     addAttempts = constAttempts;
     gameStarted = true;
     outOfTime = false;
@@ -253,7 +254,6 @@ function endGame() {
         descriptionElement.style.display = "block";
         descriptionElement.innerHTML = "the description will be hidden";
     }
-    settings.classList.remove('hidden');
     startText.style.display = "inline";
     restart.style.display = "none";
     spaces.forEach(space => {
@@ -264,6 +264,8 @@ function endGame() {
     });
     userMenu.style.display = "flex";
     userMenu.classList.remove('hidden');
+    settings.style.display = "flex";
+    settings.classList.remove('hidden');
     activeArea.style.display = "block";
     resultArea.style.display = "none";
     gameStarted = false;

@@ -23,22 +23,20 @@
             </h3>
         </div>
     </div>
-    <div class="center-content">
-        <div class="upper-active-area">
-            <div id="filler"></div>
-            <div id="active-area">
-                <div id="time-area" class="hidden">
-                    <h2 id="timeCounter">Time</h2>
-                </div>
-                <div id="description-area">
-                    <h2 id="descriptionTitle">description</h2>
-                    <span id="wordDescription">the description of word will be displayed here</span>
-                </div>
-            </div>
-            <div id="result-area" style="display: none;"></div>
-            <div id="settings">
+    <div id="active-area">
+        <div id="time-area" class="hidden">
+            <h2 id="timeCounter">Time</h2>
+        </div>
+        <div id="description-area">
+            <h2 id="descriptionTitle">description</h2>
+            <span id="wordDescription">the description of word will be displayed here</span>
+        </div>
+        <div id="settings">
+            <div>
                 <h2>words</h2>
                 <p id="wordCount"></p>
+            </div>
+            <div>
                 <h2>time</h2>
                 <div>
                     <span class="settings-time" onclick="selectTime(this)">30</span>
@@ -49,6 +47,7 @@
             </div>
         </div>
     </div>
+    <div id="result-area" style="display: none;"></div>
     <div id="navigation">
         <p id="startText" onclick="startGame()" style="display: inline;">Click here or press Space to start</p>
         <p id="restart" onclick="endGame()" style="display: none;">Click here or press Tab to restart</p>
