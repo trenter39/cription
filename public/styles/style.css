@@ -28,7 +28,7 @@ body {
 }
 
 
-#settings{
+#settings {
     display: flex;
     width: calc(var(--active-area-width)/2);
     justify-content: space-between;
@@ -37,7 +37,7 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-#time-area{
+#time-area {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -45,6 +45,16 @@ body {
     margin-right: 15px;
     z-index: 1;
     transition: opacity 0.5s ease-in-out;
+}
+
+#wordLevel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    line-height: 0.8;
+    margin-left: 15px;
+    z-index: 1;
+    transition: opacity 0.5s ease-in-out;         
 }
 
 #description-area {
@@ -65,6 +75,13 @@ body {
     border: 2px solid black;
     padding-bottom: 10px;
     overflow-y: auto;
+}
+
+#wordCount {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #settingsPage-container {
@@ -99,8 +116,13 @@ body {
 }
 
 #navigation {
+    margin-top: 10px;
     text-align: center;
     font-size: larger;
+}
+
+#wordCount {
+    margin-bottom: 0;
 }
 
 .hidden {
@@ -108,13 +130,13 @@ body {
     pointer-events: none;
 }
 
-.settings-time, .settings-description {
+.settings-time, .settings-description, .settings-words {
     margin-right: 0.4vw;
     font-weight: normal;
     cursor: pointer;
 }
 
-.settings-time.selected, .settings-description.selected {
+.settings-time.selected, .settings-description.selected, .settings-words.selected {
     font-weight: bold;
 }
 

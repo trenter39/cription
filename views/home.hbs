@@ -1,0 +1,38 @@
+<div id="active-area">
+    <div id="settingsAbout">
+        <h2 id="wordLevel" class="hidden">B1</h2>
+        <div id="time-area" class="hidden">
+            <h2 id="timeCounter">Time</h2>
+        </div>
+    </div>
+    <div id="description-area">
+        <h2 id="descriptionTitle">Description</h2>
+        <span id="wordDescription">the description of word will be displayed here</span>
+    </div>
+    <div id="settings">
+        <div>
+            <h2>Level</h2>
+            <span class="settings-words" onclick="selectLevel(this)">A1</span>
+            <span class="settings-words" onclick="selectLevel(this)">A2</span>
+            <span class="settings-words selected" onclick="selectLevel(this)">B1</span>
+            <span class="settings-words" onclick="selectLevel(this)">B2</span>
+            <span class="settings-words" onclick="selectLevel(this)">C1</span>
+            <span class="settings-words" onclick="selectLevel(this)">C2</span>
+        </div>
+        <div>
+            <h2>Time</h2>
+            <div>
+                <span class="settings-time" onclick="selectTime(this)">30</span>
+                <span class="settings-time" onclick="selectTime(this)">60</span>
+                <span class="settings-time" onclick="selectTime(this)">120</span>
+                <span class="settings-time selected" onclick="selectTime(this)">Any</span>
+            </div>
+        </div>
+    </div>
+    <p id="wordCount"></p>
+</div>
+<div id="result-area" style="display: none;"></div>
+<div id="navigation">
+    <p id="startText" onclick="startGame()" style="display: inline;">Click here or press Space to start</p>
+    <p id="restart" onclick="endGame()" style="display: none;">Click here or press Tab to restart</p>
+</div>

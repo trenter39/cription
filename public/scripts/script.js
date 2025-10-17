@@ -3,8 +3,8 @@ let gameStarted = false;
 let currentTime = "Any";
 let description = true;
 let guess = false;
-let addAttempts = 3;
-const constAttempts = 3;
+let addAttempts = 10;
+const constAttempts = 10;
 let outOfTime;
 
 // data variables
@@ -27,6 +27,8 @@ let userMenu = document.getElementById('user-menu');
 let time = document.getElementById('time-area');
 let timeCounter = document.getElementById('timeCounter');
 let loginWord = document.getElementById('login');
+let wordLevel = document.getElementById('wordLevel');
+let wordCount = document.getElementById('wordCount');
 
 // changeable result output
 let outputTitle = "";
@@ -71,6 +73,8 @@ function startGame(){
     startText.style.display = "none";
     userMenu.classList.add('hidden');
     settings.classList.add('hidden');
+    wordCount.classList.add('hidden');
+    wordLevel.classList.remove('hidden');
     settings.style.display = "none";
     addAttempts = constAttempts;
     gameStarted = true;
@@ -249,6 +253,8 @@ function endGame() {
     let inputs = activeArea.querySelectorAll(".letter-box");
     let spaces = activeArea.querySelectorAll(".margin-div");
     time.classList.add("hidden");
+    wordLevel.classList.add('hidden');
+    wordCount.classList.remove("hidden");
     descriptionElement.innerHTML = "the description of word will be displayed here";
     if(description === false){
         descriptionElement.style.display = "block";
@@ -295,6 +301,14 @@ function selectTime(selectedOption){
     });
     selectedOption.classList.add('selected');
     timeCounter.textContent = selectedOption.textContent.trim();
+}
+
+function selectLevel(selectedOption) {
+    document.querySelectorAll('.settings-words').forEach(option => {
+        option.classList.remove('selected');
+    });
+    selectedOption.classList.add('selected');
+    wordLevel.textContent = selectedOption.textContent.trim();
 }
 
 
