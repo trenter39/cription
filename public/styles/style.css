@@ -3,7 +3,8 @@
 :root {
     --settings-area-width: 200px;
     --active-area-width: 800px;
-    --active-area-height: 400px;
+    --active-area-height: 500px;
+    --medium-font-size: 1.2rem;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
 }
 
 #navbar {
+    font-size: 1rem;
     display: flex;
     width: var(--active-area-width);
     justify-content: space-between;
@@ -21,9 +23,8 @@ body {
     display: flex;
     gap: 20px;
     transition: opacity 0.5s ease-in-out;
-    margin-top: 25px;
+    margin-top: 35px;
 }
-
 
 #settings-area {
     display: flex;
@@ -51,7 +52,7 @@ body {
     line-height: 0.8;
     margin-left: 15px;
     z-index: 1;
-    transition: opacity 0.5s ease-in-out;         
+    transition: opacity 0.5s ease-in-out;
 }
 
 #description-area {
@@ -63,22 +64,86 @@ body {
     background-color: white;
 }
 
-#active-area, #result-area {
+#active-area,
+#result-area {
     position: relative;
     width: var(--active-area-width);
     height: var(--active-area-height);
     margin: auto;
     text-align: center;
     border: 2px solid black;
+    border-radius: 4px;
     padding-bottom: 10px;
     overflow-y: auto;
 }
 
+#register-login-area {
+    display: flex;
+    width: var(--active-area-width);
+    height: var(--active-area-height);
+    margin: auto;
+    border: 2px solid black;
+    overflow-y: auto;
+}
+
+#register-area,
+#login-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#register-area {
+    border-right: 2px solid black;
+}
+
+.heading-area {
+    margin: 10px;
+    padding: 0;
+}
+
+form {
+    width: 90%;
+}
+
+.valueInput {
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.valueInput input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid black;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 #wordCount {
+    font-size: var(--medium-font-size);
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    margin-bottom: 0;
+}
+
+.heading-bottom {
+    position: relative;
+    bottom: 10px;
 }
 
 #settingsPage-container {
@@ -86,40 +151,44 @@ body {
     margin: auto;
 }
 
-#register-login-area {
-    margin: auto;
-    width: calc(var(--active-area-width) - 10px);
-}
-
-#startText,  #nextWord, #restartText {
+#startText,
+#nextWord,
+#restartText {
     cursor: pointer;
 }
 
-#startText {
-    top: -10px;
+#wordDescription {
+    display: block;
+    font-size: var(--medium-font-size);
+    width: calc(var(--active-area-width) - var(--settings-area-width));
+    margin: auto;
 }
 
-#wordDescription {
-    font-size: larger;
-    width: calc(var(--active-area-width) -  var(--settings-area-width));
+#settings-area {
+    display: flex;
+    width: calc(var(--active-area-width)/2);
+    justify-content: space-between;
     margin: auto;
+    line-height: 0.8;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.subhead-area {
+    font-size: var(--medium-font-size);
+    margin-bottom: 10px;
 }
 
 #outputSection {
     text-align: left;
     padding-left: 20px;
-    width: calc(var(--active-area-width) -  var(--settings-area-width));
+    width: calc(var(--active-area-width) - var(--settings-area-width));
     margin: auto;
 }
 
 #navigation {
     margin-top: 10px;
     text-align: center;
-    font-size: larger;
-}
-
-#wordCount {
-    margin-bottom: 0;
+    font-size: var(--medium-font-size);
 }
 
 .hidden {
@@ -127,13 +196,18 @@ body {
     pointer-events: none;
 }
 
-.settings-time, .settings-description, .settings-words {
+.settings-time,
+.settings-description,
+.settings-words {
+    font-size: 1.1rem;
     margin-right: 0.4vw;
     font-weight: normal;
     cursor: pointer;
 }
 
-.settings-time.selected, .settings-description.selected, .settings-words.selected {
+.settings-time.selected,
+.settings-description.selected,
+.settings-words.selected {
     font-weight: bold;
 }
 
@@ -144,6 +218,7 @@ body {
     font-size: 24px;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 .letter-box.first-box {
@@ -160,47 +235,29 @@ body {
 }
 
 .guessed {
-    color: darkgreen;
+    background-color: lightgreen;
+    color: black;
     border-color: black;
     font-weight: bold;
 }
 
 .contains {
-    color: darkorange;
+    background-color: orange;
+    color: black;
     border-color: black;
     font-weight: bold;
 }
 
 .notGuessed {
-    color: darkred;
+    background-color: lightcoral;
+    color: black;
+    border-color:black;
     font-weight: bold;
-}
-
-.margin-div {
-    width: 100%;
-    height: 10px;
 }
 
 .link {
     text-decoration: none;
     color: inherit;
-}
-
-.register {
-    float: left;
-}
-
-.login {
-    float: right;
-}
-
-.valueInput {
-    width: 100px;
-    margin-bottom: 10px;
-}
-
-.setting-name {
-    margin-bottom: 10px;
 }
 
 @media (max-width: 1220px) {
@@ -211,5 +268,21 @@ body {
     .letter-box {
         width: 45px;
         height: 45px;
+    }
+}
+
+@media (max-width: 500px) {
+    :root {
+        --active-area-width: 400px;
+    }
+    #settings-area {
+        width: calc(var(--active-area-width) - 60px);
+    }
+    #wordDescription {
+        width: calc(var(--active-area-width) - 60px);
+    }
+    .letter-box {
+        width: 25px;
+        height: 25px;
     }
 }

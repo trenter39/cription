@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
     }
 });
 
-app.get('/settings', async(req, res) => {
+app.get('/settings', async (req, res) => {
     try {
         res.render('settings', {
             title: 'Settings | Cription',
@@ -42,7 +42,7 @@ app.get('/settings', async(req, res) => {
     }
 });
 
-app.get('/login', async(req, res) => {
+app.get('/login', async (req, res) => {
     try {
         res.render('login', {
             title: 'Login | Cription',
@@ -57,6 +57,6 @@ app.use((req, res) => {
     res.redirect('/');
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`App running on http://localhost:${PORT}/`);
 })

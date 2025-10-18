@@ -49,7 +49,7 @@ document.addEventListener("keydown", function (event) {
 
 // start game via space, text click
 function startGame() {
-    navBarArea.classList.add('hidden');
+    // navBarArea.classList.add('hidden');
     settingsArea.classList.add('hidden');
     settingsArea.style.display = "none";
     wordDescription.classList.remove('hidden');
@@ -65,7 +65,6 @@ function startGame() {
     let value = document.querySelector('.settings-time.selected').textContent.trim();
     chosenTime = (value === "Any") ? "Any" : parseInt(value, 10);
     if (chosenTime !== "Any") {
-        navBarArea.style.display = "none";
         setTimer();
     }
 
@@ -174,12 +173,17 @@ function checkGuess() {
     attemptsToGuess--;
     inputs.forEach((input, index) => {
         inputs[index].disabled = true;
-        if (currentWord.includes(userGuess[index])) {
+        const guessedChar = userGuess[index];
+        const correctChar = currentWord[index];
+        if (currentWord.includes(guessedChar)) {
             input.classList.add("contains");
         }
-        if (userGuess[index] === currentWord[index]) {
+        if (guessedChar === correctChar) {
             input.classList.remove("contains");
             input.classList.add("guessed");
+        }
+        if (!currentWord.includes(guessedChar)) {
+            input.classList.add("notGuessed");
         }
     });
     let space = document.createElement("div");
@@ -194,7 +198,7 @@ function changeArea() {
     timeArea.classList.add("hidden");
     activeArea.style.display = "none";
     resultArea.style.display = "block";
-    navBarArea.style.display = "flex";
+    // navBarArea.style.display = "flex";
     restartText.innerHTML = "Click here to guess next word";
     clearInterval(timerInterval);
     if (isUserGuessed === true) {
@@ -252,8 +256,8 @@ function endGame() {
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
-    navBarArea.style.display = "flex";
-    navBarArea.classList.remove('hidden');
+    // navBarArea.style.display = "flex";
+    // navBarArea.classList.remove('hidden');
     settingsArea.style.display = "flex";
     settingsArea.classList.remove('hidden');
     activeArea.style.display = "block";
