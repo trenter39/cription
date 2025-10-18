@@ -2,6 +2,8 @@ import expressHandlebars from 'express-handlebars';
 import express from 'express';
 import { PORT } from './config/conf.js';
 import session from 'express-session';
+import db from './config/db.js';
+// import { loadWordCount } from './controllers/words.js'; // for getting hardcoded word quantity
 
 const handlebars = expressHandlebars.create({
     defaultLayout: 'main',
@@ -20,7 +22,7 @@ app.get('/', async (req, res) => {
     try {
         res.render('home', {
             title: 'Cription | Guess Words',
-            script: '<script src="/scripts/script.js"></script>'
+            script: '<script type="module" src="/scripts/script.js"></script>',
         });
     } catch (err) {
         console.error(err);
@@ -56,6 +58,5 @@ app.use((req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(PORT);
     console.log(`App running on http://localhost:${PORT}/`);
 })

@@ -1,13 +1,17 @@
+// import outputs
+import { wordGuessedOutput, wordNotGuessedOutput, timeIsOutOutput } from '../data/output.js';
+
 // option variables
+let chosenTime = "Any";
 let gameStarted = false;
-let currentTime = "Any";
 let description = true;
-let guess = false;
-let addAttempts = 10;
-const constAttempts = 10;
+let isUserGuessed = false;
+let attemptsToGuess = 3;
+const constAttempts = 3;
 let outOfTime;
 
 // data variables
+let levelWordQuantity = { A1: 81, A2: 89, B1: 178, B2: 194, C1: 55, C2: 12 }; // got from the loadWordCount
 let wordsData = [];
 let currentWord = "";
 let currentDescription = "";
@@ -17,48 +21,26 @@ let timerInterval;
 
 // document elements
 let activeArea = document.getElementById("active-area");
-let descriptionTitle = document.getElementById('descriptionTitle');
-let descriptionElement = document.getElementById('wordDescription');
 let resultArea = document.getElementById("result-area");
-let startText = document.getElementById('startText');
-let settings = document.getElementById('settings');
-let restart = document.getElementById('restart');
-let userMenu = document.getElementById('user-menu');
-let time = document.getElementById('time-area');
+let navBarArea = document.getElementById('navbar-area');
+let settingsArea = document.getElementById('settings-area');
+let timeArea = document.getElementById('time-area');
 let timeCounter = document.getElementById('timeCounter');
-let loginWord = document.getElementById('login');
+let descriptionTitle = document.getElementById('descriptionTitle');
+let wordDescription = document.getElementById('wordDescription');
 let wordLevel = document.getElementById('wordLevel');
 let wordCount = document.getElementById('wordCount');
+let startText = document.getElementById('startText');
+let restartText = document.getElementById('restartText');
 
 // changeable result output
 let outputTitle = "";
-const wordGuessedOutput = [
-    "Correct! You're on fire!",
-    "Word mastered! Keep it up!",
-    "Nailed it! Impressive!",
-    "Spot on! Genius vibes!",
-    "Bravo! You cracked it!"
-];
-const wordNotGuessedOutput = [
-    "Oops! That wasn't it.",
-    "Not quite, try again next time!",
-    "Close, but not the word we needed.",
-    "Wrong guess. You'll get it next time!",
-    "Incorrect! Don't give up!"
-];
-const timeIsOutOutput = [
-    "Time's up! The word slipped away!",
-    "You ran out of time! Better luch next round!",
-    "The clock won this time!",
-    "Too slow! The word vanished.",
-    "Time flew by! Maybe next time you'll catch it."
-];
 
-// shortcuts for space - start, tab - restart
-document.addEventListener("keydown", function(event){
-    if(event.code === "Space" && gameStarted === false){
+// shortcuts for space - start, tab - restartText
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space" && gameStarted === false) {
         startGame();
-    } 
+    }
     if (event.key === "Tab") {
         event.preventDefault();
         endGame();
@@ -66,60 +48,59 @@ document.addEventListener("keydown", function(event){
 });
 
 // start game via space, text click
-function startGame(){
-    descriptionElement.classList.remove('hidden');
-    restart.style.display = "inline";
-    restart.innerHTML = "Click here or press Tab to restart";
+function startGame() {
+    navBarArea.classList.add('hidden');
+    settingsArea.classList.add('hidden');
+    settingsArea.style.display = "none";
+    wordDescription.classList.remove('hidden');
+    restartText.style.display = "inline";
+    restartText.innerHTML = "Click here or press Tab to restart";
     startText.style.display = "none";
-    userMenu.classList.add('hidden');
-    settings.classList.add('hidden');
     wordCount.classList.add('hidden');
     wordLevel.classList.remove('hidden');
-    settings.style.display = "none";
-    addAttempts = constAttempts;
+    attemptsToGuess = constAttempts;
     gameStarted = true;
     outOfTime = false;
-    
+
     let value = document.querySelector('.settings-time.selected').textContent.trim();
-    currentTime = (value === "Any") ? "Any" : parseInt(value, 10);
-    if(currentTime !== "Any"){
-        userMenu.style.display = "none";
+    chosenTime = (value === "Any") ? "Any" : parseInt(value, 10);
+    if (chosenTime !== "Any") {
+        navBarArea.style.display = "none";
         setTimer();
     }
 
     pickRandomWord();
-    descriptionElement.innerHTML = currentDescription;
-    descriptionElement.style.display = (description === true) ? "block" : "none";
+    wordDescription.innerHTML = currentDescription;
+    wordDescription.style.display = (description === true) ? "block" : "none";
 
     createInputBlocks(currentWord.length);
     console.log("Game started!");
 }
 
 // set timer and interval
-function setTimer(){
-    timeCounter.textContent = currentTime;
-    time.classList.remove("hidden");
+function setTimer() {
+    timeCounter.textContent = chosenTime;
+    timeArea.classList.remove("hidden");
     changeTime();
     timerInterval = setInterval(changeTime, 1000);
 }
 
 // change timer text, time out - end game
-function changeTime(){
-    timeCounter.textContent = currentTime;
-    if(currentTime > 0){
-        currentTime--;
+function changeTime() {
+    timeCounter.textContent = chosenTime;
+    if (chosenTime > 0) {
+        chosenTime--;
     } else {
         clearInterval(timerInterval);
-        guess = false;
+        isUserGuessed = false;
         outOfTime = true;
         changeArea();
     }
 }
 
 // input area
-function createInputBlocks(length){
-
-    for(let i = 0; i < length; i++){
+function createInputBlocks(length) {
+    for (let i = 0; i < length; i++) {
         let input = document.createElement("input");
         input.type = "text";
         input.maxLength = 1;
@@ -136,68 +117,67 @@ function createInputBlocks(length){
 
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     inputs.forEach((input, index) => {
-
         input.addEventListener('keypress', (event) => {
             if (!/[a-zA-Z]/.test(event.key)) {
-              event.preventDefault();
+                event.preventDefault();
             }
         });
 
         input.addEventListener("input", () => {
-            if (input.value && index < length - 1){
+            if (input.value && index < length - 1) {
                 inputs[index + 1].focus();
             }
         });
 
         input.addEventListener("keydown", (event) => {
-            if (event.key === "Backspace" && !input.value && index > 0){
+            if (event.key === "Backspace" && !input.value && index > 0) {
                 inputs[index - 1].focus();
             }
-            if(event.key === "ArrowRight" && index < inputs.length - 1){
+            if (event.key === "ArrowRight" && index < inputs.length - 1) {
                 inputs[index + 1].focus();
                 event.preventDefault();
             }
-            if(event.key === "ArrowLeft" && index > 0){
+            if (event.key === "ArrowLeft" && index > 0) {
                 inputs[index - 1].focus();
                 event.preventDefault();
             }
         });
-
     });
+
     document.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && gameStarted === true && checkWordLength()) checkGuess();
     });
 }
 
 // avoid incomplete words
-function checkWordLength(){
+function checkWordLength() {
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-    if(userGuess.length === currentWord.length) return true;
+    if (userGuess.length === currentWord.length) return true;
     return false;
 }
 
-// user's guess check
+// guess check
 function checkGuess() {
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
 
-    if(userGuess.toLowerCase() === currentWord){
-        guess = true;
+    if (userGuess.toLowerCase() === currentWord) {
+        isUserGuessed = true;
     } else {
-        guess = false;
+        isUserGuessed = false;
     }
-    if(addAttempts < 1 || guess === true){
+    if (attemptsToGuess < 1 || isUserGuessed === true) {
         changeArea();
         return;
     }
-    addAttempts--;
+    attemptsToGuess--;
     inputs.forEach((input, index) => {
         inputs[index].disabled = true;
-        if(currentWord.includes(userGuess[index])){
+        if (currentWord.includes(userGuess[index])) {
             input.classList.add("contains");
         }
-        if(userGuess[index] === currentWord[index]){
+        if (userGuess[index] === currentWord[index]) {
             input.classList.remove("contains");
             input.classList.add("guessed");
         }
@@ -211,67 +191,71 @@ function checkGuess() {
 
 // output result
 function changeArea() {
-    time.classList.add("hidden");
-    userMenu.style.display = "flex";
-    restart.innerHTML = "Click here to guess next word";
+    timeArea.classList.add("hidden");
     activeArea.style.display = "none";
     resultArea.style.display = "block";
+    navBarArea.style.display = "flex";
+    restartText.innerHTML = "Click here to guess next word";
     clearInterval(timerInterval);
-    if(guess === true){
+    if (isUserGuessed === true) {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
-        resultArea.innerHTML = 
-            `<h2 class="guessed">${outputTitle}</h2>
-            <div id="outputSection">
-                <h2>🔍 Your word: ${currentWord}</h2>
-                <p id="wordDescription">🧠 Definition: ${currentDescription}</p>
-                <h2>💡 Examples:</h2>
+        resultArea.innerHTML =
+            `<div id="outputSection">
+                <h2>${capitalizeWord(currentWord)}</h2>
+                <p id="wordDescription">${currentDescription}</p>
+                <h2>Examples:</h2>
                 <p style="font-size: larger;">${currentFirstExample}</p>
                 <p style="font-size: larger;">${currentSecondExample}</p>
-            </div>`;
-            console.log("Word is guessed!"); // functionality debug
+            </div>
+            <h3 class="guessed">${outputTitle}</h3>`;
+        console.log("Word is guessed!"); // functionality debug
     } else {
-        if(currentTime !== "Any" && outOfTime === true){
+        if (chosenTime !== "Any" && outOfTime === true) {
             outputTitle = timeIsOutOutput[Math.floor(Math.random() * timeIsOutOutput.length)];
-        } else{
+        } else {
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
-        resultArea.innerHTML = 
-            `<h2 class="notGuessed">${outputTitle}</h2>
-            <div id="outputSection">
-                <h2>🔍 Your word: ${currentWord}</h2>
-                <p id="wordDescription">🧠 Definition: ${currentDescription}</p>
-                <h2>💡 Examples:</h2>
+        resultArea.innerHTML =
+            `<div id="outputSection">
+                <h2>${capitalizeWord(currentWord)}</h2>
+                <p id="wordDescription">${currentDescription}</p>
+                <h2>Examples:</h2>
                 <p style="font-size: larger;">${currentFirstExample}</p>
                 <p style="font-size: larger;">${currentSecondExample}</p>
-            </div>`;
-            console.log("Word is NOT guessed!"); // functionality debug
+            </div>
+            <h3 class="notGuessed">${outputTitle}</h3>`;
+        console.log("Word is NOT guessed!"); // functionality debug
     }
+}
+
+function capitalizeWord(word) {
+    return word[0].toUpperCase() + word.slice(1);
 }
 
 // back to main state via end game, tab
 function endGame() {
     let inputs = activeArea.querySelectorAll(".letter-box");
     let spaces = activeArea.querySelectorAll(".margin-div");
-    time.classList.add("hidden");
+    timeArea.classList.add("hidden");
     wordLevel.classList.add('hidden');
     wordCount.classList.remove("hidden");
-    descriptionElement.innerHTML = "the description of word will be displayed here";
-    if(description === false){
-        descriptionElement.style.display = "block";
-        descriptionElement.innerHTML = "the description will be hidden";
+    wordDescription.innerHTML = "the description of word will be displayed here";
+    if (description === false) {
+        wordDescription.style.display = "block";
+        wordDescription.innerHTML = "the description will be hidden";
     }
     startText.style.display = "inline";
-    restart.style.display = "none";
+    restartText.style.display = "none";
     spaces.forEach(space => {
         activeArea.removeChild(space);
     })
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
-    userMenu.style.display = "flex";
-    userMenu.classList.remove('hidden');
-    settings.style.display = "flex";
-    settings.classList.remove('hidden');
+    navBarArea.style.display = "flex";
+    navBarArea.classList.remove('hidden');
+    settingsArea.style.display = "flex";
+    settingsArea.classList.remove('hidden');
     activeArea.style.display = "block";
     resultArea.style.display = "none";
     gameStarted = false;
@@ -280,9 +264,9 @@ function endGame() {
     console.log("Initial layout is back."); // functionality debug
 }
 
-// random word picker from words.json
-function pickRandomWord(){
-    if(wordsData.length > 0){
+// random word picker TODO
+function pickRandomWord() {
+    if (wordsData.length > 0) {
         const randomWordObj = wordsData[Math.floor(Math.random() * wordsData.length)];
         currentWord = randomWordObj.word;
         currentDescription = randomWordObj.description;
@@ -294,69 +278,65 @@ function pickRandomWord(){
     }
 }
 
+// level option
+function selectLevel(element) {
+    document.querySelectorAll('.settings-words').forEach(el => {
+        el.classList.remove('selected');
+    });
+    element.classList.add('selected');
+    let levelText = element.textContent.trim();
+    wordLevel.textContent = levelText;
+    wordCount.textContent = `${levelText} Words: 0/${levelWordQuantity[levelText]}`;
+}
+
 // time option
-function selectTime(selectedOption){
-    document.querySelectorAll('.settings-time').forEach(option => {
-        option.classList.remove('selected');
+function selectTime(element) {
+    document.querySelectorAll('.settings-time').forEach(el => {
+        el.classList.remove('selected');
     });
-    selectedOption.classList.add('selected');
-    timeCounter.textContent = selectedOption.textContent.trim();
+    element.classList.add('selected');
+    timeCounter.textContent = element.textContent.trim();
 }
 
-function selectLevel(selectedOption) {
-    document.querySelectorAll('.settings-words').forEach(option => {
-        option.classList.remove('selected');
-    });
-    selectedOption.classList.add('selected');
-    wordLevel.textContent = selectedOption.textContent.trim();
-}
-
-
-// setup function
-function pageSetup(){
+// setup page
+function pageSetup() {
     window.onload = () => {
         loadWords();
-        checkLogin();
+        setClicks();
         description = localStorage.getItem('description') === "true";
-        if(description === false){
+        if (description === false) {
             descriptionTitle.innerHTML = "blind mode";
-            descriptionElement.innerHTML = "the description will be hidden"
+            wordDescription.innerHTML = "the description will be hidden"
         }
         console.log(description); // functionality debug
     };
 }
 
-// check whether user signed in
-function checkLogin(){
-    const username = sessionStorage.getItem("username");
-    // console.log(username); functionality debug
-    if(username){
-        loginWord.textContent = "";
-        const usernameText = document.createTextNode(`${username}`);
-        const signOutElement = document.createElement("p");
-        signOutElement.textContent = "sign out";
-        signOutElement.addEventListener("click", signOut);
-        loginWord.appendChild(usernameText);
-        loginWord.appendChild(signOutElement);
-    }
-}
-
-// user sign out
-function signOut(){
-    sessionStorage.removeItem("username");
-    location.reload();
-    // console.log("signed out"); // functionality debug
+// set clicks
+function setClicks() {
+    startText.addEventListener('click', startGame);
+    restartText.addEventListener('click', endGame);
+    document.querySelectorAll('.settings-words').forEach(el => {
+        el.addEventListener('click', function () {
+            selectLevel(this);
+        });
+    });
+    document.querySelectorAll('.settings-time').forEach(el => {
+        el.addEventListener('click', function () {
+            selectTime(this);
+        });
+    });
 }
 
 // words load function
-async function loadWords(){
+async function loadWords() {
     try {
         const response = await fetch("../data/words.json");
         const data = await response.json();
         wordsData = data.words;
-        const wordCount = data.words.length;
+        // const wordQuantity = data.words.length; // legacy purposes
         let guessWords = data.guess_words.length;
-        document.getElementById("wordCount").textContent = `Total English: ${guessWords}/${wordCount}`;
+        wordCount.textContent = `B1 Words: ${guessWords}/${levelWordQuantity.B1}`;
     } catch (error) {
         console.error("Error loading words:", error);
     }

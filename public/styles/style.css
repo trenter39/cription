@@ -17,18 +17,15 @@ body {
     margin: auto;
 }
 
-#logo, #settingsLink {
-    float: left;
-}
-
-#user-menu {
+#navbar-area {
     display: flex;
     gap: 20px;
     transition: opacity 0.5s ease-in-out;
+    margin-top: 25px;
 }
 
 
-#settings {
+#settings-area {
     display: flex;
     width: calc(var(--active-area-width)/2);
     justify-content: space-between;
@@ -94,7 +91,7 @@ body {
     width: calc(var(--active-area-width) - 10px);
 }
 
-#startText,  #nextWord, #restart {
+#startText,  #nextWord, #restartText {
     cursor: pointer;
 }
 
