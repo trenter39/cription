@@ -8,6 +8,7 @@ let description = true;
 let isUserGuessed = false;
 let attemptsToGuess = 3;
 const constAttempts = 3;
+let blindMode;
 let outOfTime;
 
 // data variables
@@ -22,7 +23,6 @@ let timerInterval;
 // document elements
 let activeArea = document.getElementById("active-area");
 let resultArea = document.getElementById("result-area");
-let navBarArea = document.getElementById('navbar-area');
 let settingsArea = document.getElementById('settings-area');
 let timeArea = document.getElementById('time-area');
 let timeCounter = document.getElementById('timeCounter');
@@ -32,6 +32,12 @@ let wordLevel = document.getElementById('wordLevel');
 let wordCount = document.getElementById('wordCount');
 let startText = document.getElementById('startText');
 let restartText = document.getElementById('restartText');
+
+// result elements
+let currentWordElement = document.getElementById('currentWord');
+let firstExample = document.getElementById('firstExample');
+let secondExample = document.getElementById('secondExample');
+let resultText = document.getElementById('resultText');
 
 // changeable result output
 let outputTitle = "";
@@ -197,21 +203,11 @@ function checkGuess() {
 function changeArea() {
     timeArea.classList.add("hidden");
     activeArea.style.display = "none";
-    resultArea.style.display = "block";
-    // navBarArea.style.display = "flex";
-    restartText.innerHTML = "Click here to guess next word";
+    resultText.classList = [];
     clearInterval(timerInterval);
     if (isUserGuessed === true) {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
-        resultArea.innerHTML =
-            `<div id="outputSection">
-                <h2>${capitalizeWord(currentWord)}</h2>
-                <p id="wordDescription">${currentDescription}</p>
-                <h2>Examples:</h2>
-                <p style="font-size: larger;">${currentFirstExample}</p>
-                <p style="font-size: larger;">${currentSecondExample}</p>
-            </div>
-            <h3 class="guessed">${outputTitle}</h3>`;
+        resultText.classList.add('guessed');
         console.log("Word is guessed!"); // functionality debug
     } else {
         if (chosenTime !== "Any" && outOfTime === true) {
@@ -219,17 +215,15 @@ function changeArea() {
         } else {
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
-        resultArea.innerHTML =
-            `<div id="outputSection">
-                <h2>${capitalizeWord(currentWord)}</h2>
-                <p id="wordDescription">${currentDescription}</p>
-                <h2>Examples:</h2>
-                <p style="font-size: larger;">${currentFirstExample}</p>
-                <p style="font-size: larger;">${currentSecondExample}</p>
-            </div>
-            <h3 class="notGuessed">${outputTitle}</h3>`;
+        resultText.classList.add('notGuessed');
         console.log("Word is NOT guessed!"); // functionality debug
     }
+    currentWordElement.textContent = capitalizeWord(currentWord);
+    firstExample.textContent = currentFirstExample;
+    secondExample.textContent = currentSecondExample;
+    resultText.textContent = outputTitle;
+    resultArea.style.display = "block";
+    restartText.innerHTML = "Click here to guess next word";
 }
 
 function capitalizeWord(word) {
@@ -256,8 +250,6 @@ function endGame() {
     inputs.forEach(input => {
         activeArea.removeChild(input);
     });
-    // navBarArea.style.display = "flex";
-    // navBarArea.classList.remove('hidden');
     settingsArea.style.display = "flex";
     settingsArea.classList.remove('hidden');
     activeArea.style.display = "block";
@@ -307,12 +299,13 @@ function pageSetup() {
     window.onload = () => {
         loadWords();
         setClicks();
-        description = localStorage.getItem('description') === "true";
-        if (description === false) {
-            descriptionTitle.innerHTML = "blind mode";
+        blindMode = localStorage.getItem('blindMode') === "On";
+        if (blindMode) {
+            description = false;
+            descriptionTitle.innerHTML = "Blind mode";
             wordDescription.innerHTML = "the description will be hidden"
         }
-        console.log(description); // functionality debug
+        console.log(blindMode); // functionality debug
     };
 }
 

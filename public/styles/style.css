@@ -55,24 +55,25 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-#description-area {
+#description-area,
+#description-area-result {
     position: sticky;
     top: 0;
     padding: 10px;
-    line-height: 1;
+    line-height: 1.2;
     margin-bottom: 10px;
     background-color: white;
 }
 
 #active-area,
-#result-area {
+#result-area,
+#settingsPage-area {
     position: relative;
     width: var(--active-area-width);
     height: var(--active-area-height);
     margin: auto;
     text-align: center;
     border: 2px solid black;
-    border-radius: 4px;
     padding-bottom: 10px;
     overflow-y: auto;
 }
@@ -98,7 +99,7 @@ body {
 }
 
 #register-area {
-    border-right: 2px solid black;
+    border-right: 2px dashed black;
 }
 
 .heading-area {
@@ -179,8 +180,6 @@ button {
 }
 
 #outputSection {
-    text-align: left;
-    padding-left: 20px;
     width: calc(var(--active-area-width) - var(--settings-area-width));
     margin: auto;
 }
@@ -198,7 +197,8 @@ button {
 
 .settings-time,
 .settings-description,
-.settings-words {
+.settings-words,
+.settings-language {
     font-size: 1.1rem;
     margin-right: 0.4vw;
     font-weight: normal;
@@ -207,7 +207,8 @@ button {
 
 .settings-time.selected,
 .settings-description.selected,
-.settings-words.selected {
+.settings-words.selected,
+.settings-language.selected {
     font-weight: bold;
 }
 
@@ -251,8 +252,43 @@ button {
 .notGuessed {
     background-color: lightcoral;
     color: black;
-    border-color:black;
+    border-color: black;
     font-weight: bold;
+}
+
+#examples-area {
+    margin-top: 10px;
+    border: 2px dashed black;
+    font-size: 1.2rem;
+}
+
+#examplesCaption {
+    margin-top: 5px;
+    text-align: left;
+}
+
+#resultText {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin-bottom: 0px;
+    padding: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+}
+
+#settings-options {
+    width: calc(var(--active-area-width) - var(--settings-area-width));
+    margin: auto;
+    text-align: left;
+    font-size: 1rem;
+}
+
+#language-options, #description-options {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
 }
 
 .link {
@@ -275,12 +311,15 @@ button {
     :root {
         --active-area-width: 400px;
     }
+
     #settings-area {
         width: calc(var(--active-area-width) - 60px);
     }
+
     #wordDescription {
         width: calc(var(--active-area-width) - 60px);
     }
+
     .letter-box {
         width: 25px;
         height: 25px;
