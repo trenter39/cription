@@ -1,4 +1,4 @@
-<div id="active-area">
+<div id="active-area" style="display: none;">
     <div id="settingsAbout">
         <h2 id="wordLevel" class="hidden">B1</h2>
         <div id="time-area" class="hidden">
@@ -12,21 +12,19 @@
     <div id="settings-area">
         <div>
             <h2>Level</h2>
-            <span class="settings-words">A1</span>
-            <span class="settings-words">A2</span>
-            <span class="settings-words selected">B1</span>
-            <span class="settings-words">B2</span>
-            <span class="settings-words">C1</span>
-            <span class="settings-words">C2</span>
+            <span class="settings-level">A1</span>
+            <span class="settings-level">A2</span>
+            <span class="settings-level selected">B1</span>
+            <span class="settings-level">B2</span>
+            <span class="settings-level">C1</span>
+            <span class="settings-level">C2</span>
         </div>
         <div>
             <h2>Time</h2>
-            <div>
-                <span class="settings-time">30</span>
-                <span class="settings-time">60</span>
-                <span class="settings-time">120</span>
-                <span class="settings-time selected">Any</span>
-            </div>
+            <span class="settings-time">30</span>
+            <span class="settings-time">60</span>
+            <span class="settings-time">120</span>
+            <span class="settings-time selected">Any</span>
         </div>
     </div>
     <p id="wordCount">B1 Words: 0/178</p>
@@ -35,17 +33,24 @@
     <div id="outputSection">
         <div id="description-area-result">
             <h2 id="currentWord">Word</h2>
-            <p id="wordDescription">Description</p>
+            <p id="currentDescription">Description</p>
         </div>
         <div id="examples-area">
             <p id="firstExample">Example 1</p>
             <p id="secondExample">Example 2</p>
         </div>
         <p id="examplesCaption">Examples</p>
-        <h3 id="resultText">Output Text</h3>
+        <p id="resultText">Output Text</p>
     </div>
 </div>
-<div id="navigation">
+<div id="navigation" style="display: none;">
     <p id="startText" style="display: inline;">Click here or press Space to start</p>
     <p id="restartText" style="display: none;">Click here or press Tab to restart</p>
+</div>
+
+<div id="suggest-area" style="display: none;">
+    <h2>Cription - Guess Your Word</h2>
+    <h3>Here, you can guess various words by description.</h3>
+    <p style="font-size: larger;">To start guessing new words, you must sign in or sign up.</p>
+    <button id="authorizeButton">Sign in / Sign up</button>
 </div>

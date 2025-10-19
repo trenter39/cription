@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('token');
-    if (!token) return window.location.href = '/login';
-
     try {
         const res = await fetch('/api/account', {
             headers: {
@@ -9,17 +6,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
         const data = await res.json();
-
         if (!res.ok) {
             localStorage.removeItem('token');
             return window.location.href = '/login';
         }
-
+        const levelData = await getProgress(token);
+        console.log(levelData);
         document.getElementById('username').textContent = data.username;
-        document.getElementById('email').textContent = data.email;
-        document.getElementById('words-count').textContent = data.guessed_words_count;
+        setLevelCount(levelData);
+        document.getElementById('words-count').textContent = `${data.guessed_words_count}/${total_count}`;
+        document.getElementById('signOutLabel').addEventListener('click', function () {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+        });
     } catch (err) {
         console.error('Account fetch failed:', err);
         window.location.href = '/login';
     }
 });
+
+let total_count = 0;
+
+async function getProgress(token) {
+    const res = await fetch('/api/progress', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) {
+        console.error('Failed to fetch progress.');
+        return;
+    }
+    const data = await res.json();
+    return data;
+}
+
+function setLevelCount(data) {
+    data.forEach(levelObj => {
+        const level = levelObj.level;
+        const guessed = levelObj.guessed_count;
+        const total = levelObj.total_count;
+        total_count += Number(total);
+        const countElement = document.getElementById(`${level}WordsCount`);
+        if (countElement) {
+            countElement.textContent = `${guessed}/${total}`;
+        }
+    });
+}

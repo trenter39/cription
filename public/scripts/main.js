@@ -6,15 +6,13 @@ let chosenTime = "Any";
 let gameStarted = false;
 let description = true;
 let isUserGuessed = false;
+let hasProcessedGuess = false;
 let attemptsToGuess = 3;
 const constAttempts = 3;
-let blindMode;
 let outOfTime;
 
 // data variables
 let currentLevel = 'B1';
-let levelWordQuantity = { A1: 81, A2: 89, B1: 178, B2: 194, C1: 55, C2: 12 }; // got from the loadWordCount
-let wordsData = [];
 let currentWord = "";
 let currentDescription = "";
 let currentFirstExample = "";
@@ -26,23 +24,33 @@ let timerInterval;
 let activeArea = document.getElementById("active-area");
 let resultArea = document.getElementById("result-area");
 let settingsArea = document.getElementById('settings-area');
+let suggestArea = document.getElementById('suggest-area');
 let timeArea = document.getElementById('time-area');
 let timeCounter = document.getElementById('timeCounter');
 let descriptionTitle = document.getElementById('descriptionTitle');
 let wordDescription = document.getElementById('wordDescription');
 let wordLevel = document.getElementById('wordLevel');
 let wordCount = document.getElementById('wordCount');
+let navigation = document.getElementById('navigation');
 let startText = document.getElementById('startText');
 let restartText = document.getElementById('restartText');
+let authorizeButton = document.getElementById('authorizeButton');
 
 // result elements
 let currentWordElement = document.getElementById('currentWord');
+let currentDescriptionElement = document.getElementById('currentDescription');
 let firstExample = document.getElementById('firstExample');
 let secondExample = document.getElementById('secondExample');
 let resultText = document.getElementById('resultText');
 
 // changeable result output
 let outputTitle = "";
+
+authorizeButton.addEventListener("click", function (e) {
+    window.location.href = '/login';
+});
+
+pageSetup();
 
 // shortcuts for space - start, tab - restartText
 document.addEventListener("keydown", function (event) {
@@ -56,8 +64,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 // start game via space, text click
-function startGame() {
-    // navBarArea.classList.add('hidden');
+async function startGame() {
     settingsArea.classList.add('hidden');
     settingsArea.style.display = "none";
     wordDescription.classList.remove('hidden');
@@ -69,6 +76,7 @@ function startGame() {
     attemptsToGuess = constAttempts;
     gameStarted = true;
     outOfTime = false;
+    hasProcessedGuess = false;
 
     let value = document.querySelector('.settings-time.selected').textContent.trim();
     chosenTime = (value === "Any") ? "Any" : parseInt(value, 10);
@@ -76,7 +84,7 @@ function startGame() {
         setTimer();
     }
 
-    pickRandomWord();
+    await pickRandomWord(currentLevel);
     wordDescription.innerHTML = currentDescription;
     wordDescription.style.display = (description === true) ? "block" : "none";
 
@@ -123,6 +131,7 @@ function createInputBlocks(length) {
     }
 
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
+    inputs[0].focus();
     inputs.forEach((input, index) => {
         input.addEventListener('keypress', (event) => {
             if (!/[a-zA-Z]/.test(event.key)) {
@@ -166,15 +175,12 @@ function checkWordLength() {
 
 // guess check
 function checkGuess() {
+    if (hasProcessedGuess) return;
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-
-    if (userGuess.toLowerCase() === currentWord) {
-        isUserGuessed = true;
-    } else {
-        isUserGuessed = false;
-    }
+    isUserGuessed = userGuess.toLocaleLowerCase() === currentWord;
     if (attemptsToGuess < 1 || isUserGuessed === true) {
+        hasProcessedGuess = true;
         changeArea();
         return;
     }
@@ -195,7 +201,6 @@ function checkGuess() {
         }
     });
     let space = document.createElement("div");
-    space.classList.add("margin-div");
     activeArea.appendChild(space);
 
     createInputBlocks(currentWord.length);
@@ -221,6 +226,7 @@ function changeArea() {
         console.log("Word is NOT guessed!"); // functionality debug
     }
     currentWordElement.textContent = capitalizeWord(currentWord);
+    currentDescriptionElement.textContent = currentDescription;
     firstExample.textContent = currentFirstExample;
     secondExample.textContent = currentSecondExample;
     resultText.textContent = outputTitle;
@@ -262,33 +268,39 @@ function endGame() {
     console.log("Initial layout is back."); // functionality debug
 }
 
-// random word picker TODO
-function pickRandomWord() {
-    if (wordsData.length > 0) {
-        const randomWordObj = wordsData[Math.floor(Math.random() * wordsData.length)];
-        currentWord = randomWordObj.word;
-        currentDescription = randomWordObj.description;
-        currentFirstExample = randomWordObj.firstExample;
-        currentSecondExample = randomWordObj.secondExample;
+// random word picker from the database
+async function pickRandomWord(level) {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        const res = await fetch(`/api/random-word?level=${encodeURIComponent(level)}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) {
+            console.error('Failed to fetch progress.');
+            return;
+        }
+        const randomWord = await res.json();
+        currentWord = randomWord.word;
+        currentDescription = randomWord.description_en;
+        currentFirstExample = randomWord.example1_en;
+        currentSecondExample = randomWord.example2_en;
         console.log("Selected word:", currentWord); // functionality debug
-    } else {
-        console.log("Data isn't fetched!"); // functionality debug
+    } catch (err) {
+        console.error("Data isn't fetched!", err); // functionality debug
     }
 }
 
 // level option
 function selectLevel(element) {
-    document.querySelectorAll('.settings-words').forEach(el => {
+    document.querySelectorAll('.settings-level').forEach(el => {
         el.classList.remove('selected');
     });
     element.classList.add('selected');
-    let levelText = element.textContent.trim();
-    currentLevel = levelText; 
-    wordLevel.textContent = levelText;
-    let levelData = progressData.find(obj => obj.level === levelText);
-    if (levelData) {
-        wordCount.textContent = `${levelText} Words: ${levelData.guessed_count}/${levelData.total_count}`;
-    }
+    let level = element.textContent.trim();
+    currentLevel = level;
+    wordLevel.textContent = level;
+    changeWordCount(level);
 }
 
 // time option
@@ -301,18 +313,11 @@ function selectTime(element) {
 }
 
 // setup page
-function pageSetup() {
-    window.onload = () => {
+async function pageSetup() {
+    window.onload = async () => {
+        await loadProgress();
         loadWords();
         setClicks();
-        loadProgress();
-        blindMode = localStorage.getItem('blindMode') === "On";
-        if (blindMode) {
-            description = false;
-            descriptionTitle.innerHTML = "Blind mode";
-            wordDescription.innerHTML = "the description will be hidden"
-        }
-        console.log(blindMode); // functionality debug
     };
 }
 
@@ -320,7 +325,7 @@ function pageSetup() {
 function setClicks() {
     startText.addEventListener('click', startGame);
     restartText.addEventListener('click', endGame);
-    document.querySelectorAll('.settings-words').forEach(el => {
+    document.querySelectorAll('.settings-level').forEach(el => {
         el.addEventListener('click', function () {
             selectLevel(this);
         });
@@ -335,36 +340,41 @@ function setClicks() {
 // words load function
 async function loadWords() {
     try {
-        const response = await fetch("../data/words.json");
-        const data = await response.json();
-        wordsData = data.words;
-        // const wordQuantity = data.words.length; // legacy purposes
-        let guessWords = data.guess_words.length;
-        wordCount.textContent = `B1 Words: ${guessWords}/${levelWordQuantity.B1}`;
+        changeWordCount(currentLevel);
     } catch (error) {
         console.error("Error loading words:", error);
+    }
+}
+
+async function changeWordCount(wordLevel) {
+    let levelData = progressData.find(obj => obj.level === wordLevel);
+    if (levelData) {
+        wordCount.textContent = `${wordLevel} Words: ${levelData.guessed_count}/${levelData.total_count}`;
     }
 }
 
 // load user's word progress
 async function loadProgress() {
     const token = localStorage.getItem('token');
-    if (!token) return;
+    if (!token) {
+        suggestArea.style.display = 'block';
+        activeArea.style.display = 'none';
+        navigation.style.display = 'none';
+        return;
+    } else {
+        suggestArea.style.display = 'none';
+        activeArea.style.display = 'block';
+        navigation.style.display = 'block';
+    }
     console.log(token);
-
     const res = await fetch('/api/progress', {
-        headers: { 'Authorization': `Bearer: ${token}`}
+        headers: { 'Authorization': `Bearer ${token}` }
     });
-
     if (!res.ok) {
         console.error('Failed to fetch progress.');
         return;
     }
-
     const data = await res.json();
     console.log(data);
-
     progressData = data;
 }
-
-pageSetup();

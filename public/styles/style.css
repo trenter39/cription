@@ -28,7 +28,7 @@ body {
 
 #settings-area {
     display: flex;
-    width: calc(var(--active-area-width)/2);
+    width: calc(var(--active-area-width) / 2);
     justify-content: space-between;
     margin: auto;
     line-height: 0.8;
@@ -37,7 +37,7 @@ body {
 
 #time-area {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 10px;
     line-height: 0.8;
     margin-right: 15px;
@@ -47,7 +47,7 @@ body {
 
 #wordLevel {
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 10px;
     line-height: 0.8;
     margin-left: 15px;
@@ -68,15 +68,24 @@ body {
 #active-area,
 #result-area,
 #settingsPage-area,
-#account-area {
+#account-area,
+#suggest-area {
     position: relative;
     width: var(--active-area-width);
     height: var(--active-area-height);
     margin: auto;
     text-align: center;
     border: 2px solid black;
-    padding-bottom: 10px;
     overflow-y: auto;
+}
+
+#account-area h2 {
+    padding: 10px;
+}
+
+#suggest-area {
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #register-login-area {
@@ -129,13 +138,20 @@ button {
     cursor: pointer;
 }
 
-#wordCount {
+#wordCount,
+#username,
+#resultText {
+    width: calc(var(--active-area-width) / 2);
     font-size: var(--medium-font-size);
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 0;
+    border-left: 2px dashed black;
+    border-top: 2px dashed black;
+    border-right: 2px dashed black;
+    padding: 10px;
 }
 
 .heading-bottom {
@@ -154,7 +170,8 @@ button {
     cursor: pointer;
 }
 
-#wordDescription {
+#wordDescription,
+#currentDescription {
     display: block;
     font-size: var(--medium-font-size);
     width: calc(var(--active-area-width) - var(--settings-area-width));
@@ -163,11 +180,23 @@ button {
 
 #settings-area {
     display: flex;
-    width: calc(var(--active-area-width)/2);
+    width: calc(var(--active-area-width) / 1.5);
     justify-content: space-between;
     margin: auto;
     line-height: 0.8;
+    gap: 20px;
     transition: opacity 0.5s ease-in-out;
+}
+
+#settings-area div {
+    flex: 1;
+    border: 2px dashed black;
+    padding: 20px;
+}
+
+#settings-area h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
 .subhead-area {
@@ -180,10 +209,16 @@ button {
     margin: auto;
 }
 
-#navigation {
-    margin-top: 10px;
+#navigation,
+#signOutLabel {
     text-align: center;
+    width: calc(var(--active-area-width) / 2);
+    margin: auto;
+    padding: 10px;
     font-size: var(--medium-font-size);
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
 }
 
 .hidden {
@@ -193,17 +228,18 @@ button {
 
 .settings-time,
 .settings-description,
-.settings-words,
+.settings-level,
 .settings-language {
     font-size: 1.1rem;
-    margin-right: 0.4vw;
+    margin: 0.3vw;
+    margin-bottom: 0.5vw;
     font-weight: normal;
     cursor: pointer;
 }
 
 .settings-time.selected,
 .settings-description.selected,
-.settings-words.selected,
+.settings-level.selected,
 .settings-language.selected {
     font-weight: bold;
 }
@@ -252,10 +288,19 @@ button {
     font-weight: bold;
 }
 
+#resultText {
+    background-color: transparent;
+    font-weight: normal;
+}
+
 #examples-area {
     margin-top: 10px;
     border: 2px dashed black;
     font-size: 1.2rem;
+}
+
+#firstExample, #secondExample {
+    margin: 10px;
 }
 
 #examplesCaption {
@@ -263,16 +308,15 @@ button {
     text-align: left;
 }
 
-#resultText {
+/* #resultText {
     position: absolute;
-    width: 100%;
     bottom: 0;
     margin-bottom: 0px;
     padding: 12px;
     left: 50%;
     transform: translateX(-50%);
     box-sizing: border-box;
-}
+} */
 
 #settingsHeader h2 {
     font-size: 1.5rem;
@@ -299,6 +343,30 @@ button {
     color: inherit;
 }
 
+#countWord-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.4rem;
+    width: 80%;
+    margin: auto;
+}
+
+#countWord-area div {
+    padding: 10px 25px;
+    border: 2px dashed black;
+}
+
+#words-count {
+    display: flex;
+    width: 81%;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    margin: 20px auto;
+    border: 2px dashed black;
+    box-sizing: border-box;
+}
+
 @media (max-width: 1220px) {
     :root {
         --active-area-width: 700px;
@@ -319,7 +387,8 @@ button {
         width: calc(var(--active-area-width) - 60px);
     }
 
-    #wordDescription {
+    #wordDescription,
+    #currentDescription {
         width: calc(var(--active-area-width) - 60px);
     }
 

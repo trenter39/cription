@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return showMessage(loginOutput, msg, true);
             }
 
-            showMessage(loginOutput, 'Login successful!', false);
+            // showMessage(loginOutput, 'Login successful!', false); // debug functionality
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
 
