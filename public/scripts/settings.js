@@ -1,4 +1,4 @@
-// description option
+// toggle blind mode
 function descriptionView(selectedOption) {
     document.querySelectorAll('.settings-description').forEach(option => {
         option.classList.remove('selected');
@@ -10,6 +10,7 @@ function descriptionView(selectedOption) {
     // console.log(description); // functionality debug
 }
 
+// choose language
 function languageChange(selectedOption) {
     document.querySelectorAll('.settings-language').forEach(option => {
         option.classList.remove('selected');

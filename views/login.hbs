@@ -2,38 +2,24 @@
     <div id="register-area">
         <h2 class="heading-area">Register</h2>
         <span class="subhead-area">if you don't have an account</span>
-        <form action autocomplete="nope">
-            <div class="valueInput">
-                <input type="text" class="usernameInput" placeholder="Username">
-            </div>
-            <div class="valueInput">
-                <input type="email" class="emailInput" placeholder="Email">
-            </div>
-            <div class="valueInput">
-                <input type="email" class="verifyEmailInput" placeholder="Verify email">
-            </div>
-            <div class="valueInput">
-                <input type="password" class="passwordInput" placeholder="Password">
-            </div>
-            <div class="valueInput">
-                <input type="password" class="verifyPasswordInput" placeholder="Verify password">
-            </div>
+        <form id="registerForm" action autocomplete="nope">
+            <input type="text" class="valueInput" id="registerUsernameInput" placeholder="Username">
+            <input type="email" class="valueInput" id="registerEmailInput" placeholder="Email">
+            <input type="email" class="valueInput" id="registerVerifyEmailInput" placeholder="Verify email">
+            <input type="password" class="valueInput" id="registerPasswordInput" placeholder="Password">
+            <input type="password" class="valueInput" id="registerVerifyPasswordInput" placeholder="Verify password">
             <button type="submit">Sign up</button>
-            <h3 class="outputRegisterMessage hidden"></h3>
+            <h3 id="registerOutput" class="hidden"></h3>
         </form>
     </div>
     <div id="login-area">
         <h2 class="heading-area">Login</h2>
         <span class="subhead-area">if you already have an account</span>
-        <form action>
-            <div class="valueInput">
-                <input type="email" placeholder="Email">
-            </div>
-            <div class="valueInput">
-                <input type="password" placeholder="Password">
-            </div>
+        <form id="loginForm" action>
+            <input type="email" class="valueInput" id="loginEmailInput" placeholder="Email">
+            <input type="password" class="valueInput" id="loginPasswordInput" placeholder="Password">
             <button type="submit">Sign in</button>
-            <h3 class="outputLoginMessage hidden"></h3>
+            <h3 id="loginOutput" class="hidden"></h3>
         </form>
     </div>
 </div>

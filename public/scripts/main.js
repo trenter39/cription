@@ -12,12 +12,14 @@ let blindMode;
 let outOfTime;
 
 // data variables
+let currentLevel = 'B1';
 let levelWordQuantity = { A1: 81, A2: 89, B1: 178, B2: 194, C1: 55, C2: 12 }; // got from the loadWordCount
 let wordsData = [];
 let currentWord = "";
 let currentDescription = "";
 let currentFirstExample = "";
 let currentSecondExample = "";
+let progressData;
 let timerInterval;
 
 // document elements
@@ -281,8 +283,12 @@ function selectLevel(element) {
     });
     element.classList.add('selected');
     let levelText = element.textContent.trim();
+    currentLevel = levelText; 
     wordLevel.textContent = levelText;
-    wordCount.textContent = `${levelText} Words: 0/${levelWordQuantity[levelText]}`;
+    let levelData = progressData.find(obj => obj.level === levelText);
+    if (levelData) {
+        wordCount.textContent = `${levelText} Words: ${levelData.guessed_count}/${levelData.total_count}`;
+    }
 }
 
 // time option
@@ -299,6 +305,7 @@ function pageSetup() {
     window.onload = () => {
         loadWords();
         setClicks();
+        loadProgress();
         blindMode = localStorage.getItem('blindMode') === "On";
         if (blindMode) {
             description = false;
@@ -337,6 +344,27 @@ async function loadWords() {
     } catch (error) {
         console.error("Error loading words:", error);
     }
+}
+
+// load user's word progress
+async function loadProgress() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    console.log(token);
+
+    const res = await fetch('/api/progress', {
+        headers: { 'Authorization': `Bearer: ${token}`}
+    });
+
+    if (!res.ok) {
+        console.error('Failed to fetch progress.');
+        return;
+    }
+
+    const data = await res.json();
+    console.log(data);
+
+    progressData = data;
 }
 
 pageSetup();

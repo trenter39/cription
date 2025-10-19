@@ -14,3 +14,13 @@ export async function fetchA1Words() {
     const result = await db.query(sql);
     return result.rows.length ? result.rows : null;
 }
+
+export async function getUserProgress(userId) {
+    const sql = `select w.level, count(*) filter (where uw.is_guessed = true) as guessed_count, count(*) as total_count
+                from words w
+                left join user_words uw on uw.word_id = w.id and uw.user_id = $1
+                group by w.level
+                order by w.level`;
+    const { rows } = await db.query(sql, [userId]);
+    return rows;
+}
