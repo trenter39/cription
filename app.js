@@ -63,9 +63,9 @@ app.use('/api', authRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/random-word', wordRoutes);
 
-// app.use((req, res) => {
-//     res.redirect('/');
-// })
+app.use((req, res) => {
+    res.redirect('/');
+});
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`App running on http://localhost:${PORT}/`);

@@ -17,6 +17,7 @@ let currentWord = "";
 let currentDescription = "";
 let currentFirstExample = "";
 let currentSecondExample = "";
+let currentWordID;
 let progressData;
 let timerInterval;
 
@@ -27,7 +28,6 @@ let settingsArea = document.getElementById('settings-area');
 let suggestArea = document.getElementById('suggest-area');
 let timeArea = document.getElementById('time-area');
 let timeCounter = document.getElementById('timeCounter');
-let descriptionTitle = document.getElementById('descriptionTitle');
 let wordDescription = document.getElementById('wordDescription');
 let wordLevel = document.getElementById('wordLevel');
 let wordCount = document.getElementById('wordCount');
@@ -216,6 +216,7 @@ function changeArea() {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         resultText.classList.add('guessed');
         console.log("Word is guessed!"); // functionality debug
+        markWordAsGuessed(currentWordID);
     } else {
         if (chosenTime !== "Any" && outOfTime === true) {
             outputTitle = timeIsOutOutput[Math.floor(Math.random() * timeIsOutOutput.length)];
@@ -223,7 +224,8 @@ function changeArea() {
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
         resultText.classList.add('notGuessed');
-        console.log("Word is NOT guessed!"); // functionality debug
+        console.log("Word is not guessed!"); // functionality debug
+        markWordAsAttempt(currentWordID);
     }
     currentWordElement.textContent = capitalizeWord(currentWord);
     currentDescriptionElement.textContent = currentDescription;
@@ -234,6 +236,7 @@ function changeArea() {
     restartText.innerHTML = "Click here to guess next word";
 }
 
+// capitalize word on the word screen
 function capitalizeWord(word) {
     return word[0].toUpperCase() + word.slice(1);
 }
@@ -260,12 +263,13 @@ function endGame() {
     });
     settingsArea.style.display = "flex";
     settingsArea.classList.remove('hidden');
+    changeWordCount(currentLevel);
     activeArea.style.display = "block";
     resultArea.style.display = "none";
     gameStarted = false;
     clearInterval(timerInterval);
 
-    console.log("Initial layout is back."); // functionality debug
+    console.log("Home layout is back."); // functionality debug
 }
 
 // random word picker from the database
@@ -281,13 +285,55 @@ async function pickRandomWord(level) {
             return;
         }
         const randomWord = await res.json();
+        currentWordID = randomWord.id
         currentWord = randomWord.word;
         currentDescription = randomWord.description_en;
         currentFirstExample = randomWord.example1_en;
         currentSecondExample = randomWord.example2_en;
-        console.log("Selected word:", currentWord); // functionality debug
+        // console.log("Selected word:", currentWord); // functionality debug
     } catch (err) {
         console.error("Data isn't fetched!", err); // functionality debug
+    }
+}
+
+// in case of guessing right
+async function markWordAsGuessed(wordId) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+        const res = await fetch('/api/progress/guess', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ word_id: wordId }),
+        });
+        if (res.ok) {
+            progressData = await res.json();
+        } else {
+            console.error('Failed to update progress!');
+        }
+    } catch (err) {
+        console.error('Error marking word as guessed:', err);
+    }
+}
+
+// in case of not guessing right
+async function markWordAsAttempt(wordId) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+        const res = await fetch('/api/progress/attempt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ word_id: wordId }),
+        });
+    } catch(err) {
+        console.error('Error marking word as attempt:', err);
     }
 }
 
@@ -316,7 +362,6 @@ function selectTime(element) {
 async function pageSetup() {
     window.onload = async () => {
         await loadProgress();
-        loadWords();
         setClicks();
     };
 }
@@ -337,15 +382,7 @@ function setClicks() {
     });
 }
 
-// words load function
-async function loadWords() {
-    try {
-        changeWordCount(currentLevel);
-    } catch (error) {
-        console.error("Error loading words:", error);
-    }
-}
-
+// update word counter
 async function changeWordCount(wordLevel) {
     let levelData = progressData.find(obj => obj.level === wordLevel);
     if (levelData) {
@@ -356,17 +393,10 @@ async function changeWordCount(wordLevel) {
 // load user's word progress
 async function loadProgress() {
     const token = localStorage.getItem('token');
+    setElements(token);
     if (!token) {
-        suggestArea.style.display = 'block';
-        activeArea.style.display = 'none';
-        navigation.style.display = 'none';
         return;
-    } else {
-        suggestArea.style.display = 'none';
-        activeArea.style.display = 'block';
-        navigation.style.display = 'block';
     }
-    console.log(token);
     const res = await fetch('/api/progress', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -375,6 +405,28 @@ async function loadProgress() {
         return;
     }
     const data = await res.json();
-    console.log(data);
     progressData = data;
+    changeWordCount(currentLevel);
+}
+
+// place areas based on the token
+async function setElements(token) {
+    if (!token) {
+        activeArea.style.display = 'none';
+        navigation.style.display = 'none';
+        suggestArea.style.display = 'block';
+        setTimeout(() => {
+            requestAnimationFrame(() => suggestArea.classList.add('visible'));
+        }, 300);
+    } else {
+        suggestArea.style.display = 'none';
+        activeArea.style.display = 'block';
+        navigation.style.display = 'block';
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                navigation.classList.add('visible');
+                activeArea.classList.add('visible');
+            });
+        }, 300);
+    }
 }

@@ -10,8 +10,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.removeItem('token');
             return window.location.href = '/login';
         }
+        let accountArea = document.getElementById('account-area');
+        let signOutLabel = document.getElementById('signOutLabel');
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                accountArea.classList.add('visible');
+                signOutLabel.classList.add('visible');
+            });
+        }, 300);
         const levelData = await getProgress(token);
-        console.log(levelData);
         document.getElementById('username').textContent = data.username;
         setLevelCount(levelData);
         document.getElementById('words-count').textContent = `${data.guessed_words_count}/${total_count}`;
@@ -26,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 let total_count = 0;
+let totalGuessed_count = 0;
 
 async function getProgress(token) {
     const res = await fetch('/api/progress', {

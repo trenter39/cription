@@ -67,7 +67,6 @@ body {
 
 #active-area,
 #result-area,
-#settingsPage-area,
 #account-area,
 #suggest-area {
     position: relative;
@@ -77,6 +76,12 @@ body {
     text-align: center;
     border: 2px solid black;
     overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#result-area {
+    opacity: 1;
 }
 
 #account-area h2 {
@@ -211,6 +216,7 @@ button {
 
 #navigation,
 #signOutLabel {
+    opacity: 0;
     text-align: center;
     width: calc(var(--active-area-width) / 2);
     margin: auto;
@@ -219,11 +225,20 @@ button {
     border-right: 2px solid black;
     border-bottom: 2px solid black;
     border-left: 2px solid black;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+#active-area.visible,
+#account-area.visible,
+#suggest-area.visible,
+#navigation.visible,
+#signOutLabel.visible {
+    opacity: 1;
 }
 
 .settings-time,
@@ -299,7 +314,8 @@ button {
     font-size: 1.2rem;
 }
 
-#firstExample, #secondExample {
+#firstExample,
+#secondExample {
     margin: 10px;
 }
 
@@ -307,16 +323,6 @@ button {
     margin-top: 5px;
     text-align: left;
 }
-
-/* #resultText {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0px;
-    padding: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-sizing: border-box;
-} */
 
 #settingsHeader h2 {
     font-size: 1.5rem;
