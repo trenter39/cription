@@ -5,10 +5,15 @@
     --active-area-width: 800px;
     --active-area-height: 500px;
     --medium-font-size: 1.2rem;
+    --background-color: #F4F4F4;
+    --grey-color: #292B2D;
+    --white-color: #F2F2F2;
 }
 
 body {
     font-family: "Liter";
+    background-color: #F4F4F4;
+    color: #292B2D;
 }
 
 #navbar {
@@ -62,7 +67,7 @@ body {
     padding: 10px;
     line-height: 1.2;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 #active-area,
@@ -74,7 +79,7 @@ body {
     height: var(--active-area-height);
     margin: auto;
     text-align: center;
-    border: 2px solid black;
+    border: 2px solid var(--grey-color);
     overflow-y: auto;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
@@ -98,7 +103,7 @@ body {
     width: var(--active-area-width);
     height: var(--active-area-height);
     margin: auto;
-    border: 2px solid black;
+    border: 2px solid var(--grey-color);
     overflow-y: auto;
 }
 
@@ -114,7 +119,7 @@ body {
 }
 
 #register-area {
-    border-right: 2px dashed black;
+    border-right: 2px dashed var(--grey-color);
 }
 
 .heading-area {
@@ -127,19 +132,23 @@ form {
 }
 
 .valueInput {
+    outline: none;
+    box-shadow: none;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     font-size: 1rem;
-    border: 1px solid black;
+    color: var(--grey-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--grey-color);
 }
 
 button {
     padding: 10px 20px;
     font-size: 1rem;
-    color: black;
-    background-color: white;
-    border: 1px solid black;
+    color: var(--grey-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--grey-color);
     cursor: pointer;
 }
 
@@ -153,9 +162,9 @@ button {
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 0;
-    border-left: 2px dashed black;
-    border-top: 2px dashed black;
-    border-right: 2px dashed black;
+    border-left: 2px dashed var(--grey-color);
+    border-top: 2px dashed var(--grey-color);
+    border-right: 2px dashed var(--grey-color);
     padding: 10px;
 }
 
@@ -195,7 +204,7 @@ button {
 
 #settings-area div {
     flex: 1;
-    border: 2px dashed black;
+    border: 2px dashed var(--grey-color);
     padding: 20px;
 }
 
@@ -222,9 +231,9 @@ button {
     margin: auto;
     padding: 10px;
     font-size: var(--medium-font-size);
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
+    border-right: 2px solid var(--grey-color);
+    border-bottom: 2px solid var(--grey-color);
+    border-left: 2px solid var(--grey-color);
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -260,7 +269,11 @@ button {
 }
 
 .letter-box {
-    border: 2px solid;
+    outline: none;
+    box-shadow: none;
+    background-color: var(--background-color);
+    border: 2px solid var(--grey-color);
+    color: var(--grey-color);
     width: 50px;
     height: 50px;
     font-size: 24px;
@@ -282,24 +295,25 @@ button {
     border-left-style: none;
 }
 
+.guessed,
+.contains,
+.notGuessed {
+    color: var(--grey-color);
+    border-color: var(--grey-color);
+}
+
 .guessed {
     background-color: lightgreen;
-    color: black;
-    border-color: black;
     font-weight: bold;
 }
 
 .contains {
     background-color: orange;
-    color: black;
-    border-color: black;
     font-weight: bold;
 }
 
 .notGuessed {
     background-color: lightcoral;
-    color: black;
-    border-color: black;
     font-weight: bold;
 }
 
@@ -310,7 +324,7 @@ button {
 
 #examples-area {
     margin-top: 10px;
-    border: 2px dashed black;
+    border: 2px dashed var(--grey-color);
     font-size: 1.2rem;
 }
 
@@ -360,7 +374,7 @@ button {
 
 #countWord-area div {
     padding: 10px 25px;
-    border: 2px dashed black;
+    border: 2px dashed var(--grey-color);
 }
 
 #words-count {
@@ -369,7 +383,7 @@ button {
     justify-content: flex-end;
     padding: 10px 20px;
     margin: 20px auto;
-    border: 2px dashed black;
+    border: 2px dashed var(--grey-color);
     box-sizing: border-box;
 }
 
