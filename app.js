@@ -22,7 +22,9 @@ app.get('/', async (req, res) => {
     try {
         res.render('home', {
             title: 'Cription | Guess Words',
-            script: '<script type="module" src="/scripts/main.js"></script>'
+            script: '<script type="module" src="/scripts/main.js"></script>',
+            style: `<link rel="stylesheet" href="/styles/base.css">
+            <link rel="stylesheet" href="/styles/home.css">`
         });
     } catch (err) {
         console.error(err);
@@ -38,7 +40,9 @@ app.get('/login', async (req, res) => {
     try {
         res.render('login', {
             title: 'Login | Cription',
-            script: '<script type="module" src="/scripts/auth.js"></script>'
+            script: '<script type="module" src="/scripts/auth.js"></script>',
+            style: `<link rel="stylesheet" href="/styles/base.css">
+            <link rel="stylesheet" href="/styles/login.css">`
         });
     } catch (err) {
         console.error(err);
@@ -51,7 +55,9 @@ app.get('/account', async (req, res) => {
         res.render('account', {
             title: 'Account | Cription',
             script: '<script type="module" src="/scripts/account.js"></script>',
-            upper_script: `<script>const token = localStorage.getItem('token');if (!token) { window.location.href = '/login'; }</script>`
+            upper_script: `<script>const token = localStorage.getItem('token');if (!token) { window.location.href = '/login'; }</script>`,
+            style: `<link rel="stylesheet" href="/styles/base.css">
+            <link rel="stylesheet" href="/styles/account.css">`
         });
     } catch (err) {
         console.error(err);

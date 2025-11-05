@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 300);
         const levelData = await getProgress(token);
         document.getElementById('username').textContent = data.username;
-        setLevelCount(levelData);
-        document.getElementById('words-count').textContent = `${data.guessed_words_count}/${total_count}`;
+        await setLevelCount(levelData);
+        document.getElementById('guessed-words').textContent = `${data.guessed_words}/${total_count}`;
+        // document.getElementById('failed-attempts').textContent = `${data.failed_attempts}`;
         document.getElementById('signOutLabel').addEventListener('click', function () {
             localStorage.removeItem('token');
             window.location.href = '/login';
@@ -36,22 +37,30 @@ let total_count = 0;
 let totalGuessed_count = 0;
 
 async function getProgress(token) {
-    const res = await fetch('/api/progress', {
-        headers: { 'Authorization': `Bearer ${token}` }
-    });
-    if (!res.ok) {
+    const [res1, res2] = await Promise.all([
+        fetch('/api/progress', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        }),
+        fetch('/api/progress/guess_attempts', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+    ]);
+    if (!res1.ok || !res2.ok) {
         console.error('Failed to fetch progress.');
         return;
     }
-    const data = await res.json();
-    return data;
+    const [data1, data2] = await Promise.all([res1.json(), res2.json()]);
+    return [
+        ...data1, ...data2
+    ];
 }
 
-function setLevelCount(data) {
+async function setLevelCount(data) {
     data.forEach(levelObj => {
         const level = levelObj.level;
         const guessed = levelObj.guessed_count;
         const total = levelObj.total_count;
+        if (isNaN(total)) return;
         total_count += Number(total);
         const countElement = document.getElementById(`${level}WordsCount`);
         if (countElement) {

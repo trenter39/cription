@@ -19,6 +19,12 @@ export async function getUserProgress(userId) {
     return rows;
 }
 
+export async function getGuessAttempt(userId) {
+    const sql = `select guessed_words, failed_attempts from users where id = $1`;
+    const { rows } = await db.query(sql, [userId]);
+    return rows;
+}
+
 export async function getRandomWord(level, userId) {
     const sql = `select w.id, w.word, w.description_en, w.example1_en, w.example2_en
                 from words w
@@ -48,7 +54,7 @@ export async function markWordGuessed(userId, wordId) {
         );
         await db.query(
             `update users set
-            guessed_words_count = guessed_words_count + 1 where id = $1`,
+            guessed_words = guessed_words + 1 where id = $1`,
             [userId]
         );
     }

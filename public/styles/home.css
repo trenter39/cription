@@ -1,36 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Liter&display=swap');
-
-:root {
-    --settings-area-width: 200px;
-    --active-area-width: 800px;
-    --active-area-height: 500px;
-    --medium-font-size: 1.2rem;
-    --background-color: #F4F4F4;
-    --grey-color: #292B2D;
-    --white-color: #F2F2F2;
-}
-
-body {
-    font-family: "Liter";
-    background-color: #F4F4F4;
-    color: #292B2D;
-}
-
-#navbar {
-    font-size: 1rem;
-    display: flex;
-    width: var(--active-area-width);
-    justify-content: space-between;
-    margin: auto;
-}
-
-#navbar-area {
-    display: flex;
-    gap: 20px;
-    transition: opacity 0.5s ease-in-out;
-    margin-top: 35px;
-}
-
 #settings-area {
     display: flex;
     width: calc(var(--active-area-width) / 2);
@@ -98,63 +65,10 @@ body {
     box-sizing: border-box;
 }
 
-#register-login-area {
-    display: flex;
-    width: var(--active-area-width);
-    height: var(--active-area-height);
-    margin: auto;
-    border: 2px solid var(--grey-color);
-    overflow-y: auto;
-}
-
-#register-area,
-#login-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-#register-area {
-    border-right: 2px dashed var(--grey-color);
-}
-
-.heading-area {
-    margin: 10px;
-    padding: 0;
-}
-
-form {
-    width: 80%;
-}
-
-.valueInput {
-    outline: none;
-    box-shadow: none;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: var(--grey-color);
-    background-color: var(--background-color);
-    border: 1px solid var(--grey-color);
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: var(--grey-color);
-    background-color: var(--background-color);
-    border: 1px solid var(--grey-color);
-    cursor: pointer;
-}
-
 #wordCount,
 #username,
-#resultText {
+#resultText,
+#hint {
     width: calc(var(--active-area-width) / 2);
     font-size: var(--medium-font-size);
     position: absolute;
@@ -168,16 +82,6 @@ button {
     padding: 10px;
 }
 
-.heading-bottom {
-    position: relative;
-    bottom: 10px;
-}
-
-#settingsPage-container {
-    width: calc(var(--active-area-width) - 50px);
-    margin: auto;
-}
-
 #startText,
 #nextWord,
 #restartText {
@@ -188,7 +92,6 @@ button {
 #currentDescription {
     display: block;
     font-size: var(--medium-font-size);
-    width: calc(var(--active-area-width) - var(--settings-area-width));
     margin: auto;
 }
 
@@ -213,18 +116,12 @@ button {
     margin-bottom: 25px;
 }
 
-.subhead-area {
-    font-size: var(--medium-font-size);
-    margin-bottom: 10px;
-}
-
 #outputSection {
-    width: calc(var(--active-area-width) - var(--settings-area-width));
+    width: calc(var(--active-area-width) - var(--space-area-width));
     margin: auto;
 }
 
-#navigation,
-#signOutLabel {
+#navigation {
     opacity: 0;
     text-align: center;
     width: calc(var(--active-area-width) / 2);
@@ -302,17 +199,17 @@ button {
     border-color: var(--grey-color);
 }
 
-.guessed {
-    background-color: lightgreen;
-    font-weight: bold;
-}
-
-.contains {
+.containsLetter {
     background-color: orange;
     font-weight: bold;
 }
 
-.notGuessed {
+.guessedLetter {
+    background-color: lightgreen;
+    font-weight: bold;
+}
+
+.notGuessedLetter {
     background-color: lightcoral;
     font-weight: bold;
 }
@@ -320,6 +217,14 @@ button {
 #resultText {
     background-color: transparent;
     font-weight: normal;
+}
+
+.notGuessedWord {
+    color: darkred;
+}
+
+.guessedWord {
+    color: darkgreen;
 }
 
 #examples-area {
@@ -336,55 +241,6 @@ button {
 #examplesCaption {
     margin-top: 5px;
     text-align: left;
-}
-
-#settingsHeader h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0;
-    margin-top: 30px;
-}
-
-#settings-options {
-    width: calc(var(--active-area-width) - var(--settings-area-width));
-    margin: auto;
-    text-align: left;
-    font-size: 1rem;
-}
-
-#language-options,
-#description-options {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-}
-
-.link {
-    text-decoration: none;
-    color: inherit;
-}
-
-#countWord-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1.4rem;
-    width: 80%;
-    margin: auto;
-}
-
-#countWord-area div {
-    padding: 10px 25px;
-    border: 2px dashed var(--grey-color);
-}
-
-#words-count {
-    display: flex;
-    width: 81%;
-    justify-content: flex-end;
-    padding: 10px 20px;
-    margin: 20px auto;
-    border: 2px dashed var(--grey-color);
-    box-sizing: border-box;
 }
 
 @media (max-width: 1220px) {

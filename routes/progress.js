@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from './auth.js';
-import { getUserProgress, markWordGuessed, markWordAttempt } from '../controllers/words.js';
+import { getUserProgress, markWordGuessed, markWordAttempt, getGuessAttempt } from '../controllers/words.js';
 
 const router = express.Router();
 
@@ -13,6 +13,16 @@ router.get('/', verifyToken, async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+router.get('/guess_attempts', verifyToken, async (req, res) => {
+    try {
+        const data = await getGuessAttempt(req.user.id);
+        res.json(data);
+    } catch (err) {
+        console.error('Error fetching progress:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
 
 router.post('/guess', verifyToken, async (req, res) => {
     const userId = req.user.id;

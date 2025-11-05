@@ -34,6 +34,7 @@ let wordCount = document.getElementById('wordCount');
 let navigation = document.getElementById('navigation');
 let startText = document.getElementById('startText');
 let restartText = document.getElementById('restartText');
+let hint = document.getElementById('hint');
 let authorizeButton = document.getElementById('authorizeButton');
 
 // result elements
@@ -190,14 +191,14 @@ function checkGuess() {
         const guessedChar = userGuess[index];
         const correctChar = currentWord[index];
         if (currentWord.includes(guessedChar)) {
-            input.classList.add("contains");
+            input.classList.add("containsLetter");
         }
         if (guessedChar === correctChar) {
             input.classList.remove("contains");
-            input.classList.add("guessed");
+            input.classList.add("guessedLetter");
         }
         if (!currentWord.includes(guessedChar)) {
-            input.classList.add("notGuessed");
+            input.classList.add("notGuessedLetter");
         }
     });
     let space = document.createElement("div");
@@ -214,7 +215,7 @@ function changeArea() {
     clearInterval(timerInterval);
     if (isUserGuessed === true) {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
-        resultText.classList.add('guessed');
+        resultText.classList.add('guessedWord');
         console.log("Word is guessed!"); // functionality debug
         markWordAsGuessed(currentWordID);
     } else {
@@ -223,7 +224,7 @@ function changeArea() {
         } else {
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
-        resultText.classList.add('notGuessed');
+        resultText.classList.add('notGuessedWord');
         console.log("Word is not guessed!"); // functionality debug
         markWordAsAttempt(currentWordID);
     }
@@ -402,6 +403,7 @@ async function loadProgress() {
     });
     if (!res.ok) {
         console.error('Failed to fetch progress.');
+        setElements(null);
         return;
     }
     const data = await res.json();

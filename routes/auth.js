@@ -77,8 +77,8 @@ router.post(
                     id: user.id,
                     username: user.username,
                     email: user.email,
-                    guessed_words_count: user.guessed_words_count,
-                    language_preference: user.language_preference
+                    guessed_words: user.guessed_words,
+                    failed_attempts: user.failed_attempts,
                 }
             });
         } catch (err) {
@@ -108,8 +108,8 @@ router.get('/account', verifyToken, async (req, res) => {
         res.json({
             username: user.username,
             email: user.email,
-            guessed_words_count: user.guessed_words_count,
-            language_preference: user.language_preference,
+            guessed_words: user.guessed_words,
+            failed_attempts: user.failed_attempts
         });
     } catch(err) {
         console.error(err);

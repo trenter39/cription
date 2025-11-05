@@ -1,0 +1,86 @@
+#account-area {
+    position: relative;
+    width: var(--active-area-width);
+    height: var(--active-area-height);
+    margin: auto;
+    text-align: center;
+    border: 2px solid var(--grey-color);
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#account-area h2 {
+    padding: 10px;
+}
+
+#account-area.visible,
+#signOutLabel.visible {
+    opacity: 1;
+}
+
+#countLevelWord-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.4rem;
+    width: 80%;
+    margin: auto;
+}
+
+#countLevelWord-area div {
+    padding: 10px 25px;
+    border: 2px dashed var(--grey-color);
+}
+
+#counters-words {
+    display: flex;
+    width: 81%;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 20px auto 0px auto;
+    border: 2px dashed var(--grey-color);
+    box-sizing: border-box;
+}
+
+#counters-words h3 {
+    margin: 0;
+}
+
+#captions {
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+    margin: 5px auto;
+}
+
+#captions p {
+    margin: 0;
+}
+
+#username {
+    width: calc(var(--active-area-width) / 2);
+    font-size: var(--medium-font-size);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+    border-left: 2px dashed var(--grey-color);
+    border-top: 2px dashed var(--grey-color);
+    border-right: 2px dashed var(--grey-color);
+    padding: 10px;
+}
+
+#signOutLabel {
+    opacity: 0;
+    text-align: center;
+    width: calc(var(--active-area-width) / 2);
+    margin: auto;
+    padding: 10px;
+    font-size: var(--medium-font-size);
+    border-right: 2px solid var(--grey-color);
+    border-bottom: 2px solid var(--grey-color);
+    border-left: 2px solid var(--grey-color);
+    transition: opacity 0.5s ease-in-out;
+}
