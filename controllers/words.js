@@ -26,7 +26,7 @@ export async function getGuessAttempt(userId) {
 }
 
 export async function getRandomWord(level, userId) {
-    const sql = `select w.id, w.word, w.description_en, w.example1_en, w.example2_en
+    const sql = `select w.id, w.word, w.description, w.example1, w.example2
                 from words w
                 left join user_words uw on uw.word_id = w.id and uw.user_id = $2 and uw.is_guessed = true
                 where w.level = $1 and uw.word_id is null

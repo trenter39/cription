@@ -68,7 +68,7 @@
 #wordCount,
 #username,
 #resultText,
-#hint {
+#acceptGuess {
     width: calc(var(--active-area-width) / 2);
     font-size: var(--medium-font-size);
     position: absolute;
@@ -80,6 +80,14 @@
     border-top: 2px dashed var(--grey-color);
     border-right: 2px dashed var(--grey-color);
     padding: 10px;
+}
+
+#acceptGuess {
+    /* border: none; */
+    border-left: 2px solid var(--grey-color);
+    border-top: 2px solid var(--grey-color);
+    border-right: 2px solid var(--grey-color);
+    cursor: pointer;
 }
 
 #startText,

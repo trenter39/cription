@@ -34,7 +34,7 @@ let wordCount = document.getElementById('wordCount');
 let navigation = document.getElementById('navigation');
 let startText = document.getElementById('startText');
 let restartText = document.getElementById('restartText');
-let hint = document.getElementById('hint');
+let acceptGuess = document.getElementById('acceptGuess');
 let authorizeButton = document.getElementById('authorizeButton');
 
 // result elements
@@ -46,10 +46,6 @@ let resultText = document.getElementById('resultText');
 
 // changeable result output
 let outputTitle = "";
-
-authorizeButton.addEventListener("click", function (e) {
-    window.location.href = '/login';
-});
 
 pageSetup();
 
@@ -70,10 +66,13 @@ async function startGame() {
     settingsArea.style.display = "none";
     wordDescription.classList.remove('hidden');
     restartText.style.display = "inline";
-    restartText.innerHTML = "Click here or press Tab to restart";
+    restartText.innerHTML = "Restart";
     startText.style.display = "none";
     wordCount.classList.add('hidden');
     wordLevel.classList.remove('hidden');
+    acceptGuess.style.display = "inline";
+    acceptGuess.classList.remove('hidden');
+    acceptGuess.classList.add('available');
     attemptsToGuess = constAttempts;
     gameStarted = true;
     outOfTime = false;
@@ -88,7 +87,7 @@ async function startGame() {
     await pickRandomWord(currentLevel);
     wordDescription.innerHTML = currentDescription;
     wordDescription.style.display = (description === true) ? "block" : "none";
-
+    
     createInputBlocks(currentWord.length);
     console.log("Game started!");
 }
@@ -234,7 +233,7 @@ function changeArea() {
     secondExample.textContent = currentSecondExample;
     resultText.textContent = outputTitle;
     resultArea.style.display = "block";
-    restartText.innerHTML = "Click here to guess next word";
+    restartText.innerHTML = "Guess next word";
 }
 
 // capitalize word on the word screen
@@ -248,12 +247,10 @@ function endGame() {
     let spaces = activeArea.querySelectorAll(".margin-div");
     timeArea.classList.add("hidden");
     wordLevel.classList.add('hidden');
+    acceptGuess.classList.add('hidden');
+    acceptGuess.style.display = "none";
     wordCount.classList.remove("hidden");
     wordDescription.innerHTML = "the description of word will be displayed here";
-    if (description === false) {
-        wordDescription.style.display = "block";
-        wordDescription.innerHTML = "the description will be hidden";
-    }
     startText.style.display = "inline";
     restartText.style.display = "none";
     spaces.forEach(space => {
@@ -286,11 +283,11 @@ async function pickRandomWord(level) {
             return;
         }
         const randomWord = await res.json();
-        currentWordID = randomWord.id
+        currentWordID = randomWord.id;
         currentWord = randomWord.word;
-        currentDescription = randomWord.description_en;
-        currentFirstExample = randomWord.example1_en;
-        currentSecondExample = randomWord.example2_en;
+        currentDescription = randomWord.description;
+        currentFirstExample = randomWord.example1;
+        currentSecondExample = randomWord.example2;
         // console.log("Selected word:", currentWord); // functionality debug
     } catch (err) {
         console.error("Data isn't fetched!", err); // functionality debug
@@ -333,7 +330,7 @@ async function markWordAsAttempt(wordId) {
             },
             body: JSON.stringify({ word_id: wordId }),
         });
-    } catch(err) {
+    } catch (err) {
         console.error('Error marking word as attempt:', err);
     }
 }
@@ -369,6 +366,13 @@ async function pageSetup() {
 
 // set clicks
 function setClicks() {
+    authorizeButton.addEventListener("click", function (e) {
+        window.location.href = '/login';
+    });
+
+    acceptGuess.addEventListener('click', () => {
+        if (gameStarted === true && checkWordLength()) checkGuess();
+    });
     startText.addEventListener('click', startGame);
     restartText.addEventListener('click', endGame);
     document.querySelectorAll('.settings-level').forEach(el => {
