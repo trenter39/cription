@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const displayForm = document.getElementById("register-login-area");
+
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            displayForm.classList.add('visible');
+        });
+    }, 300);
+
     const registerForm = document.getElementById('registerForm');
     const registerOutput = document.getElementById('registerOutput');
 
@@ -36,8 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage(registerOutput, 'Server error! Try again later.', true);
         }
     });
+
     const loginForm = document.getElementById('loginForm');
     const loginOutput = document.getElementById('loginOutput');
+
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('loginEmailInput').value.trim();

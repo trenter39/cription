@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Cription</title>
+    <link rel="icon" href="icons/cription.ico" />
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="logo">
+            <h1><a href="/" class="link">Cription</a></h1>
+        </div>
+        <div id="navbar-area">
+            <a href="settings" class="link"><img src="icons/settings.svg" width="24" height="24" alt=""></a>
+            <a href="account" class="link"><img src="icons/login.svg" width="24" height="24" alt="login icon"></a>
+        </div>
+    </div>
+    <div id="register-login-area">
+        <div id="register-area">
+            <h2 class="heading-area">Register</h2>
+            <span class="subhead-area">if you don't have an account</span>
+            <form id="registerForm" action autocomplete="nope">
+                <input type="text" class="valueInput" id="registerUsernameInput" placeholder="Username">
+                <input type="email" class="valueInput" id="registerEmailInput" placeholder="Email">
+                <input type="email" class="valueInput" id="registerVerifyEmailInput" placeholder="Verify email">
+                <input type="password" class="valueInput" id="registerPasswordInput" placeholder="Password">
+                <input type="password" class="valueInput" id="registerVerifyPasswordInput"
+                    placeholder="Verify password">
+                <button type="submit">Sign up</button>
+                <h3 id="registerOutput" class="hidden"></h3>
+            </form>
+        </div>
+        <div id="login-area">
+            <h2 class="heading-area">Login</h2>
+            <span class="subhead-area">if you already have an account</span>
+            <form id="loginForm" action>
+                <input type="email" class="valueInput" id="loginEmailInput" placeholder="Email">
+                <input type="password" class="valueInput" id="loginPasswordInput" placeholder="Password">
+                <button type="submit">Sign in</button>
+                <h3 id="loginOutput" class="hidden"></h3>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="/scripts/login.js"></script>
+</body>
+
+</html>

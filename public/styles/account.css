@@ -7,7 +7,7 @@
     border: 2px solid var(--grey-color);
     overflow-y: auto;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #account-area h2 {
@@ -82,5 +82,5 @@
     border-right: 2px solid var(--grey-color);
     border-bottom: 2px solid var(--grey-color);
     border-left: 2px solid var(--grey-color);
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }

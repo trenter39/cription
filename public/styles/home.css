@@ -4,7 +4,7 @@
     justify-content: space-between;
     margin: auto;
     line-height: 0.8;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #time-area {
@@ -14,7 +14,7 @@
     line-height: 0.8;
     margin-right: 15px;
     z-index: 1;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #wordLevel {
@@ -24,7 +24,7 @@
     line-height: 0.8;
     margin-left: 15px;
     z-index: 1;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #description-area,
@@ -49,7 +49,7 @@
     border: 2px solid var(--grey-color);
     overflow-y: auto;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #result-area {
@@ -110,7 +110,7 @@
     margin: auto;
     line-height: 0.8;
     gap: 20px;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #settings-area div {
@@ -139,7 +139,7 @@
     border-right: 2px solid var(--grey-color);
     border-bottom: 2px solid var(--grey-color);
     border-left: 2px solid var(--grey-color);
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .hidden {
@@ -161,7 +161,7 @@
 .settings-language {
     font-size: 1.1rem;
     margin: 0.3vw;
-    margin-bottom: 0.5vw;
+    margin-bottom: 0.3vw;
     font-weight: normal;
     cursor: pointer;
 }
