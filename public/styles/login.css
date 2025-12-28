@@ -1,7 +1,7 @@
-#register-login-area {
+#auth-container {
     display: flex;
-    width: var(--active-area-width);
-    height: var(--active-area-height);
+    width: var(--game-area-width);
+    height: var(--game-area-height);
     margin: auto;
     border: 2px solid var(--grey-color);
     overflow-y: auto;
@@ -9,12 +9,12 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-#register-login-area.visible {
+#auth-container.visible {
     opacity: 1;
 }
 
-#register-area,
-#login-area {
+#section-register,
+#section-login {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -24,16 +24,16 @@
     box-sizing: border-box;
 }
 
-#register-area {
+#section-register {
     border-right: 2px dashed var(--grey-color);
 }
 
-.heading-area {
+.auth-heading {
     margin: 10px;
     padding: 0;
 }
 
-.subhead-area {
+.auth-subtitle {
     font-size: var(--medium-font-size);
     margin-bottom: 10px;
 }
@@ -42,7 +42,7 @@ form {
     width: 80%;
 }
 
-.valueInput {
+.input-field {
     outline: none;
     box-shadow: none;
     width: 100%;

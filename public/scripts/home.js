@@ -1,18 +1,19 @@
-// import outputs
+// User output feedback at the end of the round
 import { wordGuessedOutput, wordNotGuessedOutput, timeIsOutOutput } from '../data/output.js';
 
-// option variables
+// CONFIGURATION & STATE
+const MAX_ATTEMPTS = 3;
 let chosenTime = "Any";
+let currentLevel = 'B1';
+
 let gameStarted = false;
-let description = true;
+let showDescription = true;
 let isUserGuessed = false;
 let hasProcessedGuess = false;
-let attemptsToGuess = 3;
-const constAttempts = 3;
-let outOfTime;
+let attemptsRemaining = MAX_ATTEMPTS;
+let isOutOfTime = false;
 
-// data variables
-let currentLevel = 'B1';
+// DATA VARIABLES
 let currentWord = "";
 let currentDescription = "";
 let currentFirstExample = "";
@@ -21,130 +22,186 @@ let currentWordID;
 let progressData;
 let timerInterval;
 
-// document elements
-let activeArea = document.getElementById("active-area");
+// DOM ELEMENTS
+let gameArea = document.getElementById("game-area");
 let resultArea = document.getElementById("result-area");
 let settingsArea = document.getElementById('settings-area');
-let suggestArea = document.getElementById('suggest-area');
-let timeArea = document.getElementById('time-area');
-let timeCounter = document.getElementById('timeCounter');
-let wordDescription = document.getElementById('wordDescription');
-let wordLevel = document.getElementById('wordLevel');
-let wordCount = document.getElementById('wordCount');
-let navigation = document.getElementById('navigation');
-let startText = document.getElementById('startText');
-let restartText = document.getElementById('restartText');
-let acceptGuess = document.getElementById('acceptGuess');
-let authorizeButton = document.getElementById('authorizeButton');
+let welcomeScreen = document.getElementById('welcome-screen');
+let timeContainer = document.getElementById('time-container');
+let timeCounter = document.getElementById('time-counter');
+let wordDescription = document.getElementById('word-description');
+let levelDisplay = document.getElementById('level-display');
+let wordStats = document.getElementById('word-stats');
+let navigationArea = document.getElementById('navigation-area');
+let startGameText = document.getElementById('start-game');
+let restartGameText = document.getElementById('restart-game');
+let submitGuess = document.getElementById('submit-guess');
+let authorizeButton = document.getElementById('btn-authorize');
 
-// result elements
-let currentWordElement = document.getElementById('currentWord');
-let currentDescriptionElement = document.getElementById('currentDescription');
-let firstExample = document.getElementById('firstExample');
-let secondExample = document.getElementById('secondExample');
-let resultText = document.getElementById('resultText');
+// Word data elements
+let resultWord = document.getElementById('result-word');
+let resultDescription = document.getElementById('result-description');
 
-// changeable result output
+// Result elements
+let firstExample = document.getElementById('example-1');
+let secondExample = document.getElementById('example-2');
+let resultMessage = document.getElementById('result-message');
+
+// Changeable result output
 let outputTitle = "";
 
-pageSetup();
+// Initialization
+initGame();
 
-// shortcuts for space - start, tab - restartText
+// GLOBAL EVENT LISTENERS
+// Shortcuts: Space (Start), Tab (Return To Menu), Enter (Submit Guess)
 document.addEventListener("keydown", function (event) {
-    if (event.code === "Space" && gameStarted === false) {
+    if (event.code === "Space" && !gameStarted && settingsArea.style.display !== "none") {
         startGame();
     }
     if (event.key === "Tab") {
         event.preventDefault();
-        endGame();
+        returnToMainMenu();
+    }
+    if (event.key === "Enter" && gameStarted && checkWordLength()) {
+        checkGuess();
     }
 });
 
-// start game via space, text click
+// Main initialization function: loads progress and binds UI events
+async function initGame() {
+    window.onload = async () => {
+        await loadProgress();
+        bindUIControls();
+    };
+}
+
+// Bind click events to UI buttons and text elements
+function bindUIControls() {
+    authorizeButton.addEventListener("click", function () {
+        window.location.href = '/login';
+    });
+
+    submitGuess.addEventListener('click', () => {
+        if (gameStarted && checkWordLength()) checkGuess();
+    });
+
+    startGameText.addEventListener('click', startGame);
+
+    restartGameText.addEventListener('click', returnToMainMenu);
+
+    document.querySelectorAll('.settings-level').forEach(el => {
+        el.addEventListener('click', function () {
+            selectLevel(this);
+        });
+    });
+    document.querySelectorAll('.settings-time').forEach(el => {
+        el.addEventListener('click', function () {
+            selectTime(this);
+        });
+    });
+}
+
+// GAME LOGIC
+// Prepares the UI and data for a new round
 async function startGame() {
+    // UI updates
     settingsArea.classList.add('hidden');
     settingsArea.style.display = "none";
+
     wordDescription.classList.remove('hidden');
-    restartText.style.display = "inline";
-    restartText.innerHTML = "Restart";
-    startText.style.display = "none";
-    wordCount.classList.add('hidden');
-    wordLevel.classList.remove('hidden');
-    acceptGuess.style.display = "inline";
-    acceptGuess.classList.remove('hidden');
-    acceptGuess.classList.add('available');
-    attemptsToGuess = constAttempts;
+    wordDescription.style.display = (showDescription === true) ? "block" : "none";
+
+    restartGameText.style.display = "inline";
+    restartGameText.innerHTML = "Restart";
+
+    startGameText.style.display = "none";
+    wordStats.classList.add('hidden');
+    levelDisplay.classList.remove('hidden');
+
+    submitGuess.style.display = "inline";
+    submitGuess.classList.remove('hidden');
+
+    attemptsRemaining = MAX_ATTEMPTS;
     gameStarted = true;
-    outOfTime = false;
+    isOutOfTime = false;
     hasProcessedGuess = false;
 
-    let value = document.querySelector('.settings-time.selected').textContent.trim();
-    chosenTime = (value === "Any") ? "Any" : parseInt(value, 10);
+    // Time Setup
+    let timeValue = document.querySelector('.settings-time.selected').textContent.trim();
+    chosenTime = (timeValue === "Any") ? "Any" : parseInt(timeValue, 10);
+
     if (chosenTime !== "Any") {
         setTimer();
     }
 
+    // Word Fetching
     await pickRandomWord(currentLevel);
     wordDescription.innerHTML = currentDescription;
-    wordDescription.style.display = (description === true) ? "block" : "none";
-    
+
+    // Input Creation
     createInputBlocks(currentWord.length);
-    console.log("Game started!");
+    // console.log("Game started!");
 }
 
-// set timer and interval
+// Sets up the visual timer and starts the interval
 function setTimer() {
     timeCounter.textContent = chosenTime;
-    timeArea.classList.remove("hidden");
-    changeTime();
-    timerInterval = setInterval(changeTime, 1000);
+    timeContainer.classList.remove("hidden");
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
 }
 
-// change timer text, time out - end game
-function changeTime() {
+// Decrements timer. Triggered every second
+function updateTimer() {
     timeCounter.textContent = chosenTime;
     if (chosenTime > 0) {
         chosenTime--;
     } else {
         clearInterval(timerInterval);
         isUserGuessed = false;
-        outOfTime = true;
-        changeArea();
+        isOutOfTime = true;
+        showGameResults();
     }
 }
 
-// input area
+// Generates input fields for each letter of the target word.
+// Adds navigationArea logic (Arrow keys, Backspace) for these specific inputs
 function createInputBlocks(length) {
+    // Create inputs
     for (let i = 0; i < length; i++) {
         let input = document.createElement("input");
         input.type = "text";
         input.maxLength = 1;
         input.classList.add("letter-box");
-        if (i === 0) {
-            input.classList.add("first-box");
-        } else if (i === length - 1) {
-            input.classList.add("last-box");
-        } else {
-            input.classList.add("middle-box");
-        }
-        activeArea.appendChild(input);
+
+        if (i === 0) input.classList.add("first-box");
+        else if (i === length - 1) input.classList.add("last-box");
+        else input.classList.add("middle-box");
+
+        gameArea.appendChild(input);
     }
 
+    // Add navigationArea logic to new inputs
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
-    inputs[0].focus();
+    if (inputs.length > 0) inputs[0].focus();
+
     inputs.forEach((input, index) => {
+        // Allow only letters
         input.addEventListener('keypress', (event) => {
             if (!/[a-zA-Z]/.test(event.key)) {
                 event.preventDefault();
             }
         });
 
+        // Auto-focus next input
         input.addEventListener("input", () => {
             if (input.value && index < length - 1) {
                 inputs[index + 1].focus();
             }
         });
 
+        // Navigation (Backspace, Arrows)
         input.addEventListener("keydown", (event) => {
             if (event.key === "Backspace" && !input.value && index > 0) {
                 inputs[index - 1].focus();
@@ -159,118 +216,164 @@ function createInputBlocks(length) {
             }
         });
     });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" && gameStarted === true && checkWordLength()) checkGuess();
-    });
 }
 
-// avoid incomplete words
+// Validates if the user has filled all input fields
 function checkWordLength() {
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-    if (userGuess.length === currentWord.length) return true;
-    return false;
+    return userGuess.length === currentWord.length;
 }
 
-// guess check
+// Processes the user's guess, updates input colors, and checks win/loss condition
 function checkGuess() {
     if (hasProcessedGuess) return;
+
     let inputs = document.querySelectorAll(".letter-box:not([disabled])");
     let userGuess = Array.from(inputs).map(input => input.value).join("");
-    isUserGuessed = userGuess.toLocaleLowerCase() === currentWord;
-    if (attemptsToGuess < 1 || isUserGuessed === true) {
+
+    isUserGuessed = userGuess.toLowerCase() === currentWord.toLowerCase();
+
+    // Check if game should end (Win or No Attempts Left)
+    if (attemptsRemaining <= 1 || isUserGuessed) {
         hasProcessedGuess = true;
-        changeArea();
+
+        // Color the last attempts before showing results
+        colorInputs(inputs, userGuess);
+
+        setTimeout(() => showGameResults(), 500);
         return;
     }
-    attemptsToGuess--;
-    inputs.forEach((input, index) => {
-        inputs[index].disabled = true;
-        const guessedChar = userGuess[index];
-        const correctChar = currentWord[index];
-        if (currentWord.includes(guessedChar)) {
-            input.classList.add("containsLetter");
-        }
-        if (guessedChar === correctChar) {
-            input.classList.remove("contains");
-            input.classList.add("guessedLetter");
-        }
-        if (!currentWord.includes(guessedChar)) {
-            input.classList.add("notGuessedLetter");
-        }
-    });
+
+    // If game continues
+    attemptsRemaining--;
+    colorInputs(inputs, userGuess);
+
+    // Add spacer and new row
     let space = document.createElement("div");
-    activeArea.appendChild(space);
+    space.classList.add("margin-div");
+    gameArea.appendChild(space);
 
     createInputBlocks(currentWord.length);
 }
 
-// output result
-function changeArea() {
-    timeArea.classList.add("hidden");
-    activeArea.style.display = "none";
-    resultText.classList = [];
+// Helper to color inputs based on correctness
+function colorInputs(inputs, userGuess) {
+    inputs.forEach((input, index) => {
+        input.disabled = true;
+        const guessedChar = userGuess[index].toLowerCase();
+        const correctChar = currentWord[index].toLowerCase();
+        if (guessedChar === correctChar) input.classList.add("guessedLetter");
+        else if (currentWord.includes(guessedChar)) input.classList.add("containsLetter");
+        else input.classList.add("notGuessedLetter");
+    });
+}
+
+// Transitions from Active Game Area to Result Area
+function showGameResults() {
+    timeContainer.classList.add("hidden");
+    gameArea.style.display = "none";
+    resultMessage.className = "";
     clearInterval(timerInterval);
-    if (isUserGuessed === true) {
+
+    if (isUserGuessed) {
         outputTitle = wordGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
-        resultText.classList.add('guessedWord');
-        console.log("Word is guessed!"); // functionality debug
+        resultMessage.classList.add('guessedWord');
+        // console.log("Word is guessed!");
         markWordAsGuessed(currentWordID);
     } else {
-        if (chosenTime !== "Any" && outOfTime === true) {
+        if (chosenTime !== "Any" && isOutOfTime) {
             outputTitle = timeIsOutOutput[Math.floor(Math.random() * timeIsOutOutput.length)];
         } else {
             outputTitle = wordNotGuessedOutput[Math.floor(Math.random() * wordGuessedOutput.length)];
         }
-        resultText.classList.add('notGuessedWord');
-        console.log("Word is not guessed!"); // functionality debug
+        resultMessage.classList.add('notGuessedWord');
+        // console.log("Word is not guessed!");
         markWordAsAttempt(currentWordID);
     }
-    currentWordElement.textContent = capitalizeWord(currentWord);
-    currentDescriptionElement.textContent = currentDescription;
+
+    // Output word data to DOM elements
+    resultWord.textContent = capitalizeWord(currentWord);
+    resultDescription.textContent = currentDescription;
     firstExample.textContent = currentFirstExample;
     secondExample.textContent = currentSecondExample;
-    resultText.textContent = outputTitle;
+    resultMessage.textContent = outputTitle;
+
     resultArea.style.display = "block";
-    restartText.innerHTML = "Guess next word";
+    restartGameText.innerHTML = "Guess next word";
 }
 
-// capitalize word on the word screen
+// Resets the game state and returns to the main settings menu
+function returnToMainMenu() {
+    // Cleanup Active Area
+    let inputs = gameArea.querySelectorAll(".letter-box");
+    let spaces = gameArea.querySelectorAll(".margin-div");
+    spaces.forEach(space => {
+        gameArea.removeChild(space);
+    })
+    inputs.forEach(input => {
+        gameArea.removeChild(input);
+    });
+    // UI Resets
+    timeContainer.classList.add("hidden");
+    levelDisplay.classList.add('hidden');
+    submitGuess.classList.add('hidden');
+    submitGuess.style.display = "none";
+
+    wordStats.classList.remove("hidden");
+    wordDescription.innerHTML = "the description of word will be displayed here";
+
+    startGameText.style.display = "inline";
+    restartGameText.style.display = "none";
+
+    settingsArea.style.display = "flex";
+    settingsArea.classList.remove('hidden');
+
+    changeWordStats(currentLevel);
+
+    gameArea.style.display = "block";
+    resultArea.style.display = "none";
+
+    gameStarted = false;
+    clearInterval(timerInterval);
+
+    // console.log("Home layout is back.");
+}
+
+// UTILITIES
+
 function capitalizeWord(word) {
     return word[0].toUpperCase() + word.slice(1);
 }
 
-// back to main state via end game, tab
-function endGame() {
-    let inputs = activeArea.querySelectorAll(".letter-box");
-    let spaces = activeArea.querySelectorAll(".margin-div");
-    timeArea.classList.add("hidden");
-    wordLevel.classList.add('hidden');
-    acceptGuess.classList.add('hidden');
-    acceptGuess.style.display = "none";
-    wordCount.classList.remove("hidden");
-    wordDescription.innerHTML = "the description of word will be displayed here";
-    startText.style.display = "inline";
-    restartText.style.display = "none";
-    spaces.forEach(space => {
-        activeArea.removeChild(space);
-    })
-    inputs.forEach(input => {
-        activeArea.removeChild(input);
+function selectLevel(element) {
+    document.querySelectorAll('.settings-level').forEach(el => {
+        el.classList.remove('selected');
     });
-    settingsArea.style.display = "flex";
-    settingsArea.classList.remove('hidden');
-    changeWordCount(currentLevel);
-    activeArea.style.display = "block";
-    resultArea.style.display = "none";
-    gameStarted = false;
-    clearInterval(timerInterval);
-
-    console.log("Home layout is back."); // functionality debug
+    element.classList.add('selected');
+    currentLevel = element.textContent.trim();
+    levelDisplay.textContent = currentLevel;
+    changeWordStats(currentLevel);
 }
 
-// random word picker from the database
+function selectTime(element) {
+    document.querySelectorAll('.settings-time').forEach(el => {
+        el.classList.remove('selected');
+    });
+    element.classList.add('selected');
+    timeCounter.textContent = element.textContent.trim();
+}
+
+async function changeWordStats(levelDisplay) {
+    if (!progressData) return;
+    let levelData = progressData.find(obj => obj.level === levelDisplay);
+    if (levelData) {
+        wordStats.textContent = `${levelDisplay} Words: ${levelData.guessed_count}/${levelData.total_count}`;
+    }
+}
+
+// API INTERACTION
+
 async function pickRandomWord(level) {
     try {
         const token = localStorage.getItem('token');
@@ -278,23 +381,21 @@ async function pickRandomWord(level) {
         const res = await fetch(`/api/random-word?level=${encodeURIComponent(level)}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
-        if (!res.ok) {
-            console.error('Failed to fetch progress.');
-            return;
-        }
+
+        if (!res.ok) throw new Error('Failed to fetch word!');
+
         const randomWord = await res.json();
         currentWordID = randomWord.id;
         currentWord = randomWord.word;
         currentDescription = randomWord.description;
         currentFirstExample = randomWord.example1;
         currentSecondExample = randomWord.example2;
-        // console.log("Selected word:", currentWord); // functionality debug
+
     } catch (err) {
-        console.error("Data isn't fetched!", err); // functionality debug
+        console.error("Data isn't fetched!", err);
     }
 }
 
-// in case of guessing right
 async function markWordAsGuessed(wordId) {
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -317,12 +418,11 @@ async function markWordAsGuessed(wordId) {
     }
 }
 
-// in case of not guessing right
 async function markWordAsAttempt(wordId) {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-        const res = await fetch('/api/progress/attempt', {
+        await fetch('/api/progress/attempt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -335,103 +435,42 @@ async function markWordAsAttempt(wordId) {
     }
 }
 
-// level option
-function selectLevel(element) {
-    document.querySelectorAll('.settings-level').forEach(el => {
-        el.classList.remove('selected');
-    });
-    element.classList.add('selected');
-    let level = element.textContent.trim();
-    currentLevel = level;
-    wordLevel.textContent = level;
-    changeWordCount(level);
-}
-
-// time option
-function selectTime(element) {
-    document.querySelectorAll('.settings-time').forEach(el => {
-        el.classList.remove('selected');
-    });
-    element.classList.add('selected');
-    timeCounter.textContent = element.textContent.trim();
-}
-
-// setup page
-async function pageSetup() {
-    window.onload = async () => {
-        await loadProgress();
-        setClicks();
-    };
-}
-
-// set clicks
-function setClicks() {
-    authorizeButton.addEventListener("click", function (e) {
-        window.location.href = '/login';
-    });
-
-    acceptGuess.addEventListener('click', () => {
-        if (gameStarted === true && checkWordLength()) checkGuess();
-    });
-    startText.addEventListener('click', startGame);
-    restartText.addEventListener('click', endGame);
-    document.querySelectorAll('.settings-level').forEach(el => {
-        el.addEventListener('click', function () {
-            selectLevel(this);
-        });
-    });
-    document.querySelectorAll('.settings-time').forEach(el => {
-        el.addEventListener('click', function () {
-            selectTime(this);
-        });
-    });
-}
-
-// update word counter
-async function changeWordCount(wordLevel) {
-    let levelData = progressData.find(obj => obj.level === wordLevel);
-    if (levelData) {
-        wordCount.textContent = `${wordLevel} Words: ${levelData.guessed_count}/${levelData.total_count}`;
-    }
-}
-
-// load user's word progress
 async function loadProgress() {
     const token = localStorage.getItem('token');
-    setElements(token);
-    if (!token) {
-        return;
+    updateUIStateBasedOnAuth(token);
+    if (!token) return;
+    try {
+        const res = await fetch('/api/progress', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+            progressData = await res.json();
+            changeWordStats(currentLevel);
+        } else {
+            console.error('Failed to fetch progress.');
+            updateUIStateBasedOnAuth(null);
+        }
+    } catch (err) {
+        console.error('Error loading progress:', err);
     }
-    const res = await fetch('/api/progress', {
-        headers: { 'Authorization': `Bearer ${token}` }
-    });
-    if (!res.ok) {
-        console.error('Failed to fetch progress.');
-        setElements(null);
-        return;
-    }
-    const data = await res.json();
-    progressData = data;
-    changeWordCount(currentLevel);
 }
 
-// place areas based on the token
-async function setElements(token) {
+async function updateUIStateBasedOnAuth(token) {
     if (!token) {
-        activeArea.style.display = 'none';
-        navigation.style.display = 'none';
-        suggestArea.style.display = 'block';
+        gameArea.style.display = 'none';
+        navigationArea.style.display = 'none';
+        welcomeScreen.style.display = 'block';
         setTimeout(() => {
-            requestAnimationFrame(() => suggestArea.classList.add('visible'));
+            requestAnimationFrame(() => welcomeScreen.classList.add('visible'));
         }, 300);
     } else {
-        suggestArea.style.display = 'none';
-        activeArea.style.display = 'block';
-        navigation.style.display = 'block';
+        welcomeScreen.style.display = 'none';
+        gameArea.style.display = 'block';
+        navigationArea.style.display = 'block';
         setTimeout(() => {
             requestAnimationFrame(() => {
-                navigation.classList.add('visible');
-                activeArea.classList.add('visible');
+                navigationArea.classList.add('visible');
+                gameArea.classList.add('visible');
             });
         }, 300);
     }

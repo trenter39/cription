@@ -2,12 +2,11 @@
 
 :root {
     --space-area-width: 200px;
-    --active-area-width: 800px;
-    --active-area-height: 500px;
+    --game-area-width: 800px;
+    --game-area-height: 500px;
     --medium-font-size: 1.2rem;
     --background-color: #F4F4F4;
     --grey-color: #292B2D;
-    --white-color: #F2F2F2;
 }
 
 body {
@@ -28,12 +27,12 @@ button {
 #navbar {
     font-size: 1rem;
     display: flex;
-    width: var(--active-area-width);
+    width: var(--game-area-width);
     justify-content: space-between;
     margin: auto;
 }
 
-#navbar-area {
+#navbar-links {
     display: flex;
     gap: 20px;
     transition: opacity 0.3s ease-in-out;

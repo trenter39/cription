@@ -103,7 +103,7 @@ router.get('/account', verifyToken, async (req, res) => {
     try {
         const result = await db.query('select * from users where id = $1', [req.user.id]);
         if (result.rows.length === 0)
-            return res.status(404).json({ message: 'User not found!'});
+            return res.status(404).json({ message: 'User not found!' });
         const user = result.rows[0];
         res.json({
             username: user.username,
@@ -111,9 +111,9 @@ router.get('/account', verifyToken, async (req, res) => {
             guessed_words: user.guessed_words,
             failed_attempts: user.failed_attempts
         });
-    } catch(err) {
+    } catch (err) {
         console.error(err);
-        res.status(500).json({message: 'Internal server error'});
+        res.status(500).json({ message: 'Internal server error' });
     }
 })
 

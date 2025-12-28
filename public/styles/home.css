@@ -1,13 +1,14 @@
 #settings-area {
     display: flex;
-    width: calc(var(--active-area-width) / 2);
+    width: calc(var(--game-area-width) / 1.5);
     justify-content: space-between;
     margin: auto;
     line-height: 0.8;
+    gap: 20px;
     transition: opacity 0.3s ease-in-out;
 }
 
-#time-area {
+#time-container {
     position: absolute;
     top: 15px;
     right: 10px;
@@ -17,7 +18,7 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-#wordLevel {
+#level-display {
     position: absolute;
     top: 15px;
     left: 10px;
@@ -28,7 +29,7 @@
 }
 
 #description-area,
-#description-area-result {
+#result-header {
     position: sticky;
     top: 0;
     padding: 10px;
@@ -37,39 +38,33 @@
     background-color: var(--background-color);
 }
 
-#active-area,
+#game-area,
 #result-area,
-#account-area,
-#suggest-area {
+#welcome-screen {
     position: relative;
-    width: var(--active-area-width);
-    height: var(--active-area-height);
+    width: var(--game-area-width);
+    height: var(--game-area-height);
     margin: auto;
     text-align: center;
     border: 2px solid var(--grey-color);
     overflow-y: auto;
+}
+
+#game-area,
+#welcome-screen {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
 
-#result-area {
-    opacity: 1;
-}
-
-#account-area h2 {
-    padding: 10px;
-}
-
-#suggest-area {
+#welcome-screen {
     padding: 10px;
     box-sizing: border-box;
 }
 
-#wordCount,
-#username,
-#resultText,
-#acceptGuess {
-    width: calc(var(--active-area-width) / 2);
+#word-stats,
+#result-message,
+#submit-guess {
+    width: calc(var(--game-area-width) / 2);
     font-size: var(--medium-font-size);
     position: absolute;
     bottom: 0;
@@ -82,35 +77,23 @@
     padding: 10px;
 }
 
-#acceptGuess {
-    /* border: none; */
+#submit-guess {
     border-left: 2px solid var(--grey-color);
     border-top: 2px solid var(--grey-color);
     border-right: 2px solid var(--grey-color);
     cursor: pointer;
 }
 
-#startText,
-#nextWord,
-#restartText {
+#start-game,
+#restart-game {
     cursor: pointer;
 }
 
-#wordDescription,
-#currentDescription {
+#word-description,
+#result-description {
     display: block;
     font-size: var(--medium-font-size);
     margin: auto;
-}
-
-#settings-area {
-    display: flex;
-    width: calc(var(--active-area-width) / 1.5);
-    justify-content: space-between;
-    margin: auto;
-    line-height: 0.8;
-    gap: 20px;
-    transition: opacity 0.3s ease-in-out;
 }
 
 #settings-area div {
@@ -124,15 +107,15 @@
     margin-bottom: 25px;
 }
 
-#outputSection {
-    width: calc(var(--active-area-width) - var(--space-area-width));
+#result-content {
+    width: calc(var(--game-area-width) - var(--space-area-width));
     margin: auto;
 }
 
-#navigation {
+#navigation-area {
     opacity: 0;
     text-align: center;
-    width: calc(var(--active-area-width) / 2);
+    width: calc(var(--game-area-width) / 2);
     margin: auto;
     padding: 10px;
     font-size: var(--medium-font-size);
@@ -147,18 +130,15 @@
     pointer-events: none;
 }
 
-#active-area.visible,
-#account-area.visible,
-#suggest-area.visible,
-#navigation.visible,
-#signOutLabel.visible {
+#game-area.visible,
+#result-area.visible,
+#welcome-screen.visible,
+#navigation-area.visible {
     opacity: 1;
 }
 
 .settings-time,
-.settings-description,
-.settings-level,
-.settings-language {
+.settings-level {
     font-size: 1.1rem;
     margin: 0.3vw;
     margin-bottom: 0.3vw;
@@ -167,9 +147,7 @@
 }
 
 .settings-time.selected,
-.settings-description.selected,
-.settings-level.selected,
-.settings-language.selected {
+.settings-level.selected {
     font-weight: bold;
 }
 
@@ -222,7 +200,7 @@
     font-weight: bold;
 }
 
-#resultText {
+#result-message {
     background-color: transparent;
     font-weight: normal;
 }
@@ -241,19 +219,19 @@
     font-size: 1.2rem;
 }
 
-#firstExample,
-#secondExample {
+#example-1,
+#example-2 {
     margin: 10px;
 }
 
-#examplesCaption {
+#example-caption {
     margin-top: 5px;
     text-align: left;
 }
 
 @media (max-width: 1220px) {
     :root {
-        --active-area-width: 700px;
+        --game-area-width: 700px;
     }
 
     .letter-box {
@@ -264,16 +242,16 @@
 
 @media (max-width: 500px) {
     :root {
-        --active-area-width: 400px;
+        --game-area-width: 400px;
     }
 
     #settings-area {
-        width: calc(var(--active-area-width) - 60px);
+        width: calc(var(--game-area-width) - 60px);
     }
 
-    #wordDescription,
-    #currentDescription {
-        width: calc(var(--active-area-width) - 60px);
+    #word-description,
+    #result-description {
+        width: calc(var(--game-area-width) - 60px);
     }
 
     .letter-box {

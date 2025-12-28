@@ -15,23 +15,24 @@
         <div id="logo">
             <h1><a href="/" class="link">Cription</a></h1>
         </div>
-        <div id="navbar-area">
+        <div id="navbar-links">
             <a href="settings" class="link"><img src="icons/settings.svg" width="24" height="24" alt=""></a>
             <a href="account" class="link"><img src="icons/login.svg" width="24" height="24" alt="login icon"></a>
         </div>
     </div>
 
-    <div id="active-area" style="display: none;">
-        <div id="settingsAbout">
-            <h2 id="wordLevel" class="hidden">B1</h2>
-            <div id="time-area" class="hidden">
-                <h2 id="timeCounter">Time</h2>
+    <div id="game-area" style="display: none;">
+        <div id="game-status-bar">
+            <h2 id="level-display" class="hidden">B1</h2>
+            <div id="time-container" class="hidden">
+                <h2 id="time-counter">Time</h2>
             </div>
         </div>
         <div id="description-area">
-            <h2 id="descriptionTitle">Description</h2>
-            <span id="wordDescription">the description of word will be displayed here</span>
+            <h2 id="description-title">Description</h2>
+            <span id="word-description">the description of word will be displayed here</span>
         </div>
+        <div id="word-input-container"></div>
         <div id="settings-area">
             <div>
                 <h2>Level</h2>
@@ -50,33 +51,33 @@
                 <span class="settings-time selected">Any</span>
             </div>
         </div>
-        <p id="acceptGuess" style="display: none;" class="hidden">Submit</p>
-        <p id="wordCount">B1 Words: 0/178</p>
+        <p id="submit-guess" style="display: none;" class="hidden">Submit</p>
+        <p id="word-stats">B1 Words: 0/178</p>
     </div>
     <div id="result-area" style="display: none;">
-        <div id="outputSection">
-            <div id="description-area-result">
-                <h2 id="currentWord">Word</h2>
-                <p id="currentDescription">Description</p>
+        <div id="result-content">
+            <div id="result-header">
+                <h2 id="result-word">Word</h2>
+                <p id="result-description">Description</p>
             </div>
             <div id="examples-area">
-                <p id="firstExample">Example 1</p>
-                <p id="secondExample">Example 2</p>
+                <p id="example-1">Example 1</p>
+                <p id="example-2">Example 2</p>
             </div>
-            <p id="examplesCaption">Examples</p>
-            <p id="resultText">Output Text</p>
+            <p id="examples-caption">Examples</p>
+            <p id="result-message">Output Text</p>
         </div>
     </div>
-    <div id="navigation" style="display: none;">
-        <p id="startText" style="display: inline;">Start</p>
-        <p id="restartText" style="display: none;">Restart</p>
+    <div id="navigation-area" style="display: none;">
+        <p id="start-game" style="display: inline;">Start</p>
+        <p id="restart-game" style="display: none;">Restart</p>
     </div>
 
-    <div id="suggest-area" style="display: none;">
+    <div id="welcome-screen" style="display: none;">
         <h2>Cription - Guess Your Word</h2>
         <h3>Here, you can guess various words by description.</h3>
         <p style="font-size: larger;">To start guessing new words, you must sign in or sign up.</p>
-        <button id="authorizeButton">Sign in / Sign up</button>
+        <button id="btn-authorize">Sign in / Sign up</button>
     </div>
 
 </body>

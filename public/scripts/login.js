@@ -1,80 +1,103 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const displayForm = document.getElementById("register-login-area");
+    // UI Animation
+    const authContainer = document.getElementById("auth-container");
 
     setTimeout(() => {
         requestAnimationFrame(() => {
-            displayForm.classList.add('visible');
+            if (authContainer) authContainer.classList.add('visible');
         });
     }, 300);
 
-    const registerForm = document.getElementById('registerForm');
-    const registerOutput = document.getElementById('registerOutput');
+    // REGISTER LOGIC
+    const formRegister = document.getElementById('form-register');
+    const feedbackRegister = document.getElementById('feedback-register');
 
-    registerForm.addEventListener('submit', async (e) => {
+    formRegister.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById('registerUsernameInput').value.trim();
-        const email = document.getElementById('registerEmailInput').value.trim();
-        const verifyEmail = document.getElementById('registerVerifyEmailInput').value.trim();
-        const password = document.getElementById('registerPasswordInput').value.trim();
-        const verifyPassword = document.getElementById('registerVerifyPasswordInput').value.trim();
+        // Capture inputs
+        const username = document.getElementById('input-register-username').value.trim();
+        const email = document.getElementById('input-register-email').value.trim();
+        const verifyEmail = document.getElementById('input-register-verify-email').value.trim();
+        const password = document.getElementById('input-register-password').value.trim();
+        const verifyPassword = document.getElementById('input-register-verify-password').value.trim();
 
+        // Client-side validation
         if (email !== verifyEmail) {
-            return showMessage(registerOutput, "Emails don't match!", true);
+            return updateFeedback(feedbackRegister, "Emails don't match!", true);
         }
         if (password !== verifyPassword) {
-            return showMessage(registerOutput, "Passwords don't match!", true);
+            return updateFeedback(feedbackRegister, "Passwords don't match!", true);
         }
 
+        // API request
         try {
             const res = await fetch('/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })
             });
+
             const data = await res.json();
+
+            // Handle Response
             if (!res.ok) {
+                // Extract error message from server response
                 const msg = data.errors?.[0]?.msg || data.message || 'Registration failed!';
-                return showMessage(registerOutput, msg, true);
+                return updateFeedback(feedbackRegister, msg, true);
             }
-            showMessage(registerOutput, 'Registration successful!', false);
-            registerForm.reset();
+
+            // Success
+            updateFeedback(feedbackRegister, 'Registration successful!', false);
+            formRegister.reset();
         } catch (err) {
-            console.error(err);
-            showMessage(registerOutput, 'Server error! Try again later.', true);
+            console.error("Registration error:", err);
+            updateFeedback(feedbackRegister, 'Server error! Try again later.', true);
         }
     });
 
-    const loginForm = document.getElementById('loginForm');
-    const loginOutput = document.getElementById('loginOutput');
+    const formLogin = document.getElementById('form-login');
+    const feedbackLogin = document.getElementById('feedback-login');
 
-    loginForm.addEventListener('submit', async (e) => {
+    formLogin.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('loginEmailInput').value.trim();
-        const password = document.getElementById('loginPasswordInput').value.trim();
+        
+        // Capture inputs
+        const email = document.getElementById('input-login-email').value.trim();
+        const password = document.getElementById('input-login-password').value.trim();
+
+        // API request
         try {
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             });
+
             const data = await res.json();
+
+            // Handle error
             if (!res.ok) {
                 const msg = data.errors?.[0]?.msg || data.message || 'Login failed!';
-                return showMessage(loginOutput, msg, true);
+                return updateFeedback(feedbackLogin, msg, true);
             }
-            // showMessage(loginOutput, 'Login successful!', false); // debug functionality
+
+            // Handle success (store token & redirect)
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
+
             window.location.href = '/account';
+
         } catch (err) {
-            console.error(err);
-            showMessage(loginOutput, 'Server error! Try again later.', true);
+            console.error("Login error:", err);
+            updateFeedback(feedbackLogin, 'Server error! Try again later.', true);
         }
     });
-    function showMessage(el, text, isError = false) {
-        el.textContent = text;
-        el.classList.remove('hidden');
-        el.style.color = isError ? 'darkred' : 'darkgreen';
+
+    // Utility to update the status text element with a message and color
+    function updateFeedback(element, text, isError = false) {
+        element.textContent = text;
+        element.classList.remove('hidden');
+        element.style.color = isError ? 'darkred' : 'darkgreen';
     }
 });
