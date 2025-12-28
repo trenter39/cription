@@ -53,3 +53,52 @@ form {
     background-color: var(--background-color);
     border: 1px solid var(--grey-color);
 }
+
+@media screen and (max-width: 850px) {
+    :root {
+        --game-area-width: 90vw;
+        --space-area-width: 100px;
+        min-height: 450px;
+    }
+
+    #auth-container {
+        width: 90vw;
+        height: auto;
+        min-height: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #auth-container {
+        width: 94vw;
+        flex-direction: column;
+    }
+
+    #section-register,
+    #section-login {
+        width: 100%;
+        padding: 20px 10px;
+    }
+
+    #section-register {
+        border-right: none;
+        border-bottom: var(--default-dashed-border);
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .input-field {
+        box-sizing: border-box;
+        padding: 12px;
+    }
+
+    .auth-heading {
+        font-size: var(--medium-font-size);
+    }
+
+    .auth-subtitle {
+        font-size: var(--small-font-size);
+    }
+}

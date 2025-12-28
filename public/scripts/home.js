@@ -7,7 +7,6 @@ let chosenTime = "Any";
 let currentLevel = 'B1';
 
 let gameStarted = false;
-let showDescription = true;
 let isUserGuessed = false;
 let hasProcessedGuess = false;
 let attemptsRemaining = MAX_ATTEMPTS;
@@ -26,15 +25,16 @@ let timerInterval;
 let gameArea = document.getElementById("game-area");
 let resultArea = document.getElementById("result-area");
 let settingsArea = document.getElementById('settings-area');
+let navigationArea = document.getElementById('navigation-area');
 let welcomeScreen = document.getElementById('welcome-screen');
 let timeContainer = document.getElementById('time-container');
 let timeCounter = document.getElementById('time-counter');
 let wordDescription = document.getElementById('word-description');
 let levelDisplay = document.getElementById('level-display');
 let wordStats = document.getElementById('word-stats');
-let navigationArea = document.getElementById('navigation-area');
 let startGameText = document.getElementById('start-game');
 let restartGameText = document.getElementById('restart-game');
+let inputContainer = document.getElementById('word-input-container');
 let submitGuess = document.getElementById('submit-guess');
 let authorizeButton = document.getElementById('btn-authorize');
 
@@ -110,7 +110,6 @@ async function startGame() {
     settingsArea.style.display = "none";
 
     wordDescription.classList.remove('hidden');
-    wordDescription.style.display = (showDescription === true) ? "block" : "none";
 
     restartGameText.style.display = "inline";
     restartGameText.innerHTML = "Restart";
@@ -179,7 +178,7 @@ function createInputBlocks(length) {
         else if (i === length - 1) input.classList.add("last-box");
         else input.classList.add("middle-box");
 
-        gameArea.appendChild(input);
+        inputContainer.appendChild(input);
     }
 
     // Add navigationArea logic to new inputs
@@ -252,7 +251,7 @@ function checkGuess() {
     // Add spacer and new row
     let space = document.createElement("div");
     space.classList.add("margin-div");
-    gameArea.appendChild(space);
+    inputContainer.appendChild(space);
 
     createInputBlocks(currentWord.length);
 }
@@ -305,18 +304,12 @@ function showGameResults() {
 
 // Resets the game state and returns to the main settings menu
 function returnToMainMenu() {
-    // Cleanup Active Area
-    let inputs = gameArea.querySelectorAll(".letter-box");
-    let spaces = gameArea.querySelectorAll(".margin-div");
-    spaces.forEach(space => {
-        gameArea.removeChild(space);
-    })
-    inputs.forEach(input => {
-        gameArea.removeChild(input);
-    });
     // UI Resets
+    inputContainer.innerHTML = "";
+
     timeContainer.classList.add("hidden");
     levelDisplay.classList.add('hidden');
+
     submitGuess.classList.add('hidden');
     submitGuess.style.display = "none";
 

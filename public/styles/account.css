@@ -4,7 +4,7 @@
     height: var(--game-area-height);
     margin: auto;
     text-align: center;
-    border: 2px solid var(--grey-color);
+    border: var(--default-solid-border);
     overflow-y: auto;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -23,23 +23,23 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 1.4rem;
+    gap: 20px;
     width: 80%;
     margin: auto;
 }
 
 #level-stats-grid div {
     padding: 10px 25px;
-    border: 2px dashed var(--grey-color);
+    border: var(--default-dashed-border);
 }
 
 #total-stats-container {
     display: flex;
-    width: 81%;
+    width: 80%;
     justify-content: space-between;
     padding: 10px 20px;
     margin: 20px auto 0px auto;
-    border: 2px dashed var(--grey-color);
+    border: var(--default-dashed-border);
     box-sizing: border-box;
 }
 
@@ -59,28 +59,101 @@
 }
 
 #user-display {
-    width: calc(var(--game-area-width) / 2);
+    width: var(--half-game-area-width);
     font-size: var(--medium-font-size);
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 0;
-    border-left: 2px dashed var(--grey-color);
-    border-top: 2px dashed var(--grey-color);
-    border-right: 2px dashed var(--grey-color);
+    border-left: var(--default-dashed-border);
+    border-top: var(--default-dashed-border);
+    border-right: var(--default-dashed-border);
     padding: 10px;
 }
 
 #sign-out-text {
     opacity: 0;
     text-align: center;
-    width: calc(var(--game-area-width) / 2);
+    width: var(--half-game-area-width);
     margin: auto;
     padding: 10px;
     font-size: var(--medium-font-size);
-    border-right: 2px solid var(--grey-color);
-    border-bottom: 2px solid var(--grey-color);
-    border-left: 2px solid var(--grey-color);
+    border-right: var(--default-solid-border);
+    border-bottom: var(--default-solid-border);
+    border-left: var(--default-solid-border);
     transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 850px) {
+    :root {
+        --game-area-width: 90vw;
+        --space-area-width: 100px;
+        min-height: 450px;
+    }
+
+    #account-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #level-stats-grid {
+        flex-wrap: wrap;
+        width: 90%;
+        gap: 10px;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    #account-container {
+        width: 95vw;
+    }
+
+    #account-container h2 {
+        font-size: var(--medium-font-size);
+    }
+
+    #level-stats-grid {
+        width: 100%;
+        gap: 5px;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    #level-stats-grid div {
+        flex: 1 0 40%;
+        padding: 10px;
+        font-size: var(--small-font-size);
+        text-align: center;
+    }
+
+    #total-stats-container {
+        width: 95%;
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #stat-caption {
+        justify-content: center;
+        font-size: var(--small-font-size);
+    }
+
+    #user-display {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: auto;
+        margin-bottom: -20px;
+    }
+
+    #user-display,
+    #sign-out-text {
+        font-size: var(--medium-font-size);
+    }
 }

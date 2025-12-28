@@ -1,41 +1,96 @@
 #settings-area {
     display: flex;
-    width: calc(var(--game-area-width) / 1.5);
-    justify-content: space-between;
+    flex-direction: column;
+    max-width: var(--game-area-width);
     margin: auto;
-    line-height: 0.8;
+    padding: 0 20px;
     gap: 20px;
-    transition: opacity 0.3s ease-in-out;
+}
+
+#settings-area>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+#settings-area h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: var(--big-font-size);
+    text-align: center;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.settings-time,
+.settings-level {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: var(--small-font-size);
+    border: var(--default-dashed-border);
+    opacity: 0.7;
+}
+
+.settings-time:hover,
+.settings-level:hover {
+    opacity: 1;
+}
+
+.settings-time.selected,
+.settings-level.selected {
+    font-weight: bold;
+    border: var(--default-solid-border);
+    opacity: 1;
+}
+
+#game-status-bar {
+    position: relative;
 }
 
 #time-container {
     position: absolute;
-    top: 15px;
-    right: 10px;
-    line-height: 0.8;
-    margin-right: 15px;
+    top: 0;
+    right: 0;
+    width: 70px;
+    padding: 25px;
     z-index: 1;
     transition: opacity 0.3s ease-in-out;
 }
 
+#time-counter {
+    margin: 0;
+}
+
 #level-display {
     position: absolute;
-    top: 15px;
-    left: 10px;
-    line-height: 0.8;
-    margin-left: 15px;
+    top: 0;
+    left: 0;
+    width: 70px;
+    padding: 25px;
+    margin: 0;
     z-index: 1;
     transition: opacity 0.3s ease-in-out;
 }
 
 #description-area,
 #result-header {
-    position: sticky;
-    top: 0;
-    padding: 10px;
-    line-height: 1.2;
-    margin-bottom: 10px;
-    background-color: var(--background-color);
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+#description-area {
+    width: var(--space-game-area-width);
+    margin: auto;
 }
 
 #game-area,
@@ -46,8 +101,7 @@
     height: var(--game-area-height);
     margin: auto;
     text-align: center;
-    border: 2px solid var(--grey-color);
-    overflow-y: auto;
+    border: var(--default-solid-border);
 }
 
 #game-area,
@@ -62,31 +116,43 @@
 }
 
 #word-stats,
-#result-message,
-#submit-guess {
-    width: calc(var(--game-area-width) / 2);
+#result-message {
+    width: var(--half-game-area-width);
     font-size: var(--medium-font-size);
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 0;
-    border-left: 2px dashed var(--grey-color);
-    border-top: 2px dashed var(--grey-color);
-    border-right: 2px dashed var(--grey-color);
+    border-left: var(--default-dashed-border);
+    border-top: var(--default-dashed-border);
+    border-right: var(--default-dashed-border);
     padding: 10px;
 }
 
 #submit-guess {
-    border-left: 2px solid var(--grey-color);
-    border-top: 2px solid var(--grey-color);
-    border-right: 2px solid var(--grey-color);
+    width: var(--half-game-area-width);
+    font-size: var(--medium-font-size);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+    border-left: var(--default-solid-border);
+    border-top: var(--default-solid-border);
+    border-right: var(--default-solid-border);
+    padding: 10px;
     cursor: pointer;
 }
 
 #start-game,
 #restart-game {
     cursor: pointer;
+}
+
+#description-title,
+#result-word {
+    margin: 10px 0;
 }
 
 #word-description,
@@ -96,32 +162,21 @@
     margin: auto;
 }
 
-#settings-area div {
-    flex: 1;
-    border: 2px dashed var(--grey-color);
-    padding: 20px;
-}
-
-#settings-area h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-
 #result-content {
-    width: calc(var(--game-area-width) - var(--space-area-width));
+    width: var(--space-game-area-width);
     margin: auto;
 }
 
 #navigation-area {
     opacity: 0;
     text-align: center;
-    width: calc(var(--game-area-width) / 2);
     margin: auto;
     padding: 10px;
+    width: var(--half-game-area-width);
     font-size: var(--medium-font-size);
-    border-right: 2px solid var(--grey-color);
-    border-bottom: 2px solid var(--grey-color);
-    border-left: 2px solid var(--grey-color);
+    border-right: var(--default-solid-border);
+    border-bottom: var(--default-solid-border);
+    border-left: var(--default-solid-border);
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -137,20 +192,6 @@
     opacity: 1;
 }
 
-.settings-time,
-.settings-level {
-    font-size: 1.1rem;
-    margin: 0.3vw;
-    margin-bottom: 0.3vw;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.settings-time.selected,
-.settings-level.selected {
-    font-weight: bold;
-}
-
 .letter-box {
     outline: none;
     box-shadow: none;
@@ -159,7 +200,7 @@
     color: var(--grey-color);
     width: 50px;
     height: 50px;
-    font-size: 24px;
+    font-size: var(--big-font-size);
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -214,9 +255,8 @@
 }
 
 #examples-area {
-    margin-top: 10px;
-    border: 2px dashed var(--grey-color);
-    font-size: 1.2rem;
+    border: var(--default-dashed-border);
+    font-size: var(--medium-font-size);
 }
 
 #example-1,
@@ -224,38 +264,81 @@
     margin: 10px;
 }
 
-#example-caption {
+#examples-caption {
     margin-top: 5px;
     text-align: left;
+    font-size: var(--small-font-size);
 }
 
-@media (max-width: 1220px) {
+@media screen and (max-width: 850px) {
     :root {
-        --game-area-width: 700px;
+        --game-area-width: 90vw;
+        --space-area-width: 100px;
+        min-height: 450px;
     }
 
-    .letter-box {
-        width: 45px;
-        height: 45px;
+    #submit-guess,
+    #word-stats,
+    #result-message,
+    #navigation-area {
+        width: 75vw;
     }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 600px) {
     :root {
-        --game-area-width: 400px;
+        --game-area-width: 95vw;
+        --space-area-width: 20px;
+        --big-font-size: 20px;
+        --medium-font-size: 16px;
+        --small-font-size: 14px;
     }
 
     #settings-area {
-        width: calc(var(--game-area-width) - 60px);
+        padding: 0 10px;
     }
 
-    #word-description,
-    #result-description {
-        width: calc(var(--game-area-width) - 60px);
+    .options-container {
+        gap: 5px;
+    }
+
+    .settings-time,
+    .settings-level {
+        padding: 8px 12px;
+        min-width: 30px;
+    }
+
+    #game-area,
+    #welcome-screen,
+    #result-area {
+        height: auto;
+        min-height: 400px;
+        padding-bottom: 80px;
+    }
+
+    #submit-guess,
+    #word-stats,
+    #result-message {
+        width: 90%;
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    #navigation-area {
+        width: 90%;
     }
 
     .letter-box {
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        line-height: 32px;
+        margin-bottom: 5px;
+    }
+
+    #description-area {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
     }
 }

@@ -3,10 +3,17 @@
 :root {
     --space-area-width: 200px;
     --game-area-width: 800px;
+    --space-game-area-width: calc(var(--game-area-width) - var(--space-area-width));
+    --half-game-area-width: calc(var(--game-area-width) / 2);
     --game-area-height: 500px;
-    --medium-font-size: 1.2rem;
+    --big-font-size: 24px;
+    --medium-font-size: 20px;
+    --small-font-size: 16px;
     --background-color: #F4F4F4;
     --grey-color: #292B2D;
+    --default-dashed-border: 2px dashed var(--grey-color);
+    --default-solid-border: 2px solid var(--grey-color);
+    --thin-solid-border: 1px solid var(--grey-color);
 }
 
 body {
@@ -17,15 +24,14 @@ body {
 
 button {
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: var(--small-font-size);
     color: var(--grey-color);
     background-color: var(--background-color);
-    border: 1px solid var(--grey-color);
+    border: var(--thin-solid-border);
     cursor: pointer;
 }
 
 #navbar {
-    font-size: 1rem;
     display: flex;
     width: var(--game-area-width);
     justify-content: space-between;
