@@ -31,7 +31,7 @@ let timeContainer = document.getElementById('time-container');
 let timeCounter = document.getElementById('time-counter');
 let wordDescription = document.getElementById('word-description');
 let levelDisplay = document.getElementById('level-display');
-let wordStats = document.getElementById('word-stats');
+let keyHints = document.getElementById('key-hints');
 let startGameText = document.getElementById('start-game');
 let restartGameText = document.getElementById('restart-game');
 let inputContainer = document.getElementById('word-input-container');
@@ -115,7 +115,7 @@ async function startGame() {
     restartGameText.innerHTML = "Restart";
 
     startGameText.style.display = "none";
-    wordStats.classList.add('hidden');
+    keyHints.classList.add('hidden');
     levelDisplay.classList.remove('hidden');
 
     submitGuess.style.display = "inline";
@@ -239,7 +239,6 @@ function checkGuess() {
 
         // Color the last attempts before showing results
         colorInputs(inputs, userGuess);
-
         setTimeout(() => showGameResults(), 500);
         return;
     }
@@ -313,7 +312,7 @@ function returnToMainMenu() {
     submitGuess.classList.add('hidden');
     submitGuess.style.display = "none";
 
-    wordStats.classList.remove("hidden");
+    keyHints.classList.remove("hidden");
     wordDescription.innerHTML = "the description of word will be displayed here";
 
     startGameText.style.display = "inline";
@@ -322,7 +321,7 @@ function returnToMainMenu() {
     settingsArea.style.display = "flex";
     settingsArea.classList.remove('hidden');
 
-    changeWordStats(currentLevel);
+    updateLevelStat(currentLevel);
 
     gameArea.style.display = "block";
     resultArea.style.display = "none";
@@ -344,9 +343,8 @@ function selectLevel(element) {
         el.classList.remove('selected');
     });
     element.classList.add('selected');
-    currentLevel = element.textContent.trim();
+    currentLevel = element.textContent.trim().substring(0, 2);
     levelDisplay.textContent = currentLevel;
-    changeWordStats(currentLevel);
 }
 
 function selectTime(element) {
@@ -357,12 +355,29 @@ function selectTime(element) {
     timeCounter.textContent = element.textContent.trim();
 }
 
-async function changeWordStats(levelDisplay) {
+async function updateLevelStat(level) {
     if (!progressData) return;
-    let levelData = progressData.find(obj => obj.level === levelDisplay);
-    if (levelData) {
-        wordStats.textContent = `${levelDisplay} Words: ${levelData.guessed_count}/${levelData.total_count}`;
+    let levelData = progressData.find(obj => obj.level === level);
+    let guessed = levelData.guessed_count;
+    let total = levelData.total_count;
+    const countElement = document.getElementById(`level-stat-${level.toLowerCase()}`);
+    if (countElement && guessed < total) {
+        countElement.textContent = `${guessed++}/${total}`;
     }
+}
+
+function setLevelStats() {
+    if (!progressData) return;
+    progressData.forEach(levelObj => {
+        const level = levelObj.level;
+        const guessed = levelObj.guessed_count;
+        const total = levelObj.total_count;
+        if (isNaN(total)) return;
+        const countElement = document.getElementById(`level-stat-${level.toLowerCase()}`);
+        if (countElement) {
+            countElement.textContent = `${guessed}/${total}`;
+        }
+    });
 }
 
 // API INTERACTION
@@ -438,7 +453,7 @@ async function loadProgress() {
         });
         if (res.ok) {
             progressData = await res.json();
-            changeWordStats(currentLevel);
+            setLevelStats();
         } else {
             console.error('Failed to fetch progress.');
             updateUIStateBasedOnAuth(null);

@@ -15,8 +15,8 @@
 }
 
 #settings-area h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 10px;
     font-size: var(--big-font-size);
     text-align: center;
 }
@@ -25,20 +25,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 6px;
 }
 
 .settings-time,
 .settings-level {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 40px;
-    padding: 10px 16px;
+    min-width: 48px;
+    padding: 10px 14px;
     cursor: pointer;
     font-size: var(--small-font-size);
     border: var(--default-dashed-border);
     opacity: 0.7;
+}
+
+.settings-level p {
+    margin: 5px;
 }
 
 .settings-time:hover,
@@ -58,11 +63,12 @@
 }
 
 #time-container {
+    font-size: var(--small-font-size);
     position: absolute;
     top: 0;
     right: 0;
     width: 70px;
-    padding: 25px;
+    padding: 25px 10px;
     z-index: 1;
     transition: opacity 0.3s ease-in-out;
 }
@@ -72,11 +78,12 @@
 }
 
 #level-display {
+    font-size: var(--big-font-size);
     position: absolute;
     top: 0;
     left: 0;
     width: 70px;
-    padding: 25px;
+    padding: 25px 10px;
     margin: 0;
     z-index: 1;
     transition: opacity 0.3s ease-in-out;
@@ -115,7 +122,6 @@
     box-sizing: border-box;
 }
 
-#word-stats,
 #result-message {
     width: var(--half-game-area-width);
     font-size: var(--medium-font-size);
@@ -126,6 +132,31 @@
     margin-bottom: 0;
     border-left: var(--default-dashed-border);
     border-top: var(--default-dashed-border);
+    border-right: var(--default-dashed-border);
+    padding: 10px;
+}
+
+#key-hints {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    font-size: var(--medium-font-size);
+    border-top: var(--default-dashed-border);
+    padding: 0;
+}
+
+#key-hints>span {
+    height: auto;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-right: var(--default-dashed-border);
     padding: 10px;
 }
@@ -186,7 +217,6 @@
 }
 
 #game-area.visible,
-#result-area.visible,
 #welcome-screen.visible,
 #navigation-area.visible {
     opacity: 1;
@@ -278,14 +308,13 @@
     }
 
     #submit-guess,
-    #word-stats,
     #result-message,
     #navigation-area {
         width: 75vw;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     :root {
         --game-area-width: 95vw;
         --space-area-width: 20px;
@@ -299,13 +328,12 @@
     }
 
     .options-container {
-        gap: 5px;
+        gap: 10px;
     }
 
     .settings-time,
     .settings-level {
         padding: 8px 12px;
-        min-width: 30px;
     }
 
     #game-area,
@@ -317,15 +345,10 @@
     }
 
     #submit-guess,
-    #word-stats,
-    #result-message {
-        width: 90%;
-        font-size: 18px;
-        padding: 12px;
-    }
-
+    #result-message,
     #navigation-area {
-        width: 90%;
+        width: 70%;
+        padding: 12px;
     }
 
     .letter-box {
@@ -337,7 +360,7 @@
     }
 
     #description-area {
-        width: 100%;
+        width: 98%;
         padding: 10px;
         box-sizing: border-box;
     }

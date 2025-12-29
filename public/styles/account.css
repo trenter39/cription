@@ -85,7 +85,7 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 800px) {
     :root {
         --game-area-width: 90vw;
         --space-area-width: 100px;
@@ -106,7 +106,11 @@
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 740px) {
+    :root {
+        --game-area-width: 95vw;
+        --space-area-width: 20px;
+    }
 
     #account-container {
         width: 95vw;
@@ -119,27 +123,25 @@
     #level-stats-grid {
         width: 100%;
         gap: 5px;
-        padding: 0 10px;
+        padding: 0 20px;
         box-sizing: border-box;
     }
 
     #level-stats-grid div {
-        flex: 1 0 40%;
+        flex: 0 0 25%;
         padding: 10px;
         font-size: var(--small-font-size);
         text-align: center;
     }
 
     #total-stats-container {
-        width: 95%;
+        width: 85%;
         padding: 10px;
-        flex-direction: column;
         align-items: center;
         gap: 5px;
     }
 
     #stat-caption {
-        justify-content: center;
         font-size: var(--small-font-size);
     }
 
@@ -149,11 +151,15 @@
         left: auto;
         transform: none;
         margin-top: auto;
-        margin-bottom: -20px;
+    }
+
+    #stat-caption {
+        width: 85%;
     }
 
     #user-display,
     #sign-out-text {
         font-size: var(--medium-font-size);
+        width: 70vw;
     }
 }

@@ -37,12 +37,30 @@
             <div>
                 <h2 class="settings-header">Level</h2>
                 <div class="options-container">
-                    <span class="settings-level">A1</span>
-                    <span class="settings-level">A2</span>
-                    <span class="settings-level selected">B1</span>
-                    <span class="settings-level">B2</span>
-                    <span class="settings-level">C1</span>
-                    <span class="settings-level">C2</span>
+                    <div class="settings-level">
+                        <p>A1</p>
+                        <p id="level-stat-a1"></p>
+                    </div>
+                    <div class="settings-level">
+                        <p>A2</p>
+                        <p id="level-stat-a2"></p>
+                    </div>
+                    <div class="settings-level selected">
+                        <p>B1</p>
+                        <p id="level-stat-b1"></p>
+                    </div>
+                    <div class="settings-level">
+                        <p>B2</p>
+                        <p id="level-stat-b2"></p>
+                    </div>
+                    <div class="settings-level">
+                        <p>C1</p>
+                        <p id="level-stat-c1"></p>
+                    </div>
+                    <div class="settings-level">
+                        <p>C2</p>
+                        <p id="level-stat-c2"></p>
+                    </div>
                 </div>
             </div>
             <div>
@@ -56,7 +74,11 @@
             </div>
         </div>
         <p id="submit-guess" style="display: none;" class="hidden">Submit</p>
-        <p id="word-stats">B1 Words: 0/178</p>
+        <div id="key-hints">
+            <span>Space = Start</span>
+            <span>Enter = Submit</span>
+            <span style="border-right: none">Tab = Restart</span>
+        </div>
     </div>
     <div id="result-area" style="display: none;">
         <div id="result-content">
