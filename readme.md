@@ -7,7 +7,7 @@ Interactive vocabulary training platform built with Node.js, Express, PostgreSQL
 1. Clone the repository:
 ```
 git clone https://github.com/trenter39/cription.git
-cd insight
+cd cription
 ```
 
 2. Install dependencies via **npm**:
@@ -15,14 +15,14 @@ cd insight
 npm install
 ```
 
-3. Create `criptiondb` database in **PostgreSQL**.
+3. Create `cription` database in **PostgreSQL**.
 ```
-create database criptiondb;
+create database cription;
 ```
 
 4. Set up the database by running the `criptiondb.sql` schema file.
 ```
-psql -U postgres -h localhost -d criptiondb < criptiondb.sql
+psql -U postgres -d cription < schema.sql
 ```
 
 5. Configure connection to **PostgreSQL** by creating `.env` file in the root folder. `.env` file must contain fields (example with default values):
@@ -31,7 +31,7 @@ PORT=8080
 DB_HOST=localhost
 DB_USER=postgres
 DB_PASSWORD=your_password
-DB_NAME=criptiondb
+DB_NAME=cription
 DB_PORT=5432
 JWT_SECRET=cription_secret
 JWT_EXPIRES_IN=1d

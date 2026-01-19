@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: cription-postgres
+    environment:
+      POSTGRES_DB: cription
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+  
+  app:
+    build: .
+    container_name: cription-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: cription
+      DB_USER: postgres
+      DB_PASSWORD: password
+      JWT_SECRET: jwt_secret_key
+      JWT_EXPIRES_IN: 1d
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
