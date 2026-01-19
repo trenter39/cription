@@ -2,11 +2,10 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../config/db.js';
+import { JWT_SECRET, JWT_EXPIRES_IN } from '../config/conf.js';
 import { body, validationResult } from 'express-validator';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || "jwt_secret";
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
 

@@ -8,11 +8,11 @@ import {
 } from './conf.js';
 
 const db = new Pool({
-    host: DB_HOST || "localhost",
-    port: DB_PORT || 5432,
-    database: DB_NAME || "cription",
-    user: DB_USER || "postgres",
-    password: DB_PASSWORD || "password"
+    host: DB_HOST,
+    port: DB_PORT,
+    database: DB_NAME,
+    user: DB_USER,
+    password: DB_PASSWORD
 });
 
 db.connect()

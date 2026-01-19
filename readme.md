@@ -29,11 +29,11 @@ psql -U postgres -d cription < schema.sql
 ```
 PORT=8080
 DB_HOST=localhost
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_NAME=cription
 DB_PORT=5432
-JWT_SECRET=cription_secret
+DB_NAME=cription
+DB_USER=postgres
+DB_PASSWORD=password
+JWT_SECRET=jwt_secret
 JWT_EXPIRES_IN=1d
 ```
 
@@ -43,5 +43,12 @@ node app.js
 ```
 
 Now you can visit website via `http://localhost:8080/`.
+
+## Docker Setup (Recommended)
+
+For a quick out-of-the-box experience without manual database setup, run with Docker Compose:
+```
+docker-compose up --build
+```
 
 ![cription preview](./previews/game_preview.png)

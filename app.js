@@ -30,6 +30,6 @@ app.use((req, res) => {
     res.redirect('/');
 });
 
-app.listen(PORT || "8080", '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`App running on http://localhost:${PORT}/`);
 });
