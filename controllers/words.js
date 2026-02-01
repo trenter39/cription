@@ -20,36 +20,40 @@ export async function getUserProgress(userId) {
 }
 
 export async function getGuessAttempt(userId) {
-    const sql = `select guessed_words,
-                    failed_attempts
+    const sql = `select guessed_words, failed_attempts
                 from users
                 where id = $1`;
     const { rows } = await db.query(sql, [userId]);
-    return rows;
+    return rows[0];
 }
 
 export async function getRandomWord(level, userId) {
-    const sql = `select w.id, w.word, w.description, w.example1, w.example2
-                from words w
-                left join user_words uw on uw.word_id = w.id and uw.user_id = $2 and uw.is_guessed = true
-                where w.level = $1 and uw.word_id is null
-                order by random()
-                limit 1`;
+    const sql = `
+        select w.id, w.word, w.description, w.example1, w.example2
+        from words w
+        left join user_words uw
+            on uw.word_id = w.id
+            and uw.user_id = $2
+            and uw.is_guessed = true
+        where w.level = $1 
+            and uw.word_id is null
+        order by random()
+        limit 1`;
     const { rows } = await db.query(sql, [level, userId]);
     return rows[0];
 }
 
 export async function markWordGuessed(userId, wordId) {
-    const checksql = `select id, is_guessed from user_words where user_id = $1 and word_id = $2`;
+    const checksql = `select id, is_guessed
+                      from user_words
+                      where user_id = $1 and word_id = $2`;
     const existingResult = await db.query(checksql, [userId, wordId]);
     let wasPreviouslyGuessed = false;
     if (existingResult.rows.length > 0) {
         wasPreviouslyGuessed = existingResult.rows[0].is_guessed;
-        await db.query(`
-            update user_words
-            set is_guessed = true,
-                attempts = attempts + 1,
-                last_attempt_at = current_timestamp
+        await db.query(
+            `update user_words
+            set is_guessed = true, attempts = attempts + 1, last_attempt_at = current_timestamp
             where user_id = $1 and word_id = $2`,
             [userId, wordId]);
     } else {
@@ -60,7 +64,12 @@ export async function markWordGuessed(userId, wordId) {
         );
     }
     if (!wasPreviouslyGuessed) {
-        await db.query(`update users set guessed_words = guessed_words + 1 where id = $1`, [userId]);
+        await db.query(
+            `update users
+            set guessed_words = guessed_words + 1
+            where id = $1`,
+            [userId]
+        );
     }
 }
 
@@ -79,5 +88,8 @@ export async function markWordAttempt(userId, wordId) {
             values($1, $2, false, 1)`,
             [userId, wordId]);
     }
-    await db.query(`update users set failed_attempts = failed_attempts + 1 where id = $1`, [userId]);
+    await db.query(
+        `update users
+        set failed_attempts = failed_attempts + 1
+        where id = $1`, [userId]);
 }

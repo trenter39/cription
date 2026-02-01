@@ -384,87 +384,101 @@ function setLevelStats() {
 
 async function pickRandomWord(level) {
     try {
-        const token = localStorage.getItem('token');
-        if (!token) return;
-        const res = await fetch(`/api/random-word?level=${encodeURIComponent(level)}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const res = await fetch(
+            `/api/random-word?level=${encodeURIComponent(level)}`,
+            { credentials: 'include' }
+        );
+
+        if (res.status === 401) {
+            updateUIStateBasedOnAuth(false);
+            return;
+        }
 
         if (!res.ok) throw new Error('Failed to fetch word!');
 
         const randomWord = await res.json();
+
         currentWordID = randomWord.id;
         currentWord = randomWord.word;
         currentDescription = randomWord.description;
         currentFirstExample = randomWord.example1;
         currentSecondExample = randomWord.example2;
-
     } catch (err) {
-        console.error("Data isn't fetched!", err);
+        console.error("Word fetch error:", err);
     }
 }
 
 async function markWordAsGuessed(wordId) {
-    const token = localStorage.getItem('token');
-    if (!token) return;
     try {
         const res = await fetch('/api/progress/guess', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({ word_id: wordId }),
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ word_id: wordId })
         });
-        if (res.ok) {
-            progressData = await res.json();
-        } else {
-            console.error('Failed to update progress!');
+
+        if (res.status === 401) {
+            updateUIStateBasedOnAuth(false);
+            return;
         }
+
+        if (!res.ok) {
+            console.error('Failed to update progress');
+            return;
+        }
+
+        progressData = await res.json();
+        setLevelStats();
     } catch (err) {
-        console.error('Error marking word as guessed:', err);
+        console.error('Guess update error:', err);
     }
 }
 
 async function markWordAsAttempt(wordId) {
-    const token = localStorage.getItem('token');
-    if (!token) return;
     try {
-        await fetch('/api/progress/attempt', {
+        const res = await fetch('/api/progress/attempt', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
             body: JSON.stringify({ word_id: wordId }),
         });
+
+        if (res.status === 401) {
+            updateUIStateBasedOnAuth(false);
+        }
+
     } catch (err) {
-        console.error('Error marking word as attempt:', err);
+        console.error('Attempt update error:', err);
     }
 }
 
 async function loadProgress() {
-    const token = localStorage.getItem('token');
-    updateUIStateBasedOnAuth(token);
-    if (!token) return;
     try {
-        const res = await fetch('/api/progress', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (res.ok) {
-            progressData = await res.json();
-            setLevelStats();
-        } else {
-            console.error('Failed to fetch progress.');
-            updateUIStateBasedOnAuth(null);
+        const res = await fetch('/api/progress',
+            { credentials: 'include' }
+        );
+
+        if (res.status === 401) {
+            updateUIStateBasedOnAuth(false);
+            return;
         }
+
+        if (!res.ok) {
+            console.error('Failed to fetch progress');
+            return;
+        }
+
+        progressData = await res.json();
+        updateUIStateBasedOnAuth(true);
+        setLevelStats();
     } catch (err) {
-        console.error('Error loading progress:', err);
+        console.error('Progress load error:', err);
+        updateUIStateBasedOnAuth(false);
     }
 }
 
-async function updateUIStateBasedOnAuth(token) {
-    if (!token) {
+async function updateUIStateBasedOnAuth(isAuthenticated) {
+    if (!isAuthenticated) {
         gameArea.style.display = 'none';
         navigationArea.style.display = 'none';
         welcomeScreen.style.display = 'block';

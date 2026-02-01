@@ -15,12 +15,12 @@ cd cription
 npm install
 ```
 
-3. Create `cription` database in **PostgreSQL**.
+3. Create `cription` database in **PostgreSQL**:
 ```
 create database cription;
 ```
 
-4. Set up the database by running the `criptiondb.sql` schema file.
+4. Set up the database by running the `criptiondb.sql` schema file:
 ```
 psql -U postgres -d cription < schema.sql
 ```
@@ -35,9 +35,10 @@ DB_USER=postgres
 DB_PASSWORD=password
 JWT_SECRET=jwt_secret
 JWT_EXPIRES_IN=1d
+NODE_ENV=production
 ```
 
-6. Start the server
+6. Start the server:
 ```
 node app.js
 ```

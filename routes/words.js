@@ -1,17 +1,17 @@
 import express from 'express';
-import { verifyToken } from './auth.js';
+import { verifyToken } from '../middleware/authMiddleware.js';
 import { getRandomWord } from '../controllers/words.js';
 
 const router = express.Router();
 
 router.get('/', verifyToken, async (req, res) => {
-    const level = req.query.level;
     const userId = req.user.id;
+    const { level } = req.query;
     try {
-        const randomWord = await getRandomWord(level, userId);
-        res.json(randomWord);
+        const word = await getRandomWord(level, userId);
+        res.json(word);
     } catch (err) {
-        console.error('Error fetching random word:', err);
+        console.error('Fetch random word error:', err);
         res.status(500).json({ error: 'Internal server error!' });
     }
 });

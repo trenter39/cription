@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ email, password })
             });
 
@@ -82,10 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return updateFeedback(feedbackLogin, msg, true);
             }
 
-            // Handle success (store token & redirect)
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-
+            // Handle success - redirect
             window.location.href = '/account';
 
         } catch (err) {

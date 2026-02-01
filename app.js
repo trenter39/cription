@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import progressRoutes from './routes/progress.js';
 import wordRoutes from './routes/words.js';
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/api', authRoutes);
@@ -30,6 +32,6 @@ app.use((req, res) => {
     res.redirect('/');
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`App running on http://localhost:${PORT}/`);
 });

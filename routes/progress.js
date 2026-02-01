@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyToken } from './auth.js';
+import { verifyToken } from '../middleware/authMiddleware.js';
 import { getUserProgress, markWordGuessed, markWordAttempt, getGuessAttempt } from '../controllers/words.js';
 
 const router = express.Router();
