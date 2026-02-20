@@ -20,7 +20,7 @@ npm install
 create database cription;
 ```
 
-4. Set up the database by running the `criptiondb.sql` schema file:
+4. Set up the database by running the `schema.sql` schema file:
 ```
 psql -U postgres -d cription < schema.sql
 ```
@@ -49,7 +49,7 @@ Now you can visit website via `http://localhost:8080/`.
 
 For a quick out-of-the-box experience without manual database setup, run with Docker Compose:
 ```
-docker-compose up --build
+docker compose up
 ```
 
 ![cription preview](./previews/game_preview.png)
